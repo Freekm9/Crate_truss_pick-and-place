@@ -30,7 +30,7 @@
 
 [submodule "src/multipanda_ros2"]
 	path = src/multipanda_ros2
-	url = https://github.com/tenfoldpaper/multipanda_ros2.git
+	url = https://github.com/Freekm9/multipanda_ros2.git
 	branch = humble
 
 [submodule "src/panda_moveit_config_vine_tomato"]

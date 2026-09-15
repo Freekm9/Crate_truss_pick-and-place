@@ -1,0 +1,9 @@
+# Generated catkin build output
+/build/
+/devel/
+.catkin_workspace
+
+# Experiment run outputs - too large for git (740M+)
+/experiments/
+__pycache__/
+*.pyc

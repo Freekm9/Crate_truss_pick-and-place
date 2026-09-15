@@ -1,0 +1,4 @@
+planner_id,n_trials,n_success,success_rate
+RRTConnect,8,6,0.75
+BiTRRT,10,3,0.3
+RRTstar,9,4,0.444

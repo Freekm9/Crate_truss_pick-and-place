@@ -1,0 +1,9 @@
+planner_id,movement,n,planning_success_rate,mean_planning_duration_s,median_planning_duration_s,mean_path_length,mean_num_waypoints,mean_execution_duration_s,goal_reached_rate
+BiTRRT,grasp_post_grasp,52,1.0,0.125,0.102,1.389,20.577,2.292,1.0
+BiTRRT,grasp_pre_grasp,65,1.0,0.131,0.098,1.554,21.0,2.452,1.0
+RRTConnect,grasp_post_grasp,6,1.0,0.094,0.093,1.364,22.0,2.234,1.0
+RRTConnect,grasp_pre_grasp,6,1.0,0.111,0.101,2.97,38.0,4.241,1.0
+RRTstar,grasp_post_grasp,9,1.0,5.074,5.055,1.778,25.0,2.838,1.0
+RRTstar,grasp_pre_grasp,15,0.7333333333333333,3.505,5.023,2.759,35.364,3.819,1.0
+chomp,grasp_post_grasp,9,1.0,0.826,0.814,1.134,101.0,2.415,1.0
+chomp,grasp_pre_grasp,16,0.6875,1.352,0.802,1.662,101.0,2.92,1.0

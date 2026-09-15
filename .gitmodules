@@ -1,0 +1,44 @@
+[submodule "src/baldor"]
+	path = src/baldor
+	url = https://github.com/crigroup/baldor.git
+	branch = master
+
+[submodule "src/franka_ros_vine_tomato"]
+	path = src/franka_ros_vine_tomato
+	url = https://github.com/Freekm9/franka_ros_vine_tomato.git
+	branch = develop
+
+[submodule "src/franka_ros_vine_tomato/franka_human_friendly_controllers"]
+	path = src/franka_ros_vine_tomato/franka_human_friendly_controllers
+	url = https://github.com/franzesegiovanni/franka_human_friendly_controllers.git
+	branch = master
+
+[submodule "src/handeye"]
+	path = src/handeye
+	url = https://github.com/crigroup/handeye.git
+	branch = master
+
+[submodule "src/learning_approach_to_robotic_grasping_of_vine_tomatoes"]
+	path = src/learning_approach_to_robotic_grasping_of_vine_tomatoes
+	url = https://github.com/Freekm9/learning_approach_to_robotic_grasping_of_vine_tomatoes.git
+	branch = develop
+
+[submodule "src/moveit_calibration_vine_tomato"]
+	path = src/moveit_calibration_vine_tomato
+	url = https://github.com/Freekm9/moveit_calibration_vine_tomato.git
+	branch = master
+
+[submodule "src/multipanda_ros2"]
+	path = src/multipanda_ros2
+	url = https://github.com/tenfoldpaper/multipanda_ros2.git
+	branch = humble
+
+[submodule "src/panda_moveit_config_vine_tomato"]
+	path = src/panda_moveit_config_vine_tomato
+	url = https://github.com/Freekm9/panda_moveit_config_vine_tomato.git
+	branch = noetic-devel
+
+[submodule "src/realsense-ros_d405_ros1"]
+	path = src/realsense-ros_d405_ros1
+	url = https://github.com/LuukvandenBent/realsense-ros_d405_ros1.git
+	branch = ros1-legacy

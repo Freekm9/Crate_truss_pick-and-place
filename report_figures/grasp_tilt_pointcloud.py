@@ -90,8 +90,11 @@ GRASP_POINT_OVERRIDE = None
 # back to False if that guess is wrong for your actual planning frame.
 FLIP_APPROACH_FOR_DISPLAY = True
 
-TILT_ANGLES_DEG = [0, 30, 60, -30, -60]
-Y_TILT_ANGLES_DEG = [0, 30, 60, -30, -60]
+# Tilt angles (degrees) around vine axis: 0° = top-down, ±90° = horizontal approach
+TILT_ANGLES_DEG = [0, 20, -20, 40, -40, 60, -60, 80, -80]
+# Roll around the (post-X-tilt) gripper-closing axis; stays perpendicular to the stem
+Y_TILT_ANGLES_DEG = [0, 20, -20, 40, -40, 60, -60, 80, -80]
+
 Y_TILT_DEMO_X = 0  # deg_x held fixed while deg_y sweeps
 
 # Combined pitch+roll orientations (deg_x, deg_y), drawn on top of the two
@@ -100,8 +103,8 @@ Y_TILT_DEMO_X = 0  # deg_x held fixed while deg_y sweeps
 #   SHOW_ALL_COMBINATIONS = True ignores this list and instead draws the full
 #   TILT_ANGLES_DEG x Y_TILT_ANGLES_DEG grid, minus the pure-pitch / pure-roll
 #   cases the other two sweeps already cover.
-#COMBO_TILT_ANGLES = []#(30, 30), (30, -30), (-30, 30), (-30, -30)]
-SHOW_ALL_COMBINATIONS = True
+COMBO_TILT_ANGLES = []  # e.g. [(30, 30), (30, -30), (-30, 30), (-30, -30)]
+SHOW_ALL_COMBINATIONS = False
 
 STANDOFF = 0.2
 PRONG_LENGTH = 0.05
@@ -121,7 +124,7 @@ XLIM = None
 YLIM = None
 ZLIM = None
 AXIS_MARGIN_FRAC = 0.05   # applied only to axes left as None
-OUTPUT_PATH = "/tmp/claude-0/-root/3047a74c-ec3a-4b61-bbd6-9cab87991a9a/scratchpad/grasp_tilt_pointcloud.png"
+OUTPUT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "grasp_tilt_pointcloud.png")
 
 X_TILT_COLOR = "tab:blue"
 Y_TILT_COLOR = "tab:cyan"

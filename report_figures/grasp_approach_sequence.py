@@ -66,7 +66,7 @@ FINGERTIPS_ON_PHASE_POINT = True
 DRAW_APPROACH_LINE = True  # dashed guide line through all phase points
 
 FIGSIZE = (10, 9)
-OUTPUT_PATH = "/tmp/claude-0/-root/3047a74c-ec3a-4b61-bbd6-9cab87991a9a/scratchpad/grasp_approach_sequence.png"
+OUTPUT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "grasp_approach_sequence.png")
 
 # ------------------------------------------------------------------------
 

@@ -7,6 +7,7 @@ along its approach axis toward the stem.
 Tweak the CONFIG block below to match your report's needs.
 """
 
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -37,7 +38,7 @@ PALM_OFFSET = 0.0   # small gap between prong back-ends and the "palm" bar
 
 FIGSIZE = (8, 8)
 ELEV_VIEW, AZIM_VIEW = 22, -60
-OUTPUT_PATH = "/tmp/claude-0/-root/3047a74c-ec3a-4b61-bbd6-9cab87991a9a/scratchpad/grasp_orientations.png"
+OUTPUT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "grasp_orientations.png")
 
 # ------------------------------------------------------------------------
 

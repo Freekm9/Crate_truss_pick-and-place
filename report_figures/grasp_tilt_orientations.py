@@ -20,6 +20,7 @@ script just floats every fork above the cloud with one flat z-order.
     showing the secondary roll around the closing axis (cyan).
 """
 
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
@@ -36,8 +37,11 @@ STEM_COLOR = "tab:green"
 STEM_ALPHA = 0.5
 
 # Same sweep set as grasp_tilt_pointcloud.py.
-TILT_ANGLES_DEG = [0, 30, 60, -30, -60]
-Y_TILT_ANGLES_DEG = [0, 30, 60, -30, -60]
+# Tilt angles (degrees) around vine axis: 0° = top-down, ±90° = horizontal approach
+TILT_ANGLES_DEG = [0, 20, -20, 40, -40, 60, -60, 80, -80]
+# Roll around the (post-X-tilt) gripper-closing axis; stays perpendicular to the stem
+Y_TILT_ANGLES_DEG = [0, 20, -20, 40, -40, 60, -60, 80, -80]
+
 Y_TILT_DEMO_X = 0  # deg_x held fixed while deg_y sweeps
 
 # Fork geometry -- proportioned to the cylinder above.
@@ -53,7 +57,7 @@ FLIP_APPROACH_FOR_DISPLAY = True
 
 FIGSIZE = (10, 9)
 ELEV_VIEW, AZIM_VIEW = 25, -60
-OUTPUT_PATH = "/tmp/claude-0/-root/3047a74c-ec3a-4b61-bbd6-9cab87991a9a/scratchpad/grasp_tilt_orientations.png"
+OUTPUT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "grasp_tilt_orientations.png")
 
 X_TILT_COLOR = "tab:blue"
 Y_TILT_COLOR = "tab:cyan"

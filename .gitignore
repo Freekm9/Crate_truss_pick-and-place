@@ -7,3 +7,6 @@
 /experiments/
 __pycache__/
 *.pyc
+
+# Saved pipeline runs (obb/pointcloud dumps) - 1.3G
+/saved_experiments/

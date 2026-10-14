@@ -1,0 +1,14 @@
+unique start/goal pairs: {'pre_grasp': 106, 'transport': 106}, repeats 5, plans per planner 1060
+pairs shared by topdown and tilted: 212 of 212; tilted rows with nonzero tilt: 0
+RRTConnect: success 1.0000 (1060/1060), t_med 0.041 s, t_p95 0.059 s, ratio median 1.000
+BiTRRT: success 1.0000 (1060/1060), t_med 0.047 s, t_p95 0.073 s, ratio median 1.000
+RRT*: success 1.0000 (1060/1060), t_med 5.029 s, t_p95 5.047 s, ratio median 1.000
+CHOMP: success 1.0000 (1060/1060), t_med 0.548 s, t_p95 0.675 s, ratio median 1.000
+Pink: success 0.8491 (900/1060), t_med 0.369 s, t_p95 1.110 s, ratio median 1.534
+Pink pre-grasp failure reasons: {'moveit_collision': 130, 'stalled': 30}
+outliers (ratio > 1.03 or ee ratio > 1.1), sampling + CHOMP: 12 of 4240 plans, pairs ['pre_grasp:aea3b8c0185e'], per planner {'BiTRRT': 4, 'RRTstar': 4, 'RRTConnect': 4}
+  BiTRRT: 4 plans, max ratio 1.170, max ee ratio 1.960, min clearance 11.0 mm, pairs ['pre_grasp:aea3b8c0185e']
+  RRTConnect: 4 plans, max ratio 1.389, max ee ratio 1.446, min clearance 9.2 mm, pairs ['pre_grasp:aea3b8c0185e']
+  RRT*: 4 plans, max ratio 1.551, max ee ratio 4.420, min clearance 1.8 mm, pairs ['pre_grasp:aea3b8c0185e']
+planning time BiTRRT - RRTConnect per pair: median +6.0 ms, Wilcoxon p=4.4e-09 (n=212)
+planning time CHOMP - RRTConnect per pair: median +502.0 ms, Wilcoxon p=1.5e-36 (n=212)

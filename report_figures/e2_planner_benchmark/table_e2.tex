@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{Planning-only planner benchmark (E2 stage A): 212 fixed start/goal pairs from one crate scan, 5 repeats each, 9\,cm fingers. Success with Wilson 95\% CI; times and path ratios over successful plans. Path ratio = joint path length / direct joint distance to the goal.}
+\label{tab:e2_planner_benchmark}
+\begin{tabular}{llrrrrr}
+\toprule
+Move & Planner & Success (\%) & $t_\mathrm{med}$ (s) & $t_{95}$ (s) & Ratio med & Ratio max \\
+\midrule
+Capture pose to pre-grasp & RRTConnect & 100.0 [99.3, 100.0] & 0.043 & 0.060 & 1.000 & 1.389 \\
+ & BiTRRT & 100.0 [99.3, 100.0] & 0.047 & 0.074 & 1.000 & 1.170 \\
+ & RRT* & 100.0 [99.3, 100.0] & 5.029 & 5.049 & 1.000 & 1.551 \\
+ & CHOMP & 100.0 [99.3, 100.0] & 0.541 & 0.685 & 1.000 & 1.002 \\
+ & Pink & 69.8 [65.8, 73.6] & 0.594 & 1.106 & 1.558 & 2.068 \\
+\midrule
+Lift to place & RRTConnect & 100.0 [99.3, 100.0] & 0.040 & 0.058 & 1.000 & 1.000 \\
+ & BiTRRT & 100.0 [99.3, 100.0] & 0.046 & 0.073 & 1.000 & 1.000 \\
+ & RRT* & 100.0 [99.3, 100.0] & 5.028 & 5.045 & 1.000 & 1.000 \\
+ & CHOMP & 100.0 [99.3, 100.0] & 0.556 & 0.669 & 1.000 & 1.000 \\
+ & Pink & 100.0 [99.3, 100.0] & 0.241 & 1.129 & 1.470 & 2.176 \\
+\bottomrule
+\end{tabular}
+\end{table}

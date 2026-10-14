@@ -1,0 +1,28 @@
+poses per finger x method: 1790; points 358; trusses 52; scans 9; yaw offsets [-30.0, -15.0, 0.0, 15.0, 30.0]
+points within 5 cm of a wall: 138
+ 0 cm tilted : walls 91.3%, corridor 58.1%, gripper 91.2% [87.8, 94.3]
+ 0 cm topdown: walls 35.3%, corridor 33.5%, gripper 35.3% [24.2, 47.2]
+ 5 cm tilted : walls 99.3%, corridor 98.9%, gripper 99.3% [98.7, 99.8]
+ 5 cm topdown: walls 94.2%, corridor 94.2%, gripper 94.2% [92.0, 96.3]
+ 9 cm tilted : walls 99.7%, corridor 99.6%, gripper 99.7% [99.4, 99.9]
+ 9 cm topdown: walls 99.6%, corridor 99.6%, gripper 99.6% [99.0, 99.9]
+10 cm tilted : walls 99.7%, corridor 99.6%, gripper 99.7% [99.4, 99.9]
+10 cm topdown: walls 99.6%, corridor 99.6%, gripper 99.6% [99.0, 99.9]
+13 cm tilted : walls 99.7%, corridor 99.6%, gripper 99.7% [99.3, 99.9]
+13 cm topdown: walls 99.6%, corridor 99.6%, gripper 99.6% [99.0, 99.9]
+20 cm tilted : walls 99.7%, corridor 99.7%, gripper 99.7% [99.3, 99.9]
+20 cm topdown: walls 99.0%, corridor 99.0%, gripper 99.0% [98.1, 99.7]
+McNemar gripper 0 cm: tilted-only 1000, topdown-only 0, p=1.87e-301
+McNemar gripper 5 cm: tilted-only 91, topdown-only 0, p=8.08e-28
+McNemar gripper 9 cm: tilted-only 3, topdown-only 0, p=0.25
+McNemar gripper 10 cm: tilted-only 3, topdown-only 0, p=0.25
+McNemar gripper 13 cm: tilted-only 2, topdown-only 0, p=0.5
+McNemar gripper 20 cm: tilted-only 12, topdown-only 0, p=0.000488
+shortest extension with >=95% (gripper), topdown: 9 cm
+shortest extension with >=95% (gripper), tilted: 5 cm
+tilted poses that needed a tilt at 0 cm: 1000 of 1790 (median |tilt| 40 deg)
+tilted poses that needed a tilt at 5 cm: 91 of 1790 (median |tilt| 20 deg)
+tilted poses that needed a tilt at 9 cm: 3 of 1790 (median |tilt| 80 deg)
+tilted poses that needed a tilt at 10 cm: 3 of 1790 (median |tilt| 100 deg)
+tilted poses that needed a tilt at 13 cm: 2 of 1790 (median |tilt| 80 deg)
+tilted poses that needed a tilt at 20 cm: 12 of 1790 (median |tilt| 20 deg)

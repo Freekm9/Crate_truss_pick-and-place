@@ -1,0 +1,29 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Reachable grasp poses (\%) per finger extension and grasp generator, with 95\% cluster-bootstrap CI over trusses. 358 grasp points on 52 trusses from 9 crate scans, 5 yaws each (1790 poses per cell). Walls: crate walls only; corridor / gripper: crate contents as obstacle with the approach corridor or the whole gripper volume left free. Last columns: poses only one generator reaches (gripper carve), exact McNemar test.}
+\label{tab:e3_finger_reachability}
+\begin{tabular}{rlrrrrr}
+\toprule
+Ext. (cm) & Generator & Walls & Corridor & Gripper & Only this & $p$ \\
+\midrule
+0 & Top-down & 35.3 [24, 46] & 33.5 [22, 45] & 35.3 [24, 47] & 0 & $<10^{-4}$ \\
+ & Tilted & 91.3 [88, 94] & 58.1 [47, 68] & 91.2 [88, 94] & 1000 &  \\
+\addlinespace
+5 & Top-down & 94.2 [92, 96] & 94.2 [92, 96] & 94.2 [92, 96] & 0 & $<10^{-4}$ \\
+ & Tilted & 99.3 [99, 100] & 98.9 [98, 100] & 99.3 [99, 100] & 91 &  \\
+\addlinespace
+9 & Top-down & 99.6 [99, 100] & 99.6 [99, 100] & 99.6 [99, 100] & 0 & 0.25 \\
+ & Tilted & 99.7 [99, 100] & 99.6 [99, 100] & 99.7 [99, 100] & 3 &  \\
+\addlinespace
+10 & Top-down & 99.6 [99, 100] & 99.6 [99, 100] & 99.6 [99, 100] & 0 & 0.25 \\
+ & Tilted & 99.7 [99, 100] & 99.6 [99, 100] & 99.7 [99, 100] & 3 &  \\
+\addlinespace
+13 & Top-down & 99.6 [99, 100] & 99.6 [99, 100] & 99.6 [99, 100] & 0 & 0.5 \\
+ & Tilted & 99.7 [99, 100] & 99.6 [99, 100] & 99.7 [99, 100] & 2 &  \\
+\addlinespace
+20 & Top-down & 99.0 [98, 100] & 99.0 [98, 100] & 99.0 [98, 100] & 0 & 0.00049 \\
+ & Tilted & 99.7 [99, 100] & 99.7 [99, 100] & 99.7 [99, 100] & 12 &  \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,97 @@
+set,move,criterion,RRTConnect,BiTRRT,RRTstar@1,RRTstar@5,chomp,pilz_ptp,pilz_lin
+typical,pre_grasp,Success (\%),100.0,100.0,100.0,100.0,100.0,100.0,100.0
+typical,pre_grasp,Planning time (s),0.0465,0.054,1.027,5.028,0.581,0.021,0.025
+typical,pre_grasp,Execution time (s),2.1845,2.1835,2.1835,2.1835,2.49,2.324,2.3565
+typical,pre_grasp,Joint path ratio,1.0,1.0,1.0,1.0,1.0,1.0,1.003
+typical,pre_grasp,TCP path ratio,1.013,1.013,1.013,1.013,1.013,1.013,1.0
+typical,pre_grasp,TCP deviation (mm),12.4,12.4,12.4,12.4,12.4,12.4,0.0
+typical,pre_grasp,TCP turning (rad),0.5355000000000001,0.5355000000000001,0.5355000000000001,0.5355000000000001,0.5355000000000001,0.5355000000000001,0.015
+typical,pre_grasp,Wasted joint motion (rad),0.0,0.0,0.0,0.0,0.0,0.0,0.0218
+typical,pre_grasp,RMS jerk (rad/s$^3$),4.0245,4.0245,4.0245,4.0245,26.6505,5.771,6.734
+typical,pre_grasp,Wall clearance (mm),45.150000000000006,45.1,45.150000000000006,45.150000000000006,44.65,45.15,42.9
+typical,pre_grasp,Truss clearance (mm),60.599999999999994,60.55,60.55,60.599999999999994,60.2,60.45,56.75
+typical,pre_grasp,Repeat spread (mm),0.0490448415655161,0.04765208483449465,0.04490854432898625,0.04720481968390808,0.0,0.0,0.0
+typical,transport,Success (\%),100.0,100.0,100.0,100.0,100.0,100.0,100.0
+typical,transport,Planning time (s),0.044,0.053,1.026,5.028,0.5914999999999999,0.02,0.026
+typical,transport,Execution time (s),2.122,2.122,2.122,2.122,2.4195,2.2285,2.8845
+typical,transport,Joint path ratio,1.0,1.0,1.0,1.0,1.0,1.0,1.088
+typical,transport,TCP path ratio,1.049,1.049,1.049,1.049,1.049,1.049,1.0
+typical,transport,TCP deviation (mm),70.9,70.9,70.9,70.9,70.9,70.9,0.1
+typical,transport,TCP turning (rad),1.056,1.056,1.056,1.056,1.0565,1.056,0.4065
+typical,transport,Wasted joint motion (rad),0.0,0.0,0.0,0.0,0.0,0.0,0.3609
+typical,transport,RMS jerk (rad/s$^3$),3.9495,3.95,3.9495,3.95,31.7055,6.117,6.707
+typical,transport,Wall clearance (mm),239.2,239.2,239.2,239.2,239.2,239.2,234.4
+typical,transport,Truss clearance (mm),,,,,,,
+typical,transport,Repeat spread (mm),0.05395777305508302,0.05785675144232126,0.05237578217707877,0.052353536299098793,0.0,0.0,0.0
+edge,pre_grasp,Success (\%),100.0,100.0,100.0,100.0,100.0,100.0,97.70992366412213
+edge,pre_grasp,Planning time (s),0.047,0.059,1.026,5.028,0.552,0.02,0.026
+edge,pre_grasp,Execution time (s),2.384,2.384,2.384,2.384,2.805,2.548,2.5765000000000002
+edge,pre_grasp,Joint path ratio,1.0,1.0,1.0,1.0,1.0,1.0,1.0095
+edge,pre_grasp,TCP path ratio,1.022,1.022,1.022,1.022,1.022,1.022,1.0
+edge,pre_grasp,TCP deviation (mm),19.2,19.2,19.2,19.2,19.2,19.2,0.0
+edge,pre_grasp,TCP turning (rad),0.717,0.717,0.716,0.716,0.717,0.717,0.025500000000000002
+edge,pre_grasp,Wasted joint motion (rad),0.0,0.0,0.0,0.0,0.0,0.0,0.056249999999999994
+edge,pre_grasp,RMS jerk (rad/s$^3$),3.939,3.938,3.938,3.938,24.384,5.516,7.106999999999999
+edge,pre_grasp,Wall clearance (mm),29.0,29.0,29.0,29.0,27.6,28.5,29.0
+edge,pre_grasp,Truss clearance (mm),59.3,59.3,59.3,59.3,59.5,59.3,58.65
+edge,pre_grasp,Repeat spread (mm),0.052455205861129506,0.04991339274217285,0.047127536013978115,0.04882846302716465,0.0,0.0,0.0
+edge,transport,Success (\%),100.0,100.0,100.0,100.0,100.0,100.0,99.23664122137404
+edge,transport,Planning time (s),0.042,0.053,1.025,5.026,0.569,0.019,0.025
+edge,transport,Execution time (s),2.33,2.33,2.33,2.33,2.693,2.455,2.9074999999999998
+edge,transport,Joint path ratio,1.0,1.0,1.0,1.0,1.0,1.0,1.046
+edge,transport,TCP path ratio,1.044,1.044,1.044,1.044,1.044,1.044,1.0
+edge,transport,TCP deviation (mm),61.5,61.6,61.5,61.5,61.6,61.6,0.1
+edge,transport,TCP turning (rad),1.005,1.005,1.005,1.005,1.005,1.005,0.29
+edge,transport,Wasted joint motion (rad),0.0,0.0,0.0,0.0,0.0,0.0,0.3685
+edge,transport,RMS jerk (rad/s$^3$),4.024,4.024,4.024,4.086,29.866,6.526,7.965
+edge,transport,Wall clearance (mm),229.5,229.5,229.5,229.5,229.5,229.5,229.5
+edge,transport,Truss clearance (mm),,,,,,,
+edge,transport,Repeat spread (mm),0.05662799030995684,0.05662667009197461,0.052784573676089304,0.05251407792913413,0.0,0.0,0.0
+return,return_lift,Success (\%),100.0,100.0,100.0,100.0,100.0,100.0,100.0
+return,return_lift,Planning time (s),0.042499999999999996,0.051,1.023,5.0255,0.535,0.015,0.02
+return,return_lift,Execution time (s),2.0045,2.0045,2.0045,2.0045,2.319,2.1180000000000003,2.0965
+return,return_lift,Joint path ratio,1.0,1.0,1.0,1.0,1.0,1.0,0.996
+return,return_lift,TCP path ratio,1.0105,1.0105,1.0105,1.0105,1.0105,1.0105,1.0
+return,return_lift,TCP deviation (mm),11.3,11.3,11.3,11.3,11.3,11.3,0.0
+return,return_lift,TCP turning (rad),0.4855,0.4855,0.4855,0.4855,0.4855,0.4855,0.0155
+return,return_lift,Wasted joint motion (rad),0.0,0.0,0.0,0.0,0.0,0.0,0.0
+return,return_lift,RMS jerk (rad/s$^3$),4.882,4.882,4.8825,4.8825,43.2405,7.7585,8.161999999999999
+return,return_lift,Wall clearance (mm),108.5,108.5,108.5,108.5,107.2,107.69999999999999,107.7
+return,return_lift,Truss clearance (mm),,,,,,,
+return,return_lift,Repeat spread (mm),0.052698064399904654,0.047984676346613936,0.04563024348980811,0.046060166196763445,0.0,0.0,0.0
+return,return_lift_rot,Success (\%),100.0,100.0,100.0,100.0,100.0,100.0,90.0
+return,return_lift_rot,Planning time (s),0.042,0.07,1.025,5.027,0.535,0.018,0.025
+return,return_lift_rot,Execution time (s),3.536,3.536,3.536,3.536,3.6985,3.6239999999999997,2.838
+return,return_lift_rot,Joint path ratio,1.0,1.0,1.0,1.0,1.0,1.0,0.8025
+return,return_lift_rot,TCP path ratio,1.0225,1.0225,1.0225,1.0225,1.0225,1.0225,1.0
+return,return_lift_rot,TCP deviation (mm),14.850000000000001,14.850000000000001,14.850000000000001,14.850000000000001,14.850000000000001,14.850000000000001,0.0
+return,return_lift_rot,TCP turning (rad),0.749,0.7484999999999999,0.7484999999999999,0.749,0.749,0.749,0.006500000000000001
+return,return_lift_rot,Wasted joint motion (rad),0.0,0.0,0.0,0.0,0.0,0.0,0.0114
+return,return_lift_rot,RMS jerk (rad/s$^3$),3.813,3.813,3.813,3.813,23.692,6.464,7.6495
+return,return_lift_rot,Wall clearance (mm),108.8,108.8,108.8,108.8,107.2,107.7,107.5
+return,return_lift_rot,Truss clearance (mm),,,,,,,
+return,return_lift_rot,Repeat spread (mm),0.04829231055468437,0.04737187309653845,0.04947533567716257,0.051064544726780514,0.0,0.0,0.0
+return,return_place,Success (\%),100.0,100.0,100.0,100.0,100.0,100.0,100.0
+return,return_place,Planning time (s),0.036,0.05,1.0215,5.0225,0.5305,0.015,0.018
+return,return_place,Execution time (s),2.33,2.33,2.3295000000000003,2.3295000000000003,2.9175,2.5155000000000003,2.9059999999999997
+return,return_place,Joint path ratio,1.0,1.0,1.0,1.0,1.0,1.0,1.108
+return,return_place,TCP path ratio,1.076,1.076,1.076,1.076,1.076,1.076,1.0
+return,return_place,TCP deviation (mm),87.7,87.7,87.7,87.7,87.7,87.7,0.3
+return,return_place,TCP turning (rad),1.3225,1.3225,1.3225,1.3225,1.3235000000000001,1.3235000000000001,0.8505
+return,return_place,Wasted joint motion (rad),0.0,0.0,0.0,0.0,0.0,0.0,0.1883
+return,return_place,RMS jerk (rad/s$^3$),3.5675,3.568,3.5675,3.567,21.872500000000002,5.048500000000001,7.7585
+return,return_place,Wall clearance (mm),81.95,81.95,81.95,82.0,81.8,82.6,60.0
+return,return_place,Truss clearance (mm),,,,,,,
+return,return_place,Repeat spread (mm),0.04807316141007506,0.04541862546931477,0.04121294349414099,0.034993722881581625,0.0,0.0,0.0
+return,return_place_rot,Success (\%),100.0,100.0,100.0,100.0,86.48648648648648,32.432432432432435,8.108108108108109
+return,return_place_rot,Planning time (s),0.051,0.086,1.034,5.029,0.6975,0.0205,0.034
+return,return_place_rot,Execution time (s),4.952,4.579,4.853,4.889,4.3385,4.5565,5.669
+return,return_place_rot,Joint path ratio,1.083,1.033,1.047,1.039,1.004,1.0,1.002
+return,return_place_rot,TCP path ratio,1.322,1.217,1.241,1.228,1.2,1.067,1.0
+return,return_place_rot,TCP deviation (mm),138.3,119.7,119.6,110.9,117.35,82.19999999999999,0.1
+return,return_place_rot,TCP turning (rad),4.107,3.506,3.574,3.599,3.849,1.218,0.091
+return,return_place_rot,Wasted joint motion (rad),0.611,0.1783,0.1417,0.0694,0.0464,0.0,1.032
+return,return_place_rot,RMS jerk (rad/s$^3$),3.633,4.064,3.406,3.4,14.149,5.1754999999999995,6.245
+return,return_place_rot,Wall clearance (mm),61.3,25.9,33.6,31.7,4.9,78.1,60.8
+return,return_place_rot,Truss clearance (mm),,,,,,,
+return,return_place_rot,Repeat spread (mm),139.54677562752175,65.23618505608378,98.19904030411244,80.13042418380849,0.0,0.0,0.0007153298077492342

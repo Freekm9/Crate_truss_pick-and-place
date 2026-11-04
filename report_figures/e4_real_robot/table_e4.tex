@@ -1,0 +1,15 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Preliminary real-robot results (E4), structured crate only, 10\,cm fingers, RRTConnect. Success = trusses removed per grasp attempt, with Wilson 95\% CI. Cycle time = interval between consecutive attempts (median [IQR]), including the operator's grasp-point click. Disturbed = attempts that moved a neighbouring truss.}
+\label{tab:e4_preliminary}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Generator & Runs & Removed & Att. & Success (\%) & First att. (\%) & Cleared & Cycle (s) & Disturbed \\
+\midrule
+Top-down & 3 & 27/27 & 27 & 100.0 [88, 100] & 100.0 & 3/3 & 62 [57, 128] & 1 \\
+Tilted & 2 & 18/18 & 19 & 94.7 [75, 99] & 94.4 & 2/2 & 62 [55, 64] & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}

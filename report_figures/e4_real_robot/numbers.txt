@@ -1,0 +1,4 @@
+topdown: runs 3, trusses 27, removed 27/27 attempts (100.0% [87.5, 100.0]), first-attempt 27/27, cycle median 62 s IQR [57, 128] max 669 s, disturbed 1, tilted 0, 180-roll 4, predicted reachable 27/27; failures: []
+tilted: runs 2, trusses 18, removed 18/19 attempts (94.7% [75.4, 99.1]), first-attempt 17/18, cycle median 62 s IQR [55, 64] max 88 s, disturbed 1, tilted 0, 180-roll 5, predicted reachable 19/19; failures: ['missed when grasping']
+planning go_to_place_retreat (RRTConnect): 0/92 planned, t_med 5.039 s, t_p95 5.043 s, exec ok 0/0, exec med nan s, path ratio med nan max nan
+planning grasp_pre_grasp (RRTConnect): 46/46 planned, t_med 0.091 s, t_p95 0.137 s, exec ok 46/46, exec med 2.31 s, path ratio med 1.000 max 1.000

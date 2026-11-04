@@ -1,0 +1,721 @@
+<title>Planner Path Replay</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: control bar on top; left rail = crate map + planner list; right = 3D replay, timeline, progress chart, comparison table */
+:root {
+  --bg: #f3f5f2; --panel: #ffffff; --ink: #1d2420; --muted: #5d6a62; --line: #dde2dc;
+  --accent: #2c6b58; --accent-soft: #dcebe4; --scene: #eceee9; --crate: #8b7a5e; --tilted: #c0143c;
+  --font-ui: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111513; --panel: #181e1b; --ink: #e5eae6; --muted: #97a39b; --line: #2a322d;
+  --accent: #6cc2a5; --accent-soft: #1f3a31; --scene: #0e1210; --crate: #b9a47f; --tilted: #ff5a7a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #111513; --panel: #181e1b; --ink: #e5eae6; --muted: #97a39b; --line: #2a322d;
+  --accent: #6cc2a5; --accent-soft: #1f3a31; --scene: #0e1210; --crate: #b9a47f; --tilted: #ff5a7a; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-ui); font-size: 14px; line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 18px 40px }
+.wrap { max-width: 1480px; margin: 0 auto; display: grid; gap: 14px }
+header { display: flex; flex-wrap: wrap; align-items: end; gap: 10px 28px; justify-content: space-between }
+h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin: 0; text-wrap: balance }
+.sub { color: var(--muted); margin: 2px 0 0; max-width: 70ch }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: end }
+.field { display: grid; gap: 4px }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 600 }
+select, button { font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px }
+select { max-width: 100%; min-width: 0 }
+button { cursor: pointer }
+button:hover { border-color: var(--muted) }
+button:focus-visible, select:focus-visible, input:focus-visible, .pt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--panel) }
+.seg button { border: 0; border-radius: 0; padding: 6px 11px; background: transparent }
+.seg button + button { border-left: 1px solid var(--line) }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--panel); font-weight: 600 }
+.main { display: grid; grid-template-columns: 330px minmax(0, 1fr); gap: 14px; align-items: start }
+@media (max-width: 900px) { .main { grid-template-columns: minmax(0, 1fr) } }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; min-width: 0 }
+.rail { display: grid; gap: 14px; min-width: 0 }
+.card h2 { font-size: 13px; font-weight: 600; margin: 0 0 8px; display: flex; justify-content: space-between; gap: 8px; align-items: baseline }
+.card h2 small { font-weight: 400; color: var(--muted); font-size: 12px }
+#map { width: 100%; height: auto; display: block; touch-action: manipulation }
+.pt { cursor: pointer }
+.maplegend { display: flex; gap: 6px; align-items: center; font-size: 11px; color: var(--muted); margin-top: 6px; flex-wrap: wrap }
+.ramp { width: 90px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--line), var(--accent)) }
+.goals { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px }
+.chip { font-size: 12px; padding: 4px 9px; border-radius: 999px; border: 1px solid var(--line); background: transparent }
+.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); font-weight: 600 }
+.chip:disabled { opacity: 0.5; cursor: not-allowed; text-decoration: line-through }
+.qinfo { font-family: var(--font-data); font-size: 11.5px; color: var(--muted); margin-top: 8px; line-height: 1.6 }
+.planners { display: grid; gap: 2px }
+.prow { display: grid; grid-template-columns: 18px 22px 1fr auto; gap: 6px; align-items: center; padding: 4px 6px; border-radius: 6px; cursor: pointer; border: 1px solid transparent }
+.prow:hover { background: var(--bg) }
+.prow.focus { border-color: var(--accent); background: var(--accent-soft) }
+.prow input { margin: 0 }
+.swatch { width: 22px; height: 0; border-top: 3px solid }
+.prow .st { font-family: var(--font-data); font-size: 11.5px; color: var(--muted) }
+.prow .st.bad { color: var(--tilted) }
+.prow.off { opacity: 0.55 }
+.groupl { font-size: 11px; color: var(--muted); margin: 8px 0 2px 6px; text-transform: uppercase; letter-spacing: 0.06em }
+.viewer { display: grid; gap: 0; padding: 0; overflow: hidden }
+.stage { position: relative; aspect-ratio: 16 / 9.5; max-height: 72vh; width: 100%; background: var(--scene) }
+@media (max-width: 600px) { .stage { aspect-ratio: 1 / 1 } }
+.stage canvas { display: block; width: 100% !important; height: 100% !important }
+.views { position: absolute; top: 10px; left: 10px; display: flex; gap: 6px; flex-wrap: wrap }
+.views .seg { background: var(--panel) }
+.layers { position: absolute; top: 10px; right: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; display: grid; gap: 2px; font-size: 12px }
+.layers label { display: flex; gap: 6px; align-items: center; cursor: pointer; white-space: nowrap }
+@media (max-width: 600px) { .layers { position: static; border: 0; border-top: 1px solid var(--line); border-radius: 0; grid-template-columns: 1fr 1fr } }
+.loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: 13px; pointer-events: none }
+.timeline { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; gap: 10px 14px; align-items: center; padding: 10px 14px; border-top: 1px solid var(--line) }
+@media (max-width: 600px) { .timeline { grid-template-columns: auto minmax(0, 1fr) } .timeline .seg, .timeline .tread { grid-column: span 1 } }
+#play { width: 82px; font-weight: 600 }
+#t { width: 100%; accent-color: var(--accent) }
+.tread { font-family: var(--font-data); font-variant-numeric: tabular-nums; font-size: 13px; min-width: 9ch; text-align: right }
+.chartcard { padding: 10px 14px 6px; border-top: 1px solid var(--line) }
+.charthead { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px }
+#chart { width: 100%; height: 170px; display: block }
+#chart text { font-family: var(--font-data); font-size: 10.5px; fill: var(--muted) }
+.tablewrap { overflow-x: auto }
+table { border-collapse: collapse; width: 100%; font-size: 12.5px; min-width: 860px }
+th, td { padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap }
+th { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; vertical-align: bottom; white-space: normal }
+th:first-child, td:first-child { text-align: left }
+td { font-family: var(--font-data); font-variant-numeric: tabular-nums }
+td:first-child { font-family: var(--font-ui) }
+tr.focus td { background: var(--accent-soft) }
+tbody tr { cursor: pointer }
+.best { font-weight: 600; color: var(--accent) }
+.fail { color: var(--tilted) }
+.note { color: var(--muted); font-size: 12px; max-width: 95ch; margin: 8px 0 0 }
+.tag { display: inline-block; font-size: 10.5px; padding: 0 6px; border-radius: 4px; border: 1px solid currentColor; margin-left: 6px; font-family: var(--font-ui) }
+.tag.tilt { color: var(--tilted) }
+kbd { font-family: var(--font-data); font-size: 11px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Planner path replay</h1>
+      <p class="sub">Every saved simulated plan from the planner-quality benchmark, replayed over its retimed execution time. Pick a grasp point in the crate and compare how each planner moves the gripper there.</p>
+    </div>
+    <div class="controls">
+      <div class="field"><span class="label">Finger extension</span>
+        <div class="seg" id="finger"><button type="button" data-v="5" aria-pressed="true">5 cm</button><button type="button" data-v="10" aria-pressed="false">10 cm</button></div></div>
+      <div class="field"><label class="label" for="move">Move</label><select id="move"></select></div>
+      <div class="field"><span class="label">Repeat</span>
+        <div class="seg" id="repeat"></div></div>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="rail">
+      <section class="card">
+        <h2>Grasp point <small id="ptcount"></small></h2>
+        <svg id="map" viewBox="0 0 300 230" role="img" aria-label="Top view of the crate with the grasp points"></svg>
+        <div class="maplegend"><span>colour: longest ÷ shortest TCP path over planners</span><span>1.0</span><span class="ramp"></span><span id="rampmax">≥1.5</span><span>· ring = a planner failed · × = no grasp found</span></div>
+        <div class="goals" id="goals"></div>
+        <div class="qinfo" id="qinfo"></div>
+      </section>
+      <section class="card">
+        <h2>Planners <small>click a name to follow it</small></h2>
+        <div class="planners" id="planners"></div>
+      </section>
+    </div>
+
+    <div class="rail">
+      <section class="card viewer">
+        <div class="stage" id="stage">
+          <div class="loading" id="loading">Loading paths…</div>
+          <div class="views"><div class="seg" id="view">
+            <button type="button" data-v="persp" aria-pressed="true">3D</button><button type="button" data-v="top" aria-pressed="false">Top</button><button type="button" data-v="side" aria-pressed="false">Side (x–z)</button><button type="button" data-v="front" aria-pressed="false">Front (y–z)</button></div></div>
+          <div class="layers">
+            <label><input type="checkbox" id="lyArm" checked> Arm of followed planner</label>
+            <label><input type="checkbox" id="lyGrip" checked> Gripper now</label>
+            <label><input type="checkbox" id="lyEnd" checked> Gripper at goal + grasp</label>
+            <label><input type="checkbox" id="lyGhost" checked> Full path (faint)</label>
+            <label><input type="checkbox" id="lyReps"> Other repeats</label>
+            <label><input type="checkbox" id="lyCloud" checked> Truss point cloud</label>
+          </div>
+        </div>
+        <div class="timeline">
+          <button type="button" id="play">▶ Play</button>
+          <div class="seg" id="speed"><button type="button" data-v="0.25" aria-pressed="false">¼×</button><button type="button" data-v="0.5" aria-pressed="true">½×</button><button type="button" data-v="1" aria-pressed="false">1×</button></div>
+          <input type="range" id="t" min="0" max="1000" value="0" step="1" aria-label="Time">
+          <div class="tread" id="tread">0.00 s</div>
+        </div>
+        <div class="chartcard">
+          <div class="charthead">
+            <div class="seg" id="metric"><button type="button" data-v="dist" aria-pressed="true">TCP distance to goal</button><button type="button" data-v="tilt" aria-pressed="false">Gripper tilt from vertical</button><button type="button" data-v="z" aria-pressed="false">TCP height</button></div>
+            <div class="seg" id="tmode"><button type="button" data-v="abs" aria-pressed="true">Real time</button><button type="button" data-v="norm" aria-pressed="false">% of own move</button></div>
+          </div>
+          <svg id="chart" role="img" aria-label="Progress of each planner over time"></svg>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Comparison for this goal <small id="tablesub"></small></h2>
+        <div class="tablewrap"><table id="table"></table></div>
+        <p class="note">Values are for the selected repeat; a sampler gives a different path every repeat, so switch repeats or turn on “Other repeats”. TCP path deviation = largest distance of the TCP from the straight start–goal line. End orientation is the gripper at the goal of the move: tilt of the approach axis from straight down, and the direction of the marked finger (●) in the horizontal plane, so a 180° roll shows as a 180° change. All planners plan to the same nearest-IK joint goal, so their end orientations agree unless a planner stops short (Pink, LIN). <kbd>Space</kbd> plays, <kbd>←</kbd>/<kbd>→</kbd> step.</p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+// Show any error on the page instead of a stuck "Loading" message
+function showError(msg) { const l = document.getElementById('loading'); if (l) { l.hidden = false; l.textContent = `Something went wrong: ${msg}. Reload the page to try again.`; } }
+window.addEventListener('error', e => /ResizeObserver/.test(e.message || '') || showError(e.message || (e.target && e.target.src ? `could not load ${e.target.src}` : 'unknown error')), true);
+window.addEventListener('unhandledrejection', e => showError(e.reason && e.reason.message || String(e.reason)));
+</script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/lines/LineSegmentsGeometry.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/lines/LineGeometry.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/lines/LineMaterial.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/lines/LineSegments2.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/lines/Line2.js"></script>
+<script>
+(function () {
+if (!window.THREE) { showError('the 3D library (three.js) did not load'); return; }
+const { OrbitControls, Line2, LineMaterial, LineGeometry } = THREE;
+
+// ---------- Planners (same hues as the thesis figures) ----------
+const PLANNERS = [
+  { id: 'RRTConnect', label: 'RRT-Connect', color: '#2a78d6' },
+  { id: 'BiTRRT', label: 'BiTRRT', color: '#eb6834' },
+  { id: 'RRTstar@1', label: 'RRT* (1 s)', color: '#6250d6' },
+  { id: 'RRTstar@5', label: 'RRT* (5 s)', color: '#1baf7a' },
+  { id: 'chomp', label: 'CHOMP', color: '#eda100' },
+  { id: 'pilz_ptp', label: 'Joint line (PTP)', color: '#6b6b6b', dark: '#b8b8b2' },
+  { id: 'pilz_lin', label: 'Cartesian line (LIN)', color: '#9a9a96', dark: '#8a8a84', dashed: true },
+  { id: 'pink', label: 'Pink (diff-IK)', color: '#e87ba4' },
+  { id: 'RRTConnect·raw', label: 'RRT-Connect, raw', color: '#2a78d6', dashed: true, raw: true },
+  { id: 'BiTRRT·raw', label: 'BiTRRT, raw', color: '#eb6834', dashed: true, raw: true },
+];
+const MOVES = [
+  ['typical', 'pre_grasp', 'Capture → pre-grasp · typical goals'],
+  ['edge', 'pre_grasp', 'Capture → pre-grasp · wall band + forced 30° tilts'],
+  ['typical', 'transport', 'Lift → place · typical goals'],
+  ['edge', 'transport', 'Lift → place · wall band'],
+  ['return', 'return_lift', 'Lift → capture'],
+  ['return', 'return_lift_rot', 'Lift (rolled 180°) → capture'],
+  ['return', 'return_place', 'Place → capture'],
+  ['return', 'return_place_rot', 'Place (rolled 180°) → capture'],
+];
+const GEN = { topdown: 'Top-down', tilted: 'Tilted (ours)' };
+const REASON = { no_orientation: 'no feasible orientation', goal_in_crate_contents: 'goal inside trusses', no_ik: 'no IK', collision: 'in collision' };
+const CRATE = { x: [0.335, 0.585], y: [-0.08, 0.28], z: [0.005, 0.14], wall: 0.015 };
+
+// ---------- Panda FK (modified DH, as franka_description; port of make_figures.tcp_pose) ----------
+const DH = [[0, 0, 0.333], [0, -Math.PI / 2, 0], [0, Math.PI / 2, 0.316], [0.0825, Math.PI / 2, 0],
+  [-0.0825, -Math.PI / 2, 0.384], [0, Math.PI / 2, 0], [0.088, Math.PI / 2, 0]];
+const FLANGE_Z = 0.107, HAND_YAW = -Math.PI / 4;
+function dh(a, al, d, th) {
+  const ca = Math.cos(al), sa = Math.sin(al), ct = Math.cos(th), st = Math.sin(th);
+  return [ct, -st, 0, a, st * ca, ct * ca, -sa, -d * sa, st * sa, ct * sa, ca, d * ca, 0, 0, 0, 1];
+}
+function mul(A, B) {
+  const C = new Array(16);
+  for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) {
+    C[i * 4 + j] = A[i * 4] * B[j] + A[i * 4 + 1] * B[4 + j] + A[i * 4 + 2] * B[8 + j] + A[i * 4 + 3] * B[12 + j];
+  }
+  return C;
+}
+// Returns joint-frame origins (for the arm), the hand frame and the TCP frame (row-major 4x4)
+function fk(q, tcpZ) {
+  let T = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+  const pts = [[0, 0, 0]];
+  for (let i = 0; i < 7; i++) { T = mul(T, dh(DH[i][0], DH[i][1], DH[i][2], q[i])); pts.push([T[3], T[7], T[11]]); }
+  const hand = mul(T, dh(0, 0, FLANGE_Z, HAND_YAW));
+  pts.push([hand[3], hand[7], hand[11]]);
+  const tcp = mul(hand, dh(0, 0, tcpZ, 0));
+  return { pts, hand, tcp };
+}
+
+// ---------- State ----------
+const S = { finger: '5', move: 1, key: null, pid: null, repeat: 0, focus: 'RRTConnect', speed: 0.5, tmode: 'abs',
+  metric: 'dist', view: 'persp', t: 0, playing: false,
+  enabled: Object.fromEntries(PLANNERS.map(p => [p.id, !p.raw])) };
+let INDEX; const CLOUDS = {}, FILES = {};
+const $ = s => document.querySelector(s);
+const isDark = () => getComputedStyle(document.documentElement).getPropertyValue('--scene').trim().toLowerCase() === '#0e1210';
+const pcolor = p => (isDark() && p.dark) ? p.dark : p.color;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+// ---------- Decoding + sampling ----------
+function decode(e) {
+  const n = e.t.length, t = new Float64Array(n), q = [];
+  let acc = 0; for (let i = 0; i < n; i++) { acc += e.t[i]; t[i] = acc / 1000; }
+  const cur = [0, 0, 0, 0, 0, 0, 0];
+  for (let i = 0; i < n; i++) { const row = []; for (let j = 0; j < 7; j++) { cur[j] += e.q[i * 7 + j]; row.push(cur[j] / 1000); } q.push(row); }
+  return { t, q };
+}
+function qAt(path, time) {
+  const { t, q } = path;
+  if (time <= t[0]) return q[0];
+  const n = t.length; if (time >= t[n - 1]) return q[n - 1];
+  let lo = 0, hi = n - 1; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (t[m] <= time) lo = m; else hi = m; }
+  const w = (time - t[lo]) / (t[hi] - t[lo] || 1);
+  return q[lo].map((v, j) => v + w * (q[hi][j] - v));
+}
+const DT = 0.01;
+function sample(path, tcpZ) {
+  if (path.s) return path.s;
+  const T = path.t[path.t.length - 1], n = Math.max(2, Math.ceil(T / DT) + 1);
+  const P = new Float32Array(n * 3), tt = new Float32Array(n), tilt = new Float32Array(n), z = new Float32Array(n);
+  let rot = 0, prevR = null;
+  for (let i = 0; i < n; i++) {
+    const ti = Math.min(T, i * DT), M = fk(qAt(path, ti), tcpZ).tcp;
+    tt[i] = ti; P[i * 3] = M[3]; P[i * 3 + 1] = M[7]; P[i * 3 + 2] = M[11]; z[i] = M[11];
+    tilt[i] = Math.acos(Math.max(-1, Math.min(1, -M[10]))) * 180 / Math.PI;
+    const R = [M[0], M[1], M[2], M[4], M[5], M[6], M[8], M[9], M[10]];
+    if (prevR) { // rotation angle between consecutive orientations
+      let tr = 0; for (let a = 0; a < 3; a++) for (let b = 0; b < 3; b++) tr += prevR[a * 3 + b] * R[a * 3 + b];
+      rot += Math.acos(Math.max(-1, Math.min(1, (tr - 1) / 2)));
+    }
+    prevR = R;
+  }
+  const end = fk(path.q[path.q.length - 1], tcpZ).tcp;
+  const ex = [end[3], end[7], end[11]], dist = new Float32Array(n);
+  for (let i = 0; i < n; i++) dist[i] = Math.hypot(P[i * 3] - ex[0], P[i * 3 + 1] - ex[1], P[i * 3 + 2] - ex[2]);
+  path.s = { n, T, P, tt, tilt, z, dist, rot: rot * 180 / Math.PI, end,
+    endTilt: Math.acos(Math.max(-1, Math.min(1, -end[10]))) * 180 / Math.PI,
+    endYaw: Math.atan2(end[5], end[1]) * 180 / Math.PI };
+  return path.s;
+}
+
+// ---------- Three.js scene ----------
+const stage = $('#stage');
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+stage.prepend(renderer.domElement);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(35, 1, 0.01, 20);
+let controls;
+scene.add(new THREE.HemisphereLight(0xffffff, 0x667766, 1.6));
+const sun = new THREE.DirectionalLight(0xffffff, 1.4); sun.position.set(1, -1, 2); scene.add(sun);
+const world = new THREE.Group(); scene.add(world);
+const dyn = new THREE.Group(); scene.add(dyn);
+const lineMats = [];
+
+function setView(v) {
+  S.view = v;
+  const target = new THREE.Vector3(0.43, -0.02, 0.2);
+  if (controls) controls.dispose();
+  camera.up.set(0, 0, 1);
+  if (v === 'persp') camera.position.set(-0.45, -0.95, 0.95);
+  if (v === 'top') { camera.up.set(1, 0, 0); camera.position.set(target.x, target.y, 2.4); }
+  if (v === 'side') camera.position.set(target.x, -2.6, target.z);
+  if (v === 'front') camera.position.set(-2.2, target.y, target.z);
+  camera.lookAt(target);
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.target.copy(target); controls.enableDamping = true; controls.dampingFactor = 0.12;
+  if (v !== 'persp') controls.enableRotate = false;
+  controls.update();
+  document.querySelectorAll('#view button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === v));
+}
+
+function buildWorld() {
+  clearGroup(world);
+  const crateCol = new THREE.Color(css('--crate'));
+  const mat = new THREE.MeshStandardMaterial({ color: crateCol, transparent: true, opacity: 0.22, depthWrite: false, side: THREE.DoubleSide });
+  const edgeMat = new THREE.LineBasicMaterial({ color: crateCol, transparent: true, opacity: 0.8 });
+  const { x, y, z, wall } = CRATE, h = z[1];
+  const boxes = [ // samla_crate.scene
+    [x[0] - wall / 2, (y[0] + y[1]) / 2, h / 2, wall, y[1] - y[0] + 2 * wall, h],
+    [x[1] + wall / 2, (y[0] + y[1]) / 2, h / 2, wall, y[1] - y[0] + 2 * wall, h],
+    [(x[0] + x[1]) / 2, y[0] - wall / 2, h / 2, x[1] - x[0], wall, h],
+    [(x[0] + x[1]) / 2, y[1] + wall / 2, h / 2, x[1] - x[0], wall, h],
+    [(x[0] + x[1]) / 2, (y[0] + y[1]) / 2, 0.0025, x[1] - x[0], y[1] - y[0], 0.005]];
+  for (const [cx, cy, cz, sx, sy, sz] of boxes) {
+    const g = new THREE.BoxGeometry(sx, sy, sz), m = new THREE.Mesh(g, mat);
+    m.position.set(cx, cy, cz); world.add(m);
+    const e = new THREE.LineSegments(new THREE.EdgesGeometry(g), edgeMat); e.position.copy(m.position); world.add(e);
+  }
+  const grid = new THREE.GridHelper(1.6, 16, new THREE.Color(css('--muted')), new THREE.Color(css('--line')));
+  grid.rotation.x = Math.PI / 2; grid.position.set(0.3, 0, -0.001); world.add(grid);
+  // Robot base
+  const base = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.07, 0.05, 32), new THREE.MeshStandardMaterial({ color: new THREE.Color(css('--muted')) }));
+  base.rotation.x = Math.PI / 2; base.position.z = 0.025; world.add(base);
+  // Place location
+  const pl = INDEX.fingers[S.finger].place.pose;
+  const pm = new THREE.Mesh(new THREE.RingGeometry(0.03, 0.04, 40), new THREE.MeshBasicMaterial({ color: new THREE.Color(css('--accent')), side: THREE.DoubleSide, transparent: true, opacity: 0.7 }));
+  pm.position.set(pl[0], pl[1], 0.002); world.add(pm);
+}
+
+// Gripper model in the hand frame (z towards the fingertips): hand body, two fingers with the extension, one finger marked
+function gripperMesh(color, opacity, tcpZ) {
+  const g = new THREE.Group();
+  const m = new THREE.MeshStandardMaterial({ color, transparent: opacity < 1, opacity, depthWrite: opacity >= 1, roughness: 0.6 });
+  const add = (sx, sy, sz, x, y, z, mm = m) => { const b = new THREE.Mesh(new THREE.BoxGeometry(sx, sy, sz), mm); b.position.set(x, y, z); g.add(b); return b; };
+  add(0.055, 0.2, 0.06, 0, 0, 0.03);                       // hand body
+  const tip = 0.1034, fingerStart = 0.0584, open = 0.022;  // stock fingertip and finger base on the hand
+  for (const s of [1, -1]) {
+    add(0.02, 0.012, tip - fingerStart, 0, s * open, (tip + fingerStart) / 2);
+    if (tcpZ - tip > 0.002) add(0.012, 0.008, tcpZ - tip, 0, s * open, (tip + tcpZ) / 2);
+  }
+  const dot = new THREE.Mesh(new THREE.SphereGeometry(0.008, 16, 12), new THREE.MeshStandardMaterial({ color: 0x111111, transparent: opacity < 1, opacity: Math.max(opacity, 0.6) }));
+  dot.position.set(0, open, tcpZ); g.add(dot);             // marked finger (+y)
+  g.children.forEach(c => { c.position.z -= tcpZ; });      // origin at the TCP, so it is placed with the TCP pose
+  g.matrixAutoUpdate = false;
+  return g;
+}
+function clearGroup(g) { while (g.children.length) g.remove(g.children[0]); }
+function setPose(obj, M) { obj.matrix.set(...M); obj.matrixWorldNeedsUpdate = true; }
+
+// Arm as tubes between the joint-frame origins
+function armMesh(color) {
+  const g = new THREE.Group(), m = new THREE.MeshStandardMaterial({ color, transparent: true, opacity: 0.55, depthWrite: false });
+  const n = new THREE.MeshStandardMaterial({ color: new THREE.Color(css('--muted')), transparent: true, opacity: 0.7 });
+  g.userData.links = []; g.userData.joints = [];
+  for (let i = 0; i < 8; i++) { const c = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 1, 18), m); g.add(c); g.userData.links.push(c); }
+  for (let i = 0; i < 9; i++) { const s = new THREE.Mesh(new THREE.SphereGeometry(0.038, 18, 14), n); g.add(s); g.userData.joints.push(s); }
+  return g;
+}
+const Y = new THREE.Vector3(0, 1, 0);
+function setArm(g, pts) {
+  const v = pts.map(p => new THREE.Vector3(...p));
+  g.userData.joints.forEach((s, i) => { s.position.copy(v[i]); s.visible = i === 0 || v[i].distanceTo(v[i - 1]) > 1e-4; });
+  g.userData.links.forEach((c, i) => {
+    const a = v[i], b = v[i + 1], d = b.clone().sub(a), L = d.length();
+    c.visible = L > 1e-4; if (!c.visible) return;
+    c.position.copy(a).addScaledVector(d, 0.5); c.scale.set(1, L, 1);
+    c.quaternion.setFromUnitVectors(Y, d.normalize());
+  });
+}
+
+function fatLine(positions, color, width, dashed, opacity = 1) {
+  const geo = new LineGeometry(); geo.setPositions(positions);
+  const mat = new LineMaterial({ color, linewidth: width, transparent: opacity < 1, opacity, dashed: !!dashed, dashSize: 0.012, gapSize: 0.008, depthWrite: opacity >= 1 });
+  if (dashed) { mat.defines.USE_DASH = ''; mat.needsUpdate = true; }
+  mat.resolution.set(stage.clientWidth, stage.clientHeight); lineMats.push(mat);
+  const l = new Line2(geo, mat); if (dashed) l.computeLineDistances(); return l;
+}
+
+// ---------- Current goal: build scene objects ----------
+let VIS = []; // [{p, path, s, trail, grip}]
+let cloudObj = null, armObj = null, extra = new THREE.Group(); scene.add(extra);
+
+function moveInfo() { const [set, move] = MOVES[S.move]; return INDEX.fingers[S.finger].sets[set][move]; }
+function currentQueries() { return moveInfo().queries; }
+// Paths of one goal; null until its data file is loaded
+function entryFor(key) { const f = moveInfo().files[key]; return f && FILES[f] ? FILES[f][key] : null; }
+function tcpZ() { return INDEX.fingers[S.finger].tcp_z; }
+function decoded(e) { if (!e._d) e._d = decode(e); return e._d; }
+
+function rebuildScene() {
+  clearGroup(dyn); clearGroup(extra); lineMats.length = 0; VIS = []; armObj = null;
+  const entry = S.key ? entryFor(S.key) : null; if (!entry) { updateTime(); return; }
+  const tz = tcpZ();
+  for (const p of PLANNERS) {
+    if (!S.enabled[p.id] || !entry[p.id]) continue;
+    const col = new THREE.Color(pcolor(p));
+    if ($('#lyReps').checked) for (const e of entry[p.id].paths) {
+      if (e.r === S.repeat) continue;
+      const s = sample(decoded(e), tz);
+      dyn.add(fatLine(Array.from(s.P), col, 1.2, false, 0.3));
+    }
+    const e = entry[p.id].paths.find(x => x.r === S.repeat); if (!e) continue;
+    const path = decoded(e), s = sample(path, tz), arr = Array.from(s.P);
+    const focus = p.id === S.focus;
+    if ($('#lyGhost').checked) dyn.add(fatLine(arr, col, 1.5, false, 0.28));
+    const trail = fatLine(arr, col, focus ? 4.5 : 3, p.dashed); dyn.add(trail);
+    let grip = null;
+    if ($('#lyGrip').checked) { grip = gripperMesh(col, focus ? 0.95 : 0.75, tz); dyn.add(grip); }
+    if ($('#lyEnd').checked) { const ge = gripperMesh(col, 0.16, tz); setPose(ge, s.end); dyn.add(ge); }
+    // start marker
+    const st = new THREE.Mesh(new THREE.SphereGeometry(0.008, 12, 10), new THREE.MeshBasicMaterial({ color: col }));
+    st.position.set(s.P[0], s.P[1], s.P[2]); dyn.add(st);
+    VIS.push({ p, e, path, s, trail, grip, focus });
+  }
+  const f = VIS.find(v => v.focus) || VIS[0];
+  if (f && $('#lyArm').checked) { armObj = armMesh(new THREE.Color(pcolor(f.p))); dyn.add(armObj); armObj.userData.v = f; }
+  // Grasp pose after the straight descent (pre-grasp moves only): TCP at the grasp point, goal orientation
+  const q = currentQueries().find(x => x.pid === S.pid);
+  if (q && MOVES[S.move][1] === 'pre_grasp' && $('#lyEnd').checked && f) {
+    const M = f.s.end.slice(); M[3] = q.x; M[7] = q.y; M[11] = q.z;
+    const gg = gripperMesh(new THREE.Color(css('--ink')), 0.22, tz); setPose(gg, M); extra.add(gg);
+    extra.add(fatLine([f.s.end[3], f.s.end[7], f.s.end[11], q.x, q.y, q.z], new THREE.Color(css('--ink')), 1.5, true, 0.8));
+    const gp = new THREE.Mesh(new THREE.SphereGeometry(0.007, 14, 10), new THREE.MeshBasicMaterial({ color: new THREE.Color(css('--tilted')) }));
+    gp.position.set(q.x, q.y, q.z); extra.add(gp);
+  }
+  // Truss cloud of the scan this grasp point came from
+  if (cloudObj) { scene.remove(cloudObj); cloudObj = null; }
+  if (q && $('#lyCloud').checked && !CLOUDS[q.cloud]) {
+    CLOUDS[q.cloud] = 'loading';
+    getJSON(`data/clouds/${q.cloud}.json`).then(c => { CLOUDS[q.cloud] = c; rebuildScene(); }).catch(() => { delete CLOUDS[q.cloud]; });
+  }
+  if (q && $('#lyCloud').checked && CLOUDS[q.cloud] && CLOUDS[q.cloud] !== 'loading') {
+    const c = CLOUDS[q.cloud], n = c.c.length, pos = new Float32Array(n * 3), col = new Float32Array(n * 3);
+    for (let i = 0; i < n; i++) {
+      pos[i * 3] = c.p[i * 3] / 1000; pos[i * 3 + 1] = c.p[i * 3 + 1] / 1000; pos[i * 3 + 2] = c.p[i * 3 + 2] / 1000;
+      const v = c.c[i]; col[i * 3] = ((v >> 16) & 255) / 255; col[i * 3 + 1] = ((v >> 8) & 255) / 255; col[i * 3 + 2] = (v & 255) / 255;
+    }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    cloudObj = new THREE.Points(g, new THREE.PointsMaterial({ size: 0.007, vertexColors: true })); scene.add(cloudObj);
+  }
+  updateTime();
+}
+
+// ---------- Time ----------
+function maxT() { return S.tmode === 'norm' ? 1 : Math.max(0.01, ...VIS.map(v => v.s.T)); }
+function localT(v) { return S.tmode === 'norm' ? S.t * v.s.T : Math.min(S.t, v.s.T); }
+function updateTime() {
+  const tz = tcpZ();
+  for (const v of VIS) {
+    const lt = localT(v), k = Math.min(v.s.n - 1, Math.round(lt / DT));
+    v.trail.geometry.instanceCount = Math.max(0, k);
+    const F = fk(qAt(v.path, lt), tz);
+    if (v.grip) setPose(v.grip, F.tcp);
+    if (armObj && armObj.userData.v === v) setArm(armObj, F.pts);
+  }
+  const mt = maxT();
+  $('#t').value = Math.round(S.t / mt * 1000);
+  $('#tread').textContent = S.tmode === 'norm' ? `${(S.t * 100).toFixed(0)} %` : `${S.t.toFixed(2)} s`;
+  drawCursor();
+}
+let last = null;
+function tick(ts) {
+  if (S.playing) {
+    if (last != null) {
+      const dt = (ts - last) / 1000 * S.speed, mt = maxT();
+      S.t += S.tmode === 'norm' ? dt / Math.max(0.5, ...VIS.map(v => v.s.T)) : dt;
+      if (S.t >= mt) { S.t = mt; setPlaying(false); }
+      updateTime();
+    }
+    last = ts;
+  } else last = null;
+  controls.update();
+  renderer.render(scene, camera);
+  requestAnimationFrame(tick);
+}
+function setPlaying(on) { S.playing = on; if (on && S.t >= maxT() - 1e-6) S.t = 0; $('#play').textContent = on ? '❚❚ Pause' : '▶ Play'; }
+
+// ---------- Chart ----------
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent?.appendChild(e); return e; }
+let chartScale = null;
+function drawChart() {
+  const svg = $('#chart'); svg.innerHTML = '';
+  const W = svg.clientWidth || 800, H = 170, L = 46, R = 10, T = 8, B = 24;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  if (!VIS.length) return;
+  const key = S.metric, mt = maxT();
+  let ymax = 0; for (const v of VIS) for (const y of v.s[key]) ymax = Math.max(ymax, key === 'dist' || key === 'z' ? y : y);
+  ymax = key === 'tilt' ? Math.max(10, Math.ceil(ymax / 10) * 10) : Math.max(0.05, Math.ceil(ymax * 20) / 20);
+  const sx = t => L + (t / mt) * (W - L - R), sy = y => T + (1 - y / ymax) * (H - T - B);
+  chartScale = { sx, T, H, B };
+  const grid = css('--line');
+  for (let i = 0; i <= 4; i++) {
+    const y = ymax * i / 4;
+    el('line', { x1: L, x2: W - R, y1: sy(y), y2: sy(y), stroke: grid, 'stroke-width': 1 }, svg);
+    el('text', { x: L - 6, y: sy(y) + 3.5, 'text-anchor': 'end' }, svg).textContent = key === 'tilt' ? `${y.toFixed(0)}°` : `${(y * 100).toFixed(0)} cm`;
+  }
+  const nt = 6; for (let i = 0; i <= nt; i++) {
+    const t = mt * i / nt;
+    el('text', { x: sx(t), y: H - 6, 'text-anchor': 'middle' }, svg).textContent = S.tmode === 'norm' ? `${(t * 100).toFixed(0)}%` : `${t.toFixed(1)} s`;
+  }
+  for (const v of [...VIS].sort((a, b) => a.focus - b.focus)) {
+    const d = [], s = v.s, step = Math.max(1, Math.floor(s.n / 400));
+    for (let i = 0; i < s.n; i += step) d.push(`${sx(S.tmode === 'norm' ? s.tt[i] / s.T : s.tt[i]).toFixed(1)},${sy(s[key][i]).toFixed(1)}`);
+    d.push(`${sx(S.tmode === 'norm' ? 1 : s.T).toFixed(1)},${sy(s[key][s.n - 1]).toFixed(1)}`);
+    el('polyline', { points: d.join(' '), fill: 'none', stroke: pcolor(v.p), 'stroke-width': v.focus ? 2.6 : 1.6,
+      'stroke-dasharray': v.p.dashed ? '5 3' : '', 'stroke-linejoin': 'round', opacity: v.focus ? 1 : 0.85 }, svg);
+    const ex = sx(S.tmode === 'norm' ? 1 : s.T);
+    el('circle', { cx: ex, cy: sy(s[key][s.n - 1]), r: 2.8, fill: pcolor(v.p) }, svg);
+  }
+  el('line', { id: 'cursor', x1: sx(0), x2: sx(0), y1: T, y2: H - B, stroke: css('--ink'), 'stroke-width': 1.2 }, svg);
+  drawCursor();
+}
+function drawCursor() { const c = $('#cursor'); if (c && chartScale) { const x = chartScale.sx(S.t); c.setAttribute('x1', x); c.setAttribute('x2', x); } }
+
+// ---------- Table ----------
+const COLS = [
+  ['Result', null], ['Exec time', 's', v => v.m?.exec_time_s ?? v.s.T, 2, 'min'], ['Planning time', 's', v => v.m?.planning_time_s, 3, 'min'],
+  ['TCP path', 'cm', v => v.m?.ee_path_length_m * 100, 1, 'min'], ['TCP path deviation', 'cm', v => v.m?.ee_max_dev_m * 100, 1, 'min'],
+  ['Joint path', 'rad', v => v.m?.joint_path_length, 2, 'min'], ['Gripper rotation along path', '°', v => v.s.rot, 0, 'min'],
+  ['Min. wall clearance', 'mm', v => v.m?.min_clearance_mm, 1, 'max'], ['Min. truss clearance', 'mm', v => v.m?.min_contents_clearance_mm, 1, 'max'],
+  ['End tilt', '°', v => v.s.endTilt, 1], ['End ● direction', '°', v => v.s.endYaw, 0]];
+function fmt(x, d) { return x == null || !isFinite(x) ? '–' : x.toFixed(d); }
+function drawTable() {
+  const tb = $('#table'), entry = entryFor(S.key) || {};
+  let h = '<thead><tr><th>Planner</th>' + COLS.map(c => `<th>${c[0]}${c[1] ? ` (${c[1]})` : ''}</th>`).join('') + '</tr></thead><tbody>';
+  const rows = PLANNERS.filter(p => entry[p.id]);
+  const vals = {}; for (const c of COLS.slice(1)) vals[c[0]] = VIS.map(v => c[2](v)).filter(x => x != null && isFinite(x));
+  for (const p of rows) {
+    const v = VIS.find(x => x.p.id === p.id), ent = entry[p.id], nOk = ent.paths.length, nAll = nOk + ent.fail.length;
+    h += `<tr data-p="${p.id}" class="${p.id === S.focus ? 'focus' : ''}"><td><span class="swatch" style="display:inline-block;vertical-align:middle;margin-right:7px;border-top-color:${pcolor(p)};border-top-style:${p.dashed ? 'dashed' : 'solid'}"></span>${p.label}</td>`;
+    if (!v) {
+      const f = ent.fail.find(x => x.r === S.repeat);
+      const why = !S.enabled[p.id] ? 'hidden' : f ? `failed this repeat${f.err != null ? ` (code ${f.err})` : ''}${f.why ? `: ${f.why}` : ''}` : 'no path';
+      h += `<td class="${S.enabled[p.id] ? 'fail' : ''}">${nOk}/${nAll} ok</td><td colspan="${COLS.length - 1}" style="text-align:left;color:var(--muted)">${why}</td></tr>`;
+      continue;
+    }
+    h += `<td class="${nOk < nAll ? 'fail' : ''}">${nOk}/${nAll} ok</td>`;
+    for (const c of COLS.slice(1)) {
+      const x = c[2](v), arr = vals[c[0]];
+      const best = c[4] && arr.length > 1 && x != null && isFinite(x) && Math.abs(x - (c[4] === 'min' ? Math.min(...arr) : Math.max(...arr))) < 1e-9 && Math.max(...arr) - Math.min(...arr) > 1e-6;
+      let extraTag = c[0] === 'End tilt' && x > 5 ? '<span class="tag tilt">tilted</span>' : '';
+      h += `<td class="${best ? 'best' : ''}">${fmt(x, c[3])}${extraTag}</td>`;
+    }
+    h += '</tr>';
+  }
+  tb.innerHTML = h + '</tbody>';
+  tb.querySelectorAll('tbody tr').forEach(r => r.onclick = () => { S.focus = r.dataset.p; refresh(); });
+  $('#tablesub').textContent = `repeat ${S.repeat + 1} of 5 · best value per column in colour`;
+}
+
+// ---------- Planner list ----------
+function drawPlanners() {
+  const box = $('#planners'), entry = entryFor(S.key) || {};
+  box.innerHTML = '';
+  let group = null;
+  for (const p of PLANNERS) {
+    const g = p.raw ? 'Raw (no MoveIt post-processing)' : 'Post-processed (as executed)';
+    if (g !== group) { group = g; const d = document.createElement('div'); d.className = 'groupl'; d.textContent = g; box.appendChild(d); }
+    const ent = entry[p.id];
+    const row = document.createElement('div');
+    row.className = 'prow' + (p.id === S.focus ? ' focus' : '') + (!ent ? ' off' : '');
+    const nOk = ent ? ent.paths.length : 0, nAll = ent ? nOk + ent.fail.length : 0;
+    const okRep = ent && ent.paths.some(x => x.r === S.repeat);
+    row.innerHTML = `<input type="checkbox" id="en-${p.id.replace(/[^a-z0-9]/gi, '')}" ${S.enabled[p.id] ? 'checked' : ''} ${ent ? '' : 'disabled'} aria-label="Show ${p.label}">
+      <span class="swatch" style="border-top-color:${pcolor(p)};border-top-style:${p.dashed ? 'dashed' : 'solid'}"></span>
+      <span>${p.label}</span><span class="st ${ent && !okRep ? 'bad' : ''}">${ent ? `${nOk}/${nAll}` : 'not run'}</span>`;
+    const cb = row.querySelector('input');
+    cb.onclick = ev => { ev.stopPropagation(); S.enabled[p.id] = cb.checked; refresh(); };
+    row.onclick = () => { if (!ent) return; S.focus = p.id; if (!S.enabled[p.id]) S.enabled[p.id] = true; refresh(); };
+    box.appendChild(row);
+  }
+}
+
+// ---------- Crate map ----------
+function keyStats(key) { const v = moveInfo().stats[key]; return v ? { ratio: v[0], fail: v[1] } : null; }
+function drawMap() {
+  const svg = $('#map'); svg.innerHTML = '';
+  const qs = currentQueries();
+  // top view: +x up, +y left (as seen from above, robot below)
+  const pad = 18, W = 300, H = 230, xr = CRATE.x, yr = CRATE.y;
+  const sc = Math.min((W - 2 * pad) / (yr[1] - yr[0]), (H - 2 * pad) / (xr[1] - xr[0]));
+  const ox = W / 2 + (yr[1] + yr[0]) / 2 * sc, oy = H / 2 + (xr[1] + xr[0]) / 2 * sc;
+  const X = y => ox - y * sc, Yp = x => oy - x * sc;
+  el('rect', { x: X(yr[1]), y: Yp(xr[1]), width: (yr[1] - yr[0]) * sc, height: (xr[1] - xr[0]) * sc, fill: 'none', stroke: css('--crate'), 'stroke-width': 4, rx: 2 }, svg);
+  el('text', { x: W / 2, y: H - 3, 'text-anchor': 'middle', 'font-size': 10, fill: css('--muted'), 'font-family': 'IBM Plex Mono, monospace' }, svg).textContent = '↓ robot base (x = 0)';
+  const acc = new THREE.Color(css('--accent')), lo = new THREE.Color(css('--line'));
+  let n = 0;
+  for (const q of qs) {
+    const keys = [...new Set(q.goals.filter(g => g.key).map(g => g.key))];
+    const cx = X(q.y), cy = Yp(q.x), sel = q.pid === S.pid;
+    if (!keys.length) {
+      const g = el('g', { opacity: 0.6 }, svg);
+      el('path', { d: `M${cx - 3},${cy - 3}L${cx + 3},${cy + 3}M${cx - 3},${cy + 3}L${cx + 3},${cy - 3}`, stroke: css('--muted'), 'stroke-width': 1.3 }, g);
+      continue;
+    }
+    n++;
+    let ratio = 1, fail = 0;
+    for (const k of keys) { const st = keyStats(k); if (st) { ratio = Math.max(ratio, st.ratio || 1); fail += st.fail; } }
+    const w = Math.max(0, Math.min(1, (ratio - 1) / 0.5)), col = lo.clone().lerp(acc, 0.15 + 0.85 * w);
+    const c = el('circle', { cx, cy, r: sel ? 6.5 : 4.6, fill: `#${col.getHexString()}`, stroke: fail ? css('--tilted') : sel ? css('--ink') : 'none',
+      'stroke-width': sel ? 2.2 : 1.6, class: 'pt', tabindex: 0, role: 'button' }, svg);
+    el('title', {}, c).textContent = `${q.pid} · x ${q.x.toFixed(3)} y ${q.y.toFixed(3)} · ${(q.wall * 100).toFixed(1)} cm from a wall · TCP path max/min ${ratio.toFixed(2)}${fail ? ` · ${fail} failed plans` : ''}`;
+    const pick = () => { S.pid = q.pid; S.key = keys[0]; refreshAll(); };
+    c.onclick = pick; c.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } };
+  }
+  const sel = qs.find(q => q.pid === S.pid);
+  if (sel) svg.appendChild(svg.querySelector(`circle[cx="${X(sel.y)}"][cy="${Yp(sel.x)}"]`) || el('g', {}));
+  $('#ptcount').textContent = `${n} reachable of ${qs.length}`;
+}
+function drawGoals() {
+  const box = $('#goals'), q = currentQueries().find(x => x.pid === S.pid); box.innerHTML = '';
+  if (!q) { $('#qinfo').textContent = ''; return; }
+  const byKey = new Map(), blocked = [];
+  for (const g of q.goals) { if (g.key) { if (!byKey.has(g.key)) byKey.set(g.key, []); byKey.get(g.key).push(g); } else blocked.push(g); }
+  for (const [k, gs] of byKey) {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.setAttribute('aria-pressed', k === S.key);
+    const tilt = gs[0].tilt && (gs[0].tilt[0] || gs[0].tilt[1]) ? ` (${gs[0].tilt[0]}°/${gs[0].tilt[1]}°)` : '';
+    b.textContent = gs.map(g => GEN[g.method] || `Fixed ${g.method.replace('tilt', 'tilt ')}`).join(' = ') + (GEN[gs[0].method] ? tilt : '');
+    b.onclick = () => { S.key = k; refreshAll(); };
+    box.appendChild(b);
+  }
+  for (const g of blocked) {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.disabled = true;
+    b.textContent = `${GEN[g.method] || g.method}: ${REASON[g.reason] || g.reason || 'no grasp'}`; box.appendChild(b);
+  }
+  const g = byKey.get(S.key)?.[0];
+  $('#qinfo').innerHTML = `point ${q.pid}<br>grasp x ${q.x.toFixed(3)} · y ${q.y.toFixed(3)} · z ${q.z.toFixed(3)} m · ${(q.wall * 100).toFixed(1)} cm from wall<br>grasp yaw ${g ? g.yaw.toFixed(1) : '–'}° · plan ${S.key || '–'}`;
+}
+
+// ---------- Loading ----------
+async function getJSON(u) { const r = await fetch(u); if (!r.ok) throw new Error(`${u}: HTTP ${r.status}`); return r.json(); }
+async function ensureKey() {
+  const f = S.key && moveInfo().files[S.key];
+  if (f && !FILES[f]) {
+    $('#loading').hidden = false; $('#loading').textContent = 'Loading paths for this goal…';
+    try { FILES[f] = await getJSON('data/' + f); } catch (err) { showError(err.message); throw err; }
+  }
+  $('#loading').hidden = true;
+}
+function pickDefaultPoint() {
+  const qs = currentQueries();
+  const cur = qs.find(q => q.pid === S.pid && q.goals.some(g => g.key));
+  if (cur) { const keys = cur.goals.filter(g => g.key).map(g => g.key); if (!keys.includes(S.key)) S.key = keys[0]; return; }
+  // otherwise the goal where the planners disagree most
+  let best = null, br = -1;
+  for (const q of qs) for (const g of q.goals) if (g.key) { const st = keyStats(g.key); const r = st ? (st.ratio || 1) + st.fail * 0.01 : 0; if (r > br) { br = r; best = [q.pid, g.key]; } }
+  if (best) [S.pid, S.key] = best;
+}
+function drawRepeats() {
+  const box = $('#repeat'); box.innerHTML = '';
+  for (let r = 0; r < 5; r++) { const b = document.createElement('button'); b.type = 'button'; b.textContent = r + 1; b.setAttribute('aria-pressed', r === S.repeat); b.onclick = () => { S.repeat = r; refresh(); }; box.appendChild(b); }
+}
+function refresh() { rebuildScene(); drawPlanners(); drawTable(); drawChart(); drawRepeats(); }
+async function refreshAll() {
+  drawMap(); drawGoals(); S.t = 0; setPlaying(false); refresh();
+  const key = S.key; await ensureKey();
+  if (key === S.key) refresh();
+}
+function changeData() { pickDefaultPoint(); buildWorld(); refreshAll(); }
+
+function seg(id, fn) { document.querySelectorAll(`#${id} button`).forEach(b => b.onclick = () => { document.querySelectorAll(`#${id} button`).forEach(x => x.setAttribute('aria-pressed', x === b)); fn(b.dataset.v); }); }
+
+async function main() {
+  const sel = $('#move'); MOVES.forEach((m, i) => { const o = document.createElement('option'); o.value = i; o.textContent = m[2]; sel.appendChild(o); });
+  sel.value = S.move; sel.onchange = () => { S.move = +sel.value; changeData(); };
+  seg('finger', v => { S.finger = v; changeData(); });
+  seg('speed', v => { S.speed = +v; });
+  seg('metric', v => { S.metric = v; drawChart(); });
+  seg('tmode', v => { const frac = S.t / maxT(); S.tmode = v; S.t = frac * maxT(); drawChart(); updateTime(); });
+  document.querySelectorAll('#view button').forEach(b => b.onclick = () => setView(b.dataset.v));
+  ['lyArm', 'lyGrip', 'lyEnd', 'lyGhost', 'lyReps', 'lyCloud'].forEach(id => $('#' + id).onchange = rebuildScene);
+  $('#play').onclick = () => setPlaying(!S.playing);
+  $('#t').oninput = e => { setPlaying(false); S.t = e.target.value / 1000 * maxT(); updateTime(); };
+  window.addEventListener('keydown', e => {
+    if (['INPUT', 'SELECT'].includes(e.target.tagName) && e.target.type !== 'range') return;
+    if (e.code === 'Space') { e.preventDefault(); setPlaying(!S.playing); }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { if (e.target.type === 'range') return; e.preventDefault(); setPlaying(false); S.t = Math.max(0, Math.min(maxT(), S.t + (e.key === 'ArrowRight' ? 1 : -1) * maxT() / 100)); updateTime(); }
+  });
+  const resize = () => {
+    const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+    lineMats.forEach(m => m.resolution.set(w, h)); drawChart();
+  };
+  new ResizeObserver(resize).observe(stage);
+  const retheme = () => { scene.background = new THREE.Color(css('--scene')); if (INDEX) { buildWorld(); drawMap(); refresh(); } };
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', retheme);
+  new MutationObserver(retheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  scene.background = new THREE.Color(css('--scene'));
+  setView('persp'); resize(); requestAnimationFrame(tick);
+  try {
+    INDEX = await getJSON('data/index.json');
+    S.pid = '20261014_120352:93'; // edge example; replaced when not reachable in the chosen move
+    // Default: the 5 cm wall-band goal where the samplers detour (2.2 cm from the wall, forced -30° tilt)
+    const k = 'pre_grasp:7be7391de56e', q = currentQueries().find(x => x.goals.some(g => g.key === k));
+    if (q) { S.pid = q.pid; S.key = k; } else pickDefaultPoint();
+    buildWorld(); await refreshAll();
+  } catch (err) { showError(`could not load the path data (${err.message})`); }
+}
+main();
+})();
+</script>

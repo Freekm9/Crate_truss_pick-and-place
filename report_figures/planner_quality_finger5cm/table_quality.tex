@@ -1,0 +1,124 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{Path quality per planner (post-processed paths, as in the pipeline). Median, with the unfavourable tail in brackets: the 95th percentile for costs, the 5th percentile for clearances. Bold: best candidate per criterion; the Pilz lines are references, not candidates.}
+\label{tab:planner_quality}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Criterion & RRT-Connect & BiTRRT & RRT* (1 s) & RRT* (5 s) & CHOMP & Joint line (PTP) & Cartesian line (LIN) \\
+\midrule
+\multicolumn{8}{l}{\emph{Capture pose to pre-grasp, typical goals}} \\
+Success (\%) & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & 99.0 & 99.0 & 96.0 \\
+Planning time (s) & \textbf{0.04 [0.06]} & 0.06 [0.10] & 1.02 [1.04] & 5.03 [5.05] & 0.54 [0.56] & 0.02 [0.03] & 0.03 [0.04] \\
+Execution time (s) & 2.33 [3.65] & 2.33 [3.65] & \textbf{2.33 [3.65]} & 2.33 [3.65] & 2.73 [3.83] & 2.53 [3.71] & 2.48 [3.49] \\
+Joint path ratio & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & 1.00 [1.00] & 1.01 [1.05] \\
+TCP path ratio & \textbf{1.02 [1.09]} & \textbf{1.02 [1.09]} & \textbf{1.02 [1.09]} & \textbf{1.02 [1.09]} & \textbf{1.02 [1.09]} & 1.02 [1.09] & 1.00 [1.00] \\
+TCP deviation (mm) & 20.0 [45.9] & 20.0 [45.9] & 20.0 [45.7] & 20.0 [45.9] & \textbf{19.9 [40.8]} & 19.9 [40.8] & 0.00 [0.30] \\
+TCP turning (rad) & 0.71 [1.34] & 0.71 [1.34] & 0.71 [1.34] & 0.71 [1.34] & \textbf{0.71 [1.31]} & 0.71 [1.31] & 0.03 [0.28] \\
+Wasted joint motion (rad) & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.05 [0.22] \\
+RMS jerk (rad/s$^3$) & 3.71 [6.30] & 3.68 [5.99] & 3.71 [6.30] & \textbf{3.65 [6.30]} & 23.9 [50.3] & 5.82 [9.38] & 7.02 [11.0] \\
+Wall clearance (mm) & 43.8 [22.0] & 43.8 [21.9] & 43.8 [22.0] & \textbf{43.8 [22.0]} & 42.5 [21.5] & 43.5 [21.6] & 41.5 [21.2] \\
+Truss clearance (mm) & 71.1 [42.0] & \textbf{71.2 [42.1]} & \textbf{71.2 [42.0]} & 71.1 [41.9] & 71.1 [43.9] & 71.1 [43.9] & 67.0 [43.7] \\
+Repeat spread (mm) & 0.05 [0.07] & 0.05 [0.06] & 0.05 [0.07] & 0.05 [0.07] & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.00 [0.00] \\
+\midrule
+\multicolumn{8}{l}{\emph{Lift to place, typical goals}} \\
+Success (\%) & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & 100 & 97.0 \\
+Planning time (s) & \textbf{0.04 [0.06]} & 0.05 [0.09] & 1.02 [1.04] & 5.03 [5.04] & 0.55 [0.58] & 0.02 [0.03] & 0.02 [0.04] \\
+Execution time (s) & 2.14 [3.23] & \textbf{2.14 [3.23]} & \textbf{2.14 [3.23]} & \textbf{2.14 [3.23]} & 2.50 [3.63] & 2.27 [3.44] & 2.87 [3.33] \\
+Joint path ratio & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & 1.00 [1.00] & 1.08 [1.35] \\
+TCP path ratio & \textbf{1.05 [1.08]} & \textbf{1.05 [1.08]} & \textbf{1.05 [1.08]} & \textbf{1.05 [1.08]} & \textbf{1.05 [1.08]} & 1.05 [1.08] & 1.00 [1.00] \\
+TCP deviation (mm) & \textbf{68.8 [101]} & \textbf{68.8 [101]} & \textbf{68.8 [101]} & \textbf{68.8 [101]} & \textbf{68.8 [101]} & 68.8 [101] & 0.10 [0.30] \\
+TCP turning (rad) & \textbf{1.05 [1.34]} & \textbf{1.05 [1.34]} & \textbf{1.05 [1.34]} & \textbf{1.05 [1.34]} & 1.05 [1.34] & 1.05 [1.34] & 0.32 [1.00] \\
+Wasted joint motion (rad) & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.33 [1.25] \\
+RMS jerk (rad/s$^3$) & 3.95 [6.42] & \textbf{3.93 [6.42]} & 3.93 [6.42] & 3.93 [6.42] & 29.5 [56.7] & 6.40 [8.87] & 7.31 [20.2] \\
+Wall clearance (mm) & 239 [209] & \textbf{239 [209]} & \textbf{239 [209]} & \textbf{239 [209]} & 239 [209] & 239 [209] & 235 [207] \\
+Truss clearance (mm) & -- & -- & -- & -- & -- & -- & -- \\
+Repeat spread (mm) & 0.06 [0.07] & 0.05 [0.07] & 0.05 [0.06] & 0.05 [0.06] & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.00 [0.00] \\
+\midrule
+\multicolumn{8}{l}{\emph{Capture pose to pre-grasp, wall-band and tilted goals}} \\
+Success (\%) & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & 99.0 & 95.2 \\
+Planning time (s) & \textbf{0.05 [0.06]} & 0.06 [0.10] & 1.02 [1.04] & 5.03 [5.05] & 0.54 [0.57] & 0.02 [0.03] & 0.03 [0.04] \\
+Execution time (s) & \textbf{2.62 [3.86]} & \textbf{2.62 [3.86]} & \textbf{2.62 [3.86]} & \textbf{2.62 [3.86]} & 3.08 [4.08] & 2.82 [3.68] & 2.82 [3.76] \\
+Joint path ratio & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & 1.00 [1.00] & 1.01 [1.12] \\
+TCP path ratio & \textbf{1.03 [1.30]} & \textbf{1.03 [1.30]} & \textbf{1.03 [1.30]} & \textbf{1.03 [1.30]} & \textbf{1.03 [1.30]} & 1.03 [1.24] & 1.00 [1.00] \\
+TCP deviation (mm) & \textbf{25.0 [87.8]} & \textbf{25.0 [87.0]} & \textbf{25.0 [84.0]} & \textbf{25.0 [87.8]} & \textbf{25.0 [87.8]} & 24.9 [84.0] & 0.00 [0.30] \\
+TCP turning (rad) & \textbf{0.84 [2.31]} & \textbf{0.84 [2.31]} & \textbf{0.84 [2.31]} & \textbf{0.84 [2.31]} & \textbf{0.84 [2.31]} & 0.83 [2.25] & 0.03 [0.34] \\
+Wasted joint motion (rad) & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.10 [0.74] \\
+RMS jerk (rad/s$^3$) & \textbf{3.26 [6.63]} & \textbf{3.26 [6.63]} & \textbf{3.26 [6.63]} & \textbf{3.26 [6.56]} & 21.4 [51.9] & 4.90 [8.79] & 6.42 [12.1] \\
+Wall clearance (mm) & \textbf{29.1 [12.6]} & 29.0 [12.2] & 29.0 [12.2] & 29.0 [12.6] & 27.4 [12.0] & 28.9 [13.2] & 29.4 [12.7] \\
+Truss clearance (mm) & \textbf{69.2 [36.4]} & \textbf{69.2 [36.4]} & \textbf{69.2 [36.4]} & \textbf{69.2 [36.5]} & 68.4 [36.5] & 69.4 [37.6] & 64.8 [36.0] \\
+Repeat spread (mm) & 0.05 [0.07] & 0.05 [0.07] & 0.05 [0.07] & 0.05 [0.06] & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.00 [0.00] \\
+\midrule
+\multicolumn{8}{l}{\emph{Lift to place, wall-band and tilted goals}} \\
+Success (\%) & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & 100 & 99.0 \\
+Planning time (s) & \textbf{0.04 [0.06]} & 0.05 [0.09] & 1.02 [1.04] & 5.03 [5.04] & 0.56 [0.58] & 0.02 [0.03] & 0.02 [0.04] \\
+Execution time (s) & \textbf{2.31 [3.58]} & \textbf{2.31 [3.58]} & \textbf{2.31 [3.58]} & \textbf{2.31 [3.58]} & 2.72 [3.88] & 2.48 [3.73] & 2.98 [3.79] \\
+Joint path ratio & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & 1.00 [1.00] & 1.04 [1.34] \\
+TCP path ratio & \textbf{1.05 [1.09]} & \textbf{1.05 [1.09]} & \textbf{1.05 [1.09]} & \textbf{1.05 [1.09]} & \textbf{1.05 [1.09]} & 1.05 [1.09] & 1.00 [1.00] \\
+TCP deviation (mm) & \textbf{63.3 [106]} & \textbf{63.3 [106]} & \textbf{63.3 [106]} & \textbf{63.3 [106]} & \textbf{63.3 [106]} & 63.3 [106] & 0.10 [0.30] \\
+TCP turning (rad) & \textbf{1.02 [1.41]} & \textbf{1.02 [1.41]} & \textbf{1.02 [1.41]} & \textbf{1.02 [1.41]} & \textbf{1.02 [1.41]} & 1.02 [1.41] & 0.24 [0.98] \\
+Wasted joint motion (rad) & \textbf{0.00 [-0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [-0.00]} & 0.00 [-0.00] & 0.39 [1.35] \\
+RMS jerk (rad/s$^3$) & \textbf{4.02 [7.78]} & \textbf{4.02 [7.79]} & \textbf{4.02 [7.78]} & \textbf{4.02 [7.78]} & 29.5 [57.2] & 6.48 [9.65] & 7.99 [22.1] \\
+Wall clearance (mm) & \textbf{238 [204]} & \textbf{238 [204]} & \textbf{238 [204]} & \textbf{238 [204]} & \textbf{238 [204]} & 238 [204] & 237 [200] \\
+Truss clearance (mm) & -- & -- & -- & -- & -- & -- & -- \\
+Repeat spread (mm) & 0.06 [0.07] & 0.05 [0.07] & 0.05 [0.07] & 0.05 [0.07] & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.00 [0.00] \\
+\midrule
+\multicolumn{8}{l}{\emph{Lift to capture pose, moves back to the capture pose}} \\
+Success (\%) & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & 100 & 96.7 \\
+Planning time (s) & \textbf{0.04 [0.06]} & 0.05 [0.08] & 1.02 [1.04] & 5.03 [5.05] & 0.56 [0.58] & 0.02 [0.03] & 0.02 [0.04] \\
+Execution time (s) & 2.04 [2.88] & \textbf{2.04 [2.88]} & \textbf{2.04 [2.88]} & 2.04 [2.88] & 2.33 [3.11] & 2.14 [2.98] & 2.10 [2.90] \\
+Joint path ratio & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & 1.00 [1.00] & 0.98 [1.01] \\
+TCP path ratio & \textbf{1.02 [1.16]} & \textbf{1.02 [1.16]} & \textbf{1.02 [1.16]} & \textbf{1.02 [1.16]} & \textbf{1.02 [1.16]} & 1.02 [1.16] & 1.00 [1.00] \\
+TCP deviation (mm) & \textbf{13.0 [34.0]} & \textbf{13.0 [34.0]} & \textbf{13.0 [34.0]} & \textbf{13.0 [34.0]} & \textbf{13.0 [34.0]} & 13.0 [34.0] & 0.00 [0.10] \\
+TCP turning (rad) & \textbf{0.60 [1.72]} & \textbf{0.60 [1.72]} & \textbf{0.60 [1.72]} & \textbf{0.60 [1.72]} & 0.60 [1.72] & 0.60 [1.72] & 0.01 [0.09] \\
+Wasted joint motion (rad) & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.00 [0.07] \\
+RMS jerk (rad/s$^3$) & \textbf{4.78 [7.23]} & \textbf{4.78 [7.23]} & \textbf{4.78 [7.24]} & 4.78 [7.24] & 37.8 [62.4] & 7.21 [9.95] & 8.66 [14.0] \\
+Wall clearance (mm) & \textbf{156 [156]} & \textbf{156 [156]} & \textbf{156 [156]} & \textbf{156 [156]} & \textbf{156 [156]} & 157 [156] & 157 [156] \\
+Truss clearance (mm) & -- & -- & -- & -- & -- & -- & -- \\
+Repeat spread (mm) & 0.05 [0.06] & 0.05 [0.06] & 0.04 [0.06] & 0.04 [0.06] & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.00 [0.00] \\
+\midrule
+\multicolumn{8}{l}{\emph{Lift (rolled 180°) to capture pose, moves back to the capture pose}} \\
+Success (\%) & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & 100 & 90.0 \\
+Planning time (s) & \textbf{0.04 [0.06]} & 0.07 [0.11] & 1.03 [1.04] & 5.03 [5.05] & 0.56 [0.58] & 0.02 [0.04] & 0.03 [0.04] \\
+Execution time (s) & \textbf{3.25 [4.86]} & \textbf{3.25 [4.86]} & \textbf{3.25 [4.86]} & \textbf{3.25 [4.86]} & 3.46 [5.13] & 3.37 [4.97] & 2.83 [4.10] \\
+Joint path ratio & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & 1.00 [1.00] & 0.92 [1.00] \\
+TCP path ratio & \textbf{1.02 [2.06]} & \textbf{1.02 [2.06]} & \textbf{1.02 [2.06]} & \textbf{1.02 [2.06]} & \textbf{1.02 [2.06]} & 1.02 [2.06] & 1.00 [1.00] \\
+TCP deviation (mm) & 17.7 [105] & \textbf{17.6 [105]} & \textbf{17.6 [105]} & 17.7 [105] & \textbf{17.6 [105]} & 17.6 [105] & 0.00 [0.00] \\
+TCP turning (rad) & \textbf{0.66 [3.12]} & 0.66 [3.12] & \textbf{0.66 [3.12]} & \textbf{0.66 [3.12]} & \textbf{0.66 [3.12]} & 0.66 [3.12] & 0.00 [0.02] \\
+Wasted joint motion (rad) & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.01 [0.46] \\
+RMS jerk (rad/s$^3$) & \textbf{3.78 [4.63]} & \textbf{3.78 [4.63]} & \textbf{3.78 [4.63]} & \textbf{3.78 [4.63]} & 24.1 [36.7] & 6.40 [8.48] & 7.92 [10.0] \\
+Wall clearance (mm) & \textbf{158 [156]} & 158 [156] & \textbf{158 [156]} & \textbf{158 [156]} & 156 [156] & 157 [156] & 157 [156] \\
+Truss clearance (mm) & -- & -- & -- & -- & -- & -- & -- \\
+Repeat spread (mm) & 0.05 [0.07] & 0.05 [0.06] & 0.05 [0.06] & 0.04 [0.06] & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.00 [0.00] \\
+\midrule
+\multicolumn{8}{l}{\emph{Place to capture pose, moves back to the capture pose}} \\
+Success (\%) & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & 98.3 & 98.3 & 98.3 \\
+Planning time (s) & \textbf{0.04 [0.06]} & 0.05 [0.08] & 1.02 [1.04] & 5.02 [5.05] & 0.54 [0.56] & 0.01 [0.03] & 0.02 [0.03] \\
+Execution time (s) & \textbf{2.33 [2.73]} & \textbf{2.33 [2.73]} & \textbf{2.33 [2.73]} & 2.33 [2.73] & 2.72 [3.06] & 2.52 [2.77] & 2.89 [3.11] \\
+Joint path ratio & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & \textbf{1.00 [1.00]} & 1.00 [1.00] & 1.11 [1.11] \\
+TCP path ratio & \textbf{1.07 [1.08]} & \textbf{1.07 [1.08]} & \textbf{1.07 [1.08]} & \textbf{1.07 [1.08]} & \textbf{1.07 [1.08]} & 1.07 [1.08] & 1.00 [1.00] \\
+TCP deviation (mm) & 84.0 [87.1] & 84.0 [87.1] & \textbf{83.9 [87.1]} & 84.0 [87.1] & \textbf{83.9 [86.5]} & 83.9 [86.5] & 0.30 [0.30] \\
+TCP turning (rad) & \textbf{1.26 [1.46]} & \textbf{1.26 [1.46]} & \textbf{1.26 [1.46]} & \textbf{1.26 [1.46]} & 1.26 [1.37] & 1.26 [1.37] & 0.90 [0.91] \\
+Wasted joint motion (rad) & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.15 [0.26] \\
+RMS jerk (rad/s$^3$) & \textbf{3.42 [4.28]} & 3.43 [4.28] & 3.43 [4.19] & 3.43 [4.28] & 20.2 [24.5] & 5.19 [5.60] & 7.91 [10.0] \\
+Wall clearance (mm) & \textbf{131 [112]} & \textbf{131 [112]} & \textbf{131 [114]} & \textbf{131 [112]} & 131 [116] & 131 [117] & 110 [109] \\
+Truss clearance (mm) & -- & -- & -- & -- & -- & -- & -- \\
+Repeat spread (mm) & 0.05 [0.06] & 0.05 [0.06] & 0.05 [0.06] & 0.05 [0.06] & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.00 [0.00] \\
+\midrule
+\multicolumn{8}{l}{\emph{Place (rolled 180°) to capture pose, moves back to the capture pose}} \\
+Success (\%) & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & 94.3 & 91.4 & 34.3 \\
+Planning time (s) & \textbf{0.05 [0.06]} & 0.09 [0.13] & 1.03 [1.05] & 5.03 [5.05] & 0.54 [0.57] & 0.02 [0.04] & 0.04 [0.05] \\
+Execution time (s) & \textbf{4.94 [5.73]} & \textbf{4.94 [5.49]} & \textbf{4.94 [5.86]} & \textbf{4.94 [5.45]} & 5.05 [5.32] & 5.06 [5.24] & 6.02 [6.37] \\
+Joint path ratio & \textbf{1.00 [1.07]} & \textbf{1.00 [1.03]} & \textbf{1.00 [1.03]} & \textbf{1.00 [1.03]} & \textbf{1.00 [1.00]} & 1.00 [1.00] & 1.05 [1.09] \\
+TCP path ratio & 1.09 [1.39] & 1.09 [1.24] & 1.09 [1.21] & 1.09 [1.25] & \textbf{1.07 [1.17]} & 1.07 [1.16] & 1.00 [1.00] \\
+TCP deviation (mm) & 97.5 [140] & 97.5 [132] & 97.5 [136] & 97.5 [132] & \textbf{84.5 [126]} & 84.4 [115] & 0.10 [0.20] \\
+TCP turning (rad) & 1.41 [4.76] & 1.41 [4.15] & 1.41 [4.05] & 1.41 [3.75] & \textbf{1.28 [2.58]} & 1.28 [2.51] & 0.09 [0.10] \\
+Wasted joint motion (rad) & \textbf{0.00 [0.02]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [0.00]} & \textbf{0.00 [-0.00]} & 0.00 [0.00] & 1.24 [1.41] \\
+RMS jerk (rad/s$^3$) & 2.89 [4.10] & 2.89 [4.10] & \textbf{2.88 [4.10]} & \textbf{2.88 [4.10]} & 16.5 [19.7] & 4.79 [6.44] & 6.82 [7.30] \\
+Wall clearance (mm) & \textbf{34.4 [5.40]} & \textbf{34.4 [5.40]} & \textbf{34.4 [5.40]} & \textbf{34.4 [5.40]} & \textbf{34.4 [5.40]} & 37.6 [15.8] & 110 [110] \\
+Truss clearance (mm) & -- & -- & -- & -- & -- & -- & -- \\
+Repeat spread (mm) & 0.04 [175] & 0.05 [91.5] & 0.05 [156] & 0.04 [89.5] & \textbf{0.00 [0.00]} & 0.00 [0.00] & 0.00 [0.00] \\
+\bottomrule
+\end{tabular}
+\end{table*}

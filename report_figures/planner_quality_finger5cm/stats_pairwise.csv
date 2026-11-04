@@ -1,0 +1,961 @@
+set,move,a,b,criterion,n,diff_median,p
+edge,pre_grasp,RRTConnect,BiTRRT,success,525,0.0,1.0
+edge,pre_grasp,RRTConnect,BiTRRT,Planning time (s),105,0.016,2.172844621843645e-16
+edge,pre_grasp,RRTConnect,BiTRRT,Execution time (s),105,0.0,0.6698153575994166
+edge,pre_grasp,RRTConnect,BiTRRT,Joint path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,RRTConnect,BiTRRT,TCP path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,RRTConnect,BiTRRT,TCP deviation (mm),105,0.0,0.7257209852083116
+edge,pre_grasp,RRTConnect,BiTRRT,TCP turning (rad),105,0.0,0.6313638419461306
+edge,pre_grasp,RRTConnect,BiTRRT,Wasted joint motion (rad),105,0.0,0.31731050786291415
+edge,pre_grasp,RRTConnect,BiTRRT,RMS jerk (rad/s$^3$),105,0.0,0.16035569048186438
+edge,pre_grasp,RRTConnect,BiTRRT,Wall clearance (mm),105,0.0,0.26778605554200974
+edge,pre_grasp,RRTConnect,BiTRRT,Truss clearance (mm),105,0.0,0.846021930526953
+edge,pre_grasp,RRTConnect,BiTRRT,Repeat spread (mm),105,-0.0024243909190850635,0.2154329706377508
+edge,pre_grasp,RRTConnect,RRTstar@1,success,525,0.0,1.0
+edge,pre_grasp,RRTConnect,RRTstar@1,Planning time (s),105,0.9779999999999999,5.793779778176722e-19
+edge,pre_grasp,RRTConnect,RRTstar@1,Execution time (s),105,0.0,0.11979493042591832
+edge,pre_grasp,RRTConnect,RRTstar@1,Joint path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,RRTConnect,RRTstar@1,TCP path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,RRTConnect,RRTstar@1,TCP deviation (mm),105,0.0,0.6802795473344503
+edge,pre_grasp,RRTConnect,RRTstar@1,TCP turning (rad),105,0.0,0.1635150710791411
+edge,pre_grasp,RRTConnect,RRTstar@1,Wasted joint motion (rad),105,0.0,0.31731050786291415
+edge,pre_grasp,RRTConnect,RRTstar@1,RMS jerk (rad/s$^3$),105,0.0,0.28063812496864093
+edge,pre_grasp,RRTConnect,RRTstar@1,Wall clearance (mm),105,0.0,0.29809282200470755
+edge,pre_grasp,RRTConnect,RRTstar@1,Truss clearance (mm),105,0.0,0.004179650000413426
+edge,pre_grasp,RRTConnect,RRTstar@1,Repeat spread (mm),105,-0.0045515336548049914,0.07063825709259208
+edge,pre_grasp,RRTConnect,RRTstar@5,success,525,0.0,1.0
+edge,pre_grasp,RRTConnect,RRTstar@5,Planning time (s),105,4.981,5.774536177336338e-19
+edge,pre_grasp,RRTConnect,RRTstar@5,Execution time (s),105,0.0,0.09646857895173262
+edge,pre_grasp,RRTConnect,RRTstar@5,Joint path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,RRTConnect,RRTstar@5,TCP path ratio,105,0.0,0.4142161782425252
+edge,pre_grasp,RRTConnect,RRTstar@5,TCP deviation (mm),105,0.0,0.6547208460185769
+edge,pre_grasp,RRTConnect,RRTstar@5,TCP turning (rad),105,0.0,0.17445220075642565
+edge,pre_grasp,RRTConnect,RRTstar@5,Wasted joint motion (rad),105,0.0,0.31731050786291415
+edge,pre_grasp,RRTConnect,RRTstar@5,RMS jerk (rad/s$^3$),105,0.0,0.8629103316946966
+edge,pre_grasp,RRTConnect,RRTstar@5,Wall clearance (mm),105,0.0,0.1497723574339535
+edge,pre_grasp,RRTConnect,RRTstar@5,Truss clearance (mm),105,0.0,0.6885353858916446
+edge,pre_grasp,RRTConnect,RRTstar@5,Repeat spread (mm),105,-0.00654511032014575,0.00010474508713439787
+edge,pre_grasp,RRTConnect,chomp,success,525,0.0,1.0
+edge,pre_grasp,RRTConnect,chomp,Planning time (s),105,0.49700000000000005,5.727132483120977e-19
+edge,pre_grasp,RRTConnect,chomp,Execution time (s),105,0.42200000000000015,1.5430799000778376e-18
+edge,pre_grasp,RRTConnect,chomp,Joint path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,RRTConnect,chomp,TCP path ratio,105,0.0,0.6547208460185769
+edge,pre_grasp,RRTConnect,chomp,TCP deviation (mm),105,0.0,0.7854947471183542
+edge,pre_grasp,RRTConnect,chomp,TCP turning (rad),105,0.0,0.06323116793971653
+edge,pre_grasp,RRTConnect,chomp,Wasted joint motion (rad),105,0.0,0.31731050786291415
+edge,pre_grasp,RRTConnect,chomp,RMS jerk (rad/s$^3$),105,18.274,5.835434739233746e-19
+edge,pre_grasp,RRTConnect,chomp,Wall clearance (mm),105,-0.3000000000000007,1.2640685307827285e-11
+edge,pre_grasp,RRTConnect,chomp,Truss clearance (mm),105,0.0,0.034951786290774896
+edge,pre_grasp,RRTConnect,chomp,Repeat spread (mm),105,-0.05288568619766941,5.835434739233746e-19
+edge,pre_grasp,BiTRRT,RRTstar@1,success,525,0.0,1.0
+edge,pre_grasp,BiTRRT,RRTstar@1,Planning time (s),105,0.9609999999999999,5.81219199268245e-19
+edge,pre_grasp,BiTRRT,RRTstar@1,Execution time (s),105,0.0,0.15626014219652026
+edge,pre_grasp,BiTRRT,RRTstar@1,Joint path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,BiTRRT,RRTstar@1,TCP path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,BiTRRT,RRTstar@1,TCP deviation (mm),105,0.0,0.5879367461735663
+edge,pre_grasp,BiTRRT,RRTstar@1,TCP turning (rad),105,0.0,0.4982248534183389
+edge,pre_grasp,BiTRRT,RRTstar@1,Wasted joint motion (rad),105,0.0,0.31731050786291415
+edge,pre_grasp,BiTRRT,RRTstar@1,RMS jerk (rad/s$^3$),105,0.0,0.062080365731291796
+edge,pre_grasp,BiTRRT,RRTstar@1,Wall clearance (mm),105,0.0,0.053329978635977236
+edge,pre_grasp,BiTRRT,RRTstar@1,Truss clearance (mm),105,0.0,0.007382418936890378
+edge,pre_grasp,BiTRRT,RRTstar@1,Repeat spread (mm),105,2.6899951249617637e-06,0.7650150306238973
+edge,pre_grasp,BiTRRT,RRTstar@5,success,525,0.0,1.0
+edge,pre_grasp,BiTRRT,RRTstar@5,Planning time (s),105,4.9639999999999995,5.806246501410967e-19
+edge,pre_grasp,BiTRRT,RRTstar@5,Execution time (s),105,0.0,0.15076277502664528
+edge,pre_grasp,BiTRRT,RRTstar@5,Joint path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,BiTRRT,RRTstar@5,TCP path ratio,105,0.0,0.4142161782425252
+edge,pre_grasp,BiTRRT,RRTstar@5,TCP deviation (mm),105,0.0,0.9141283452014198
+edge,pre_grasp,BiTRRT,RRTstar@5,TCP turning (rad),105,0.0,0.47170222992357624
+edge,pre_grasp,BiTRRT,RRTstar@5,Wasted joint motion (rad),105,0.0,0.31731050786291415
+edge,pre_grasp,BiTRRT,RRTstar@5,RMS jerk (rad/s$^3$),105,0.0,0.42095980371417097
+edge,pre_grasp,BiTRRT,RRTstar@5,Wall clearance (mm),105,0.0,0.022649772828191396
+edge,pre_grasp,BiTRRT,RRTstar@5,Truss clearance (mm),105,0.0,0.4836229842292885
+edge,pre_grasp,BiTRRT,RRTstar@5,Repeat spread (mm),105,-0.004415552573913371,0.008007490445614884
+edge,pre_grasp,BiTRRT,chomp,success,525,0.0,1.0
+edge,pre_grasp,BiTRRT,chomp,Planning time (s),105,0.48100000000000004,5.789629859920307e-19
+edge,pre_grasp,BiTRRT,chomp,Execution time (s),105,0.42200000000000015,5.833046808669535e-19
+edge,pre_grasp,BiTRRT,chomp,Joint path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,BiTRRT,chomp,TCP path ratio,105,0.0,0.6547208460185769
+edge,pre_grasp,BiTRRT,chomp,TCP deviation (mm),105,0.0,0.13079706180685857
+edge,pre_grasp,BiTRRT,chomp,TCP turning (rad),105,0.0,0.0035955561121322607
+edge,pre_grasp,BiTRRT,chomp,Wasted joint motion (rad),105,0.0,0.31731050786291415
+edge,pre_grasp,BiTRRT,chomp,RMS jerk (rad/s$^3$),105,18.274,5.835434739233746e-19
+edge,pre_grasp,BiTRRT,chomp,Wall clearance (mm),105,-0.10000000000000142,5.820008743036366e-11
+edge,pre_grasp,BiTRRT,chomp,Truss clearance (mm),105,0.0,0.03719060047143524
+edge,pre_grasp,BiTRRT,chomp,Repeat spread (mm),105,-0.04978937030821425,5.835434739233746e-19
+edge,pre_grasp,RRTstar@1,RRTstar@5,success,525,0.0,1.0
+edge,pre_grasp,RRTstar@1,RRTstar@5,Planning time (s),105,4.003,5.761544233430327e-19
+edge,pre_grasp,RRTstar@1,RRTstar@5,Execution time (s),105,0.0,0.7504854193424544
+edge,pre_grasp,RRTstar@1,RRTstar@5,Joint path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,RRTstar@1,RRTstar@5,TCP path ratio,105,0.0,0.4142161782425252
+edge,pre_grasp,RRTstar@1,RRTstar@5,TCP deviation (mm),105,0.0,0.8539232992870668
+edge,pre_grasp,RRTstar@1,RRTstar@5,TCP turning (rad),105,0.0,0.6698153575994166
+edge,pre_grasp,RRTstar@1,RRTstar@5,Wasted joint motion (rad),105,0.0,0.31731050786291415
+edge,pre_grasp,RRTstar@1,RRTstar@5,RMS jerk (rad/s$^3$),105,0.0,0.14436168399068805
+edge,pre_grasp,RRTstar@1,RRTstar@5,Wall clearance (mm),105,0.0,0.5246088665965385
+edge,pre_grasp,RRTstar@1,RRTstar@5,Truss clearance (mm),105,0.0,0.06212844086186662
+edge,pre_grasp,RRTstar@1,RRTstar@5,Repeat spread (mm),105,-0.0038683720372209296,0.0187102730320565
+edge,pre_grasp,RRTstar@1,chomp,success,525,0.0,1.0
+edge,pre_grasp,RRTstar@1,chomp,Planning time (s),105,-0.48099999999999987,5.803572916470603e-19
+edge,pre_grasp,RRTstar@1,chomp,Execution time (s),105,0.42200000000000015,6.003066590279838e-19
+edge,pre_grasp,RRTstar@1,chomp,Joint path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,RRTstar@1,chomp,TCP path ratio,105,0.0,0.6547208460185769
+edge,pre_grasp,RRTstar@1,chomp,TCP deviation (mm),105,0.0,0.13621686984456766
+edge,pre_grasp,RRTstar@1,chomp,TCP turning (rad),105,0.0,0.001115689685471048
+edge,pre_grasp,RRTstar@1,chomp,Wasted joint motion (rad),105,0.0,0.31731050786291415
+edge,pre_grasp,RRTstar@1,chomp,RMS jerk (rad/s$^3$),105,18.274,5.835434739233746e-19
+edge,pre_grasp,RRTstar@1,chomp,Wall clearance (mm),105,-0.3999999999999986,1.4193394380872487e-11
+edge,pre_grasp,RRTstar@1,chomp,Truss clearance (mm),105,0.0,0.06975084445309376
+edge,pre_grasp,RRTstar@1,chomp,Repeat spread (mm),105,-0.04873893565888182,5.835434739233746e-19
+edge,pre_grasp,RRTstar@5,chomp,success,525,0.0,1.0
+edge,pre_grasp,RRTstar@5,chomp,Planning time (s),105,-4.482,5.78281826915755e-19
+edge,pre_grasp,RRTstar@5,chomp,Execution time (s),105,0.42200000000000015,1.3008078400729266e-18
+edge,pre_grasp,RRTstar@5,chomp,Joint path ratio,105,0.0,0.31731050786291415
+edge,pre_grasp,RRTstar@5,chomp,TCP path ratio,105,0.0,0.6547208460185769
+edge,pre_grasp,RRTstar@5,chomp,TCP deviation (mm),105,0.0,0.7127018566581784
+edge,pre_grasp,RRTstar@5,chomp,TCP turning (rad),105,0.0,0.0010329731797629625
+edge,pre_grasp,RRTstar@5,chomp,Wasted joint motion (rad),105,0.0,0.31731050786291415
+edge,pre_grasp,RRTstar@5,chomp,RMS jerk (rad/s$^3$),105,18.274,5.835434739233746e-19
+edge,pre_grasp,RRTstar@5,chomp,Wall clearance (mm),105,-0.10000000000000142,1.5100369517481187e-11
+edge,pre_grasp,RRTstar@5,chomp,Truss clearance (mm),105,0.0,0.04983006707475125
+edge,pre_grasp,RRTstar@5,chomp,Repeat spread (mm),105,-0.045766111589236144,5.835434739233746e-19
+edge,transport,RRTConnect,BiTRRT,success,525,0.0,1.0
+edge,transport,RRTConnect,BiTRRT,Planning time (s),105,0.014000000000000005,1.0448645578035007e-14
+edge,transport,RRTConnect,BiTRRT,Execution time (s),105,0.0,0.7962534147376392
+edge,transport,RRTConnect,BiTRRT,Joint path ratio,105,0.0,1.0
+edge,transport,RRTConnect,BiTRRT,TCP path ratio,105,0.0,1.0
+edge,transport,RRTConnect,BiTRRT,TCP deviation (mm),105,0.0,0.4414183267820536
+edge,transport,RRTConnect,BiTRRT,TCP turning (rad),105,0.0,0.5164122683960384
+edge,transport,RRTConnect,BiTRRT,Wasted joint motion (rad),105,0.0,1.0
+edge,transport,RRTConnect,BiTRRT,RMS jerk (rad/s$^3$),105,0.0,0.11807752130231615
+edge,transport,RRTConnect,BiTRRT,Wall clearance (mm),105,0.0,0.31731050786291415
+edge,transport,RRTConnect,BiTRRT,Truss clearance (mm),0,,1.0
+edge,transport,RRTConnect,BiTRRT,Repeat spread (mm),105,-0.0009726734729834929,0.37501712558096245
+edge,transport,RRTConnect,RRTstar@1,success,525,0.0,1.0
+edge,transport,RRTConnect,RRTstar@1,Planning time (s),105,0.985,5.800603638761738e-19
+edge,transport,RRTConnect,RRTstar@1,Execution time (s),105,0.0,0.08454933062390962
+edge,transport,RRTConnect,RRTstar@1,Joint path ratio,105,0.0,1.0
+edge,transport,RRTConnect,RRTstar@1,TCP path ratio,105,0.0,1.0
+edge,transport,RRTConnect,RRTstar@1,TCP deviation (mm),105,0.0,0.023544102412552784
+edge,transport,RRTConnect,RRTstar@1,TCP turning (rad),105,0.0,0.25683925795785656
+edge,transport,RRTConnect,RRTstar@1,Wasted joint motion (rad),105,0.0,1.0
+edge,transport,RRTConnect,RRTstar@1,RMS jerk (rad/s$^3$),105,0.0,0.0014015079873323988
+edge,transport,RRTConnect,RRTstar@1,Wall clearance (mm),105,0.0,0.7456027889274615
+edge,transport,RRTConnect,RRTstar@1,Truss clearance (mm),0,,1.0
+edge,transport,RRTConnect,RRTstar@1,Repeat spread (mm),105,-0.006259305197133448,2.4711054829884554e-06
+edge,transport,RRTConnect,RRTstar@5,success,525,0.0,1.0
+edge,transport,RRTConnect,RRTstar@5,Planning time (s),105,4.986,5.787852188439401e-19
+edge,transport,RRTConnect,RRTstar@5,Execution time (s),105,0.0,0.15729920705028516
+edge,transport,RRTConnect,RRTstar@5,Joint path ratio,105,0.0,1.0
+edge,transport,RRTConnect,RRTstar@5,TCP path ratio,105,0.0,1.0
+edge,transport,RRTConnect,RRTstar@5,TCP deviation (mm),105,0.0,0.5745217656490401
+edge,transport,RRTConnect,RRTstar@5,TCP turning (rad),105,0.0,0.31731050786291415
+edge,transport,RRTConnect,RRTstar@5,Wasted joint motion (rad),105,0.0,1.0
+edge,transport,RRTConnect,RRTstar@5,RMS jerk (rad/s$^3$),105,0.0,0.0018896645330614334
+edge,transport,RRTConnect,RRTstar@5,Wall clearance (mm),105,0.0,0.15729920705028502
+edge,transport,RRTConnect,RRTstar@5,Truss clearance (mm),0,,1.0
+edge,transport,RRTConnect,RRTstar@5,Repeat spread (mm),105,-0.0067526845311686665,1.5795530653427294e-05
+edge,transport,RRTConnect,chomp,success,525,0.0,1.0
+edge,transport,RRTConnect,chomp,Planning time (s),105,0.515,5.759774758557284e-19
+edge,transport,RRTConnect,chomp,Execution time (s),105,0.2979999999999996,5.833046808669535e-19
+edge,transport,RRTConnect,chomp,Joint path ratio,105,0.0,1.0
+edge,transport,RRTConnect,chomp,TCP path ratio,105,0.0,1.0
+edge,transport,RRTConnect,chomp,TCP deviation (mm),105,0.0,0.14861399645521173
+edge,transport,RRTConnect,chomp,TCP turning (rad),105,0.0,2.5620658112741673e-10
+edge,transport,RRTConnect,chomp,Wasted joint motion (rad),105,0.0,1.0
+edge,transport,RRTConnect,chomp,RMS jerk (rad/s$^3$),105,24.840000000000003,5.835434739233746e-19
+edge,transport,RRTConnect,chomp,Wall clearance (mm),105,0.0,0.0009226668374782116
+edge,transport,RRTConnect,chomp,Truss clearance (mm),0,,1.0
+edge,transport,RRTConnect,chomp,Repeat spread (mm),105,-0.05584609388723962,5.835434739233746e-19
+edge,transport,BiTRRT,RRTstar@1,success,525,0.0,1.0
+edge,transport,BiTRRT,RRTstar@1,Planning time (s),105,0.968,5.811894580755234e-19
+edge,transport,BiTRRT,RRTstar@1,Execution time (s),105,0.0,0.07358287580929965
+edge,transport,BiTRRT,RRTstar@1,Joint path ratio,105,0.0,1.0
+edge,transport,BiTRRT,RRTstar@1,TCP path ratio,105,0.0,1.0
+edge,transport,BiTRRT,RRTstar@1,TCP deviation (mm),105,0.0,0.005934470694108594
+edge,transport,BiTRRT,RRTstar@1,TCP turning (rad),105,0.0,0.16700719585656576
+edge,transport,BiTRRT,RRTstar@1,Wasted joint motion (rad),105,0.0,1.0
+edge,transport,BiTRRT,RRTstar@1,RMS jerk (rad/s$^3$),105,0.0,0.0257783330165726
+edge,transport,BiTRRT,RRTstar@1,Wall clearance (mm),105,0.0,0.33399825582199794
+edge,transport,BiTRRT,RRTstar@1,Truss clearance (mm),0,,1.0
+edge,transport,BiTRRT,RRTstar@1,Repeat spread (mm),105,-0.004641159213983614,0.00017806589583485287
+edge,transport,BiTRRT,RRTstar@5,success,525,0.0,1.0
+edge,transport,BiTRRT,RRTstar@5,Planning time (s),105,4.971,5.792593798870608e-19
+edge,transport,BiTRRT,RRTstar@5,Execution time (s),105,0.0,0.08474204455560833
+edge,transport,BiTRRT,RRTstar@5,Joint path ratio,105,0.0,1.0
+edge,transport,BiTRRT,RRTstar@5,TCP path ratio,105,0.0,1.0
+edge,transport,BiTRRT,RRTstar@5,TCP deviation (mm),105,0.0,0.21660575011963834
+edge,transport,BiTRRT,RRTstar@5,TCP turning (rad),105,0.0,0.19364643126922065
+edge,transport,BiTRRT,RRTstar@5,Wasted joint motion (rad),105,0.0,1.0
+edge,transport,BiTRRT,RRTstar@5,RMS jerk (rad/s$^3$),105,0.0,0.10933453037563153
+edge,transport,BiTRRT,RRTstar@5,Wall clearance (mm),105,0.0,0.31731050786291415
+edge,transport,BiTRRT,RRTstar@5,Truss clearance (mm),0,,1.0
+edge,transport,BiTRRT,RRTstar@5,Repeat spread (mm),105,-0.006876439712448119,5.741629812268567e-05
+edge,transport,BiTRRT,chomp,success,525,0.0,1.0
+edge,transport,BiTRRT,chomp,Planning time (s),105,0.5010000000000001,5.800603638761738e-19
+edge,transport,BiTRRT,chomp,Execution time (s),105,0.2979999999999996,5.833046808669535e-19
+edge,transport,BiTRRT,chomp,Joint path ratio,105,0.0,1.0
+edge,transport,BiTRRT,chomp,TCP path ratio,105,0.0,1.0
+edge,transport,BiTRRT,chomp,TCP deviation (mm),105,0.0,0.7388826803635273
+edge,transport,BiTRRT,chomp,TCP turning (rad),105,0.0,3.8382990900555304e-10
+edge,transport,BiTRRT,chomp,Wasted joint motion (rad),105,0.0,1.0
+edge,transport,BiTRRT,chomp,RMS jerk (rad/s$^3$),105,24.840000000000003,5.835434739233746e-19
+edge,transport,BiTRRT,chomp,Wall clearance (mm),105,0.0,0.0014509717185024076
+edge,transport,BiTRRT,chomp,Truss clearance (mm),0,,1.0
+edge,transport,BiTRRT,chomp,Repeat spread (mm),105,-0.05451890767544916,5.835434739233746e-19
+edge,transport,RRTstar@1,RRTstar@5,success,525,0.0,1.0
+edge,transport,RRTstar@1,RRTstar@5,Planning time (s),105,4.0009999999999994,5.768332007607335e-19
+edge,transport,RRTstar@1,RRTstar@5,Execution time (s),105,0.0,0.9052346589348466
+edge,transport,RRTstar@1,RRTstar@5,Joint path ratio,105,0.0,1.0
+edge,transport,RRTstar@1,RRTstar@5,TCP path ratio,105,0.0,1.0
+edge,transport,RRTstar@1,RRTstar@5,TCP deviation (mm),105,0.0,0.28894862684750344
+edge,transport,RRTstar@1,RRTstar@5,TCP turning (rad),105,0.0,0.6547208460185769
+edge,transport,RRTstar@1,RRTstar@5,Wasted joint motion (rad),105,0.0,1.0
+edge,transport,RRTstar@1,RRTstar@5,RMS jerk (rad/s$^3$),105,0.0,0.794249823944996
+edge,transport,RRTstar@1,RRTstar@5,Wall clearance (mm),105,0.0,0.0633177868300456
+edge,transport,RRTstar@1,RRTstar@5,Truss clearance (mm),0,,1.0
+edge,transport,RRTstar@1,RRTstar@5,Repeat spread (mm),105,-0.00043895530683255024,0.9020459807866964
+edge,transport,RRTstar@1,chomp,success,525,0.0,1.0
+edge,transport,RRTstar@1,chomp,Planning time (s),105,-0.471,5.797339100850606e-19
+edge,transport,RRTstar@1,chomp,Execution time (s),105,0.2979999999999996,5.832748382653936e-19
+edge,transport,RRTstar@1,chomp,Joint path ratio,105,0.0,1.0
+edge,transport,RRTstar@1,chomp,TCP path ratio,105,0.0,1.0
+edge,transport,RRTstar@1,chomp,TCP deviation (mm),105,0.0,0.003603793264077752
+edge,transport,RRTstar@1,chomp,TCP turning (rad),105,0.0,2.4405246892216794e-10
+edge,transport,RRTstar@1,chomp,Wasted joint motion (rad),105,0.0,1.0
+edge,transport,RRTstar@1,chomp,RMS jerk (rad/s$^3$),105,24.840000000000003,5.835434739233746e-19
+edge,transport,RRTstar@1,chomp,Wall clearance (mm),105,0.0,0.0005179814417081028
+edge,transport,RRTstar@1,chomp,Truss clearance (mm),0,,1.0
+edge,transport,RRTstar@1,chomp,Repeat spread (mm),105,-0.048404039344554284,5.835434739233746e-19
+edge,transport,RRTstar@5,chomp,success,525,0.0,1.0
+edge,transport,RRTstar@5,chomp,Planning time (s),105,-4.470999999999999,5.791408050286291e-19
+edge,transport,RRTstar@5,chomp,Execution time (s),105,0.29899999999999993,5.833046808669535e-19
+edge,transport,RRTstar@5,chomp,Joint path ratio,105,0.0,1.0
+edge,transport,RRTstar@5,chomp,TCP path ratio,105,0.0,1.0
+edge,transport,RRTstar@5,chomp,TCP deviation (mm),105,0.0,0.050186823835046884
+edge,transport,RRTstar@5,chomp,TCP turning (rad),105,0.0,3.7406800792768086e-10
+edge,transport,RRTstar@5,chomp,Wasted joint motion (rad),105,0.0,1.0
+edge,transport,RRTstar@5,chomp,RMS jerk (rad/s$^3$),105,24.840000000000003,5.835434739233746e-19
+edge,transport,RRTstar@5,chomp,Wall clearance (mm),105,0.0,0.003423436300311516
+edge,transport,RRTstar@5,chomp,Truss clearance (mm),0,,1.0
+edge,transport,RRTstar@5,chomp,Repeat spread (mm),105,-0.049619363407645146,5.835434739233746e-19
+return,return_lift,RRTConnect,BiTRRT,success,300,0.0,1.0
+return,return_lift,RRTConnect,BiTRRT,Planning time (s),60,0.010500000000000002,9.237855231833186e-07
+return,return_lift,RRTConnect,BiTRRT,Execution time (s),60,0.0,0.9590604114253881
+return,return_lift,RRTConnect,BiTRRT,Joint path ratio,60,0.0,1.0
+return,return_lift,RRTConnect,BiTRRT,TCP path ratio,60,0.0,1.0
+return,return_lift,RRTConnect,BiTRRT,TCP deviation (mm),60,0.0,0.15729920705028502
+return,return_lift,RRTConnect,BiTRRT,TCP turning (rad),60,0.0,1.0
+return,return_lift,RRTConnect,BiTRRT,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift,RRTConnect,BiTRRT,RMS jerk (rad/s$^3$),60,0.0,0.07629555914649391
+return,return_lift,RRTConnect,BiTRRT,Wall clearance (mm),60,0.0,0.5665984802832496
+return,return_lift,RRTConnect,BiTRRT,Truss clearance (mm),0,,1.0
+return,return_lift,RRTConnect,BiTRRT,Repeat spread (mm),60,-0.0008048709255798758,0.8771416661021247
+return,return_lift,RRTConnect,RRTstar@1,success,300,0.0,1.0
+return,return_lift,RRTConnect,RRTstar@1,Planning time (s),60,0.9814999999999999,1.611997791733677e-11
+return,return_lift,RRTConnect,RRTstar@1,Execution time (s),60,0.0,0.9434867980568069
+return,return_lift,RRTConnect,RRTstar@1,Joint path ratio,60,0.0,1.0
+return,return_lift,RRTConnect,RRTstar@1,TCP path ratio,60,0.0,0.15729920705028502
+return,return_lift,RRTConnect,RRTstar@1,TCP deviation (mm),60,0.0,0.4922069926558157
+return,return_lift,RRTConnect,RRTstar@1,TCP turning (rad),60,0.0,0.5270892568655381
+return,return_lift,RRTConnect,RRTstar@1,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift,RRTConnect,RRTstar@1,RMS jerk (rad/s$^3$),60,0.0,0.20444316266681162
+return,return_lift,RRTConnect,RRTstar@1,Wall clearance (mm),60,0.0,0.8518395252973694
+return,return_lift,RRTConnect,RRTstar@1,Truss clearance (mm),0,,1.0
+return,return_lift,RRTConnect,RRTstar@1,Repeat spread (mm),60,-0.0027761423300015423,0.16190159314943053
+return,return_lift,RRTConnect,RRTstar@5,success,300,0.0,1.0
+return,return_lift,RRTConnect,RRTstar@5,Planning time (s),60,4.9864999999999995,1.6206278218178404e-11
+return,return_lift,RRTConnect,RRTstar@5,Execution time (s),60,0.0,0.6615822420888346
+return,return_lift,RRTConnect,RRTstar@5,Joint path ratio,60,0.0,1.0
+return,return_lift,RRTConnect,RRTstar@5,TCP path ratio,60,0.0,1.0
+return,return_lift,RRTConnect,RRTstar@5,TCP deviation (mm),60,0.0,0.31731050786291415
+return,return_lift,RRTConnect,RRTstar@5,TCP turning (rad),60,0.0,0.29258414027383284
+return,return_lift,RRTConnect,RRTstar@5,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift,RRTConnect,RRTstar@5,RMS jerk (rad/s$^3$),60,0.0,0.019437456197730962
+return,return_lift,RRTConnect,RRTstar@5,Wall clearance (mm),60,0.0,0.22474124306055088
+return,return_lift,RRTConnect,RRTstar@5,Truss clearance (mm),0,,1.0
+return,return_lift,RRTConnect,RRTstar@5,Repeat spread (mm),60,-0.0034177198813691335,0.05561801167772952
+return,return_lift,RRTConnect,chomp,success,300,0.0,1.0
+return,return_lift,RRTConnect,chomp,Planning time (s),60,0.513,1.6170691757080703e-11
+return,return_lift,RRTConnect,chomp,Execution time (s),60,0.2995000000000002,1.6282776218416573e-11
+return,return_lift,RRTConnect,chomp,Joint path ratio,60,0.0,1.0
+return,return_lift,RRTConnect,chomp,TCP path ratio,60,0.0,0.31731050786291415
+return,return_lift,RRTConnect,chomp,TCP deviation (mm),60,0.0,0.31731050786291415
+return,return_lift,RRTConnect,chomp,TCP turning (rad),60,0.0,0.05220363534131467
+return,return_lift,RRTConnect,chomp,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift,RRTConnect,chomp,RMS jerk (rad/s$^3$),60,32.6055,1.6295557943119345e-11
+return,return_lift,RRTConnect,chomp,Wall clearance (mm),60,-0.09999999999999432,8.751483626844518e-07
+return,return_lift,RRTConnect,chomp,Truss clearance (mm),0,,1.0
+return,return_lift,RRTConnect,chomp,Repeat spread (mm),60,-0.046067316744763914,1.6295557943119345e-11
+return,return_lift,BiTRRT,RRTstar@1,success,300,0.0,1.0
+return,return_lift,BiTRRT,RRTstar@1,Planning time (s),60,0.972,1.6219005015958803e-11
+return,return_lift,BiTRRT,RRTstar@1,Execution time (s),60,0.0,0.8539232992870668
+return,return_lift,BiTRRT,RRTstar@1,Joint path ratio,60,0.0,1.0
+return,return_lift,BiTRRT,RRTstar@1,TCP path ratio,60,0.0,0.15729920705028502
+return,return_lift,BiTRRT,RRTstar@1,TCP deviation (mm),60,0.0,1.0
+return,return_lift,BiTRRT,RRTstar@1,TCP turning (rad),60,0.0,0.4795001221869535
+return,return_lift,BiTRRT,RRTstar@1,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift,BiTRRT,RRTstar@1,RMS jerk (rad/s$^3$),60,0.0,0.7854365954435134
+return,return_lift,BiTRRT,RRTstar@1,Wall clearance (mm),60,0.0,0.4496917979688909
+return,return_lift,BiTRRT,RRTstar@1,Truss clearance (mm),0,,1.0
+return,return_lift,BiTRRT,RRTstar@1,Repeat spread (mm),60,-0.0017942778626051994,0.09616794204602311
+return,return_lift,BiTRRT,RRTstar@5,success,300,0.0,1.0
+return,return_lift,BiTRRT,RRTstar@5,Planning time (s),60,4.977,1.6239386905387045e-11
+return,return_lift,BiTRRT,RRTstar@5,Execution time (s),60,0.0,0.6732899796599957
+return,return_lift,BiTRRT,RRTstar@5,Joint path ratio,60,0.0,1.0
+return,return_lift,BiTRRT,RRTstar@5,TCP path ratio,60,0.0,1.0
+return,return_lift,BiTRRT,RRTstar@5,TCP deviation (mm),60,0.0,0.5637028616507731
+return,return_lift,BiTRRT,RRTstar@5,TCP turning (rad),60,0.0,0.3494409106333184
+return,return_lift,BiTRRT,RRTstar@5,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift,BiTRRT,RRTstar@5,RMS jerk (rad/s$^3$),60,0.0,0.378688995411278
+return,return_lift,BiTRRT,RRTstar@5,Wall clearance (mm),60,0.0,0.0708646342575099
+return,return_lift,BiTRRT,RRTstar@5,Truss clearance (mm),0,,1.0
+return,return_lift,BiTRRT,RRTstar@5,Repeat spread (mm),60,-0.0015361111744239854,0.08495815208453063
+return,return_lift,BiTRRT,chomp,success,300,0.0,1.0
+return,return_lift,BiTRRT,chomp,Planning time (s),60,0.5055000000000001,1.619356055415105e-11
+return,return_lift,BiTRRT,chomp,Execution time (s),60,0.29800000000000015,1.6285331829622064e-11
+return,return_lift,BiTRRT,chomp,Joint path ratio,60,0.0,1.0
+return,return_lift,BiTRRT,chomp,TCP path ratio,60,0.0,0.31731050786291415
+return,return_lift,BiTRRT,chomp,TCP deviation (mm),60,0.0,0.31731050786291415
+return,return_lift,BiTRRT,chomp,TCP turning (rad),60,0.0,0.05220363534131467
+return,return_lift,BiTRRT,chomp,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift,BiTRRT,chomp,RMS jerk (rad/s$^3$),60,32.6055,1.6295557943119345e-11
+return,return_lift,BiTRRT,chomp,Wall clearance (mm),60,-0.09999999999999432,1.8351156113294564e-06
+return,return_lift,BiTRRT,chomp,Truss clearance (mm),0,,1.0
+return,return_lift,BiTRRT,chomp,Repeat spread (mm),60,-0.04657975732988143,1.6295557943119345e-11
+return,return_lift,RRTstar@1,RRTstar@5,success,300,0.0,1.0
+return,return_lift,RRTstar@1,RRTstar@5,Planning time (s),60,4.003,1.619356055415105e-11
+return,return_lift,RRTstar@1,RRTstar@5,Execution time (s),60,0.0,0.7524936490337828
+return,return_lift,RRTstar@1,RRTstar@5,Joint path ratio,60,0.0,1.0
+return,return_lift,RRTstar@1,RRTstar@5,TCP path ratio,60,0.0,0.15729920705028502
+return,return_lift,RRTstar@1,RRTstar@5,TCP deviation (mm),60,0.0,0.7127018566581784
+return,return_lift,RRTstar@1,RRTstar@5,TCP turning (rad),60,0.0,0.1719760679920389
+return,return_lift,RRTstar@1,RRTstar@5,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift,RRTstar@1,RRTstar@5,RMS jerk (rad/s$^3$),60,0.0,0.21590965614339308
+return,return_lift,RRTstar@1,RRTstar@5,Wall clearance (mm),60,0.0,0.22522930366690308
+return,return_lift,RRTstar@1,RRTstar@5,Truss clearance (mm),0,,1.0
+return,return_lift,RRTstar@1,RRTstar@5,Repeat spread (mm),60,0.00022840352223096536,0.9413159156405683
+return,return_lift,RRTstar@1,chomp,success,300,0.0,1.0
+return,return_lift,RRTstar@1,chomp,Planning time (s),60,-0.46899999999999986,1.6226645481290284e-11
+return,return_lift,RRTstar@1,chomp,Execution time (s),60,0.29800000000000015,1.6285331829622064e-11
+return,return_lift,RRTstar@1,chomp,Joint path ratio,60,0.0,1.0
+return,return_lift,RRTstar@1,chomp,TCP path ratio,60,0.0,0.31731050786291415
+return,return_lift,RRTstar@1,chomp,TCP deviation (mm),60,0.0,0.7127018566581784
+return,return_lift,RRTstar@1,chomp,TCP turning (rad),60,0.0,0.05878172135535886
+return,return_lift,RRTstar@1,chomp,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift,RRTstar@1,chomp,RMS jerk (rad/s$^3$),60,32.6055,1.6295557943119345e-11
+return,return_lift,RRTstar@1,chomp,Wall clearance (mm),60,-0.09999999999999432,7.409860427136455e-07
+return,return_lift,RRTstar@1,chomp,Truss clearance (mm),0,,1.0
+return,return_lift,RRTstar@1,chomp,Repeat spread (mm),60,-0.04232358469905817,1.6295557943119345e-11
+return,return_lift,RRTstar@5,chomp,success,300,0.0,1.0
+return,return_lift,RRTstar@5,chomp,Planning time (s),60,-4.473,1.6226645481290284e-11
+return,return_lift,RRTstar@5,chomp,Execution time (s),60,0.2995000000000002,1.6285331829622064e-11
+return,return_lift,RRTstar@5,chomp,Joint path ratio,60,0.0,1.0
+return,return_lift,RRTstar@5,chomp,TCP path ratio,60,0.0,0.31731050786291415
+return,return_lift,RRTstar@5,chomp,TCP deviation (mm),60,0.0,1.0
+return,return_lift,RRTstar@5,chomp,TCP turning (rad),60,0.0,0.018320735421941195
+return,return_lift,RRTstar@5,chomp,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift,RRTstar@5,chomp,RMS jerk (rad/s$^3$),60,32.6055,1.6295557943119345e-11
+return,return_lift,RRTstar@5,chomp,Wall clearance (mm),60,-0.09999999999999432,4.700064661802159e-07
+return,return_lift,RRTstar@5,chomp,Truss clearance (mm),0,,1.0
+return,return_lift,RRTstar@5,chomp,Repeat spread (mm),60,-0.041527722494954795,1.6295557943119345e-11
+return,return_lift_rot,RRTConnect,BiTRRT,success,300,0.0,1.0
+return,return_lift_rot,RRTConnect,BiTRRT,Planning time (s),60,0.024000000000000004,1.8005046008576235e-11
+return,return_lift_rot,RRTConnect,BiTRRT,Execution time (s),60,0.0,0.7054569861112734
+return,return_lift_rot,RRTConnect,BiTRRT,Joint path ratio,60,0.0,1.0
+return,return_lift_rot,RRTConnect,BiTRRT,TCP path ratio,60,0.0,0.5774686624272996
+return,return_lift_rot,RRTConnect,BiTRRT,TCP deviation (mm),60,0.0,0.17971249487899976
+return,return_lift_rot,RRTConnect,BiTRRT,TCP turning (rad),60,0.0,0.5637028616507731
+return,return_lift_rot,RRTConnect,BiTRRT,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift_rot,RRTConnect,BiTRRT,RMS jerk (rad/s$^3$),60,0.0,0.6662276454096188
+return,return_lift_rot,RRTConnect,BiTRRT,Wall clearance (mm),60,0.0,0.8699138666255564
+return,return_lift_rot,RRTConnect,BiTRRT,Truss clearance (mm),0,,1.0
+return,return_lift_rot,RRTConnect,BiTRRT,Repeat spread (mm),60,0.0011959600902049297,0.5608586208294731
+return,return_lift_rot,RRTConnect,RRTstar@1,success,300,0.0,1.0
+return,return_lift_rot,RRTConnect,RRTstar@1,Planning time (s),60,0.9829999999999999,1.610732220613834e-11
+return,return_lift_rot,RRTConnect,RRTstar@1,Execution time (s),60,0.0,0.4496917979688909
+return,return_lift_rot,RRTConnect,RRTstar@1,Joint path ratio,60,0.0,1.0
+return,return_lift_rot,RRTConnect,RRTstar@1,TCP path ratio,60,0.0,0.31731050786291415
+return,return_lift_rot,RRTConnect,RRTstar@1,TCP deviation (mm),60,0.0,0.31731050786291415
+return,return_lift_rot,RRTConnect,RRTstar@1,TCP turning (rad),60,0.0,0.010515245935858907
+return,return_lift_rot,RRTConnect,RRTstar@1,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift_rot,RRTConnect,RRTstar@1,RMS jerk (rad/s$^3$),60,0.0,0.0899578253080823
+return,return_lift_rot,RRTConnect,RRTstar@1,Wall clearance (mm),60,0.0,0.7121184201582986
+return,return_lift_rot,RRTConnect,RRTstar@1,Truss clearance (mm),0,,1.0
+return,return_lift_rot,RRTConnect,RRTstar@1,Repeat spread (mm),60,-0.0036378855751200354,0.024749591163795697
+return,return_lift_rot,RRTConnect,RRTstar@5,success,300,0.0,1.0
+return,return_lift_rot,RRTConnect,RRTstar@5,Planning time (s),60,4.9830000000000005,1.6219005015958803e-11
+return,return_lift_rot,RRTConnect,RRTstar@5,Execution time (s),60,0.0,0.33628879040286896
+return,return_lift_rot,RRTConnect,RRTstar@5,Joint path ratio,60,0.0,1.0
+return,return_lift_rot,RRTConnect,RRTstar@5,TCP path ratio,60,0.0,0.10880943004054568
+return,return_lift_rot,RRTConnect,RRTstar@5,TCP deviation (mm),60,0.0,0.17971249487899976
+return,return_lift_rot,RRTConnect,RRTstar@5,TCP turning (rad),60,0.0,0.8258939952297807
+return,return_lift_rot,RRTConnect,RRTstar@5,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift_rot,RRTConnect,RRTstar@5,RMS jerk (rad/s$^3$),60,0.0,0.21704390775694227
+return,return_lift_rot,RRTConnect,RRTstar@5,Wall clearance (mm),60,0.0,0.16602595144835586
+return,return_lift_rot,RRTConnect,RRTstar@5,Truss clearance (mm),0,,1.0
+return,return_lift_rot,RRTConnect,RRTstar@5,Repeat spread (mm),60,-0.005136258271524585,0.008774154976433617
+return,return_lift_rot,RRTConnect,chomp,success,300,0.0,1.0
+return,return_lift_rot,RRTConnect,chomp,Planning time (s),60,0.512,1.6099733141895078e-11
+return,return_lift_rot,RRTConnect,chomp,Execution time (s),60,0.22449999999999992,1.6280220973983747e-11
+return,return_lift_rot,RRTConnect,chomp,Joint path ratio,60,0.0,1.0
+return,return_lift_rot,RRTConnect,chomp,TCP path ratio,60,0.0,0.31731050786291415
+return,return_lift_rot,RRTConnect,chomp,TCP deviation (mm),60,0.0,0.31731050786291415
+return,return_lift_rot,RRTConnect,chomp,TCP turning (rad),60,0.0,0.7054569861112734
+return,return_lift_rot,RRTConnect,chomp,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift_rot,RRTConnect,chomp,RMS jerk (rad/s$^3$),60,20.337000000000003,1.6295557943119345e-11
+return,return_lift_rot,RRTConnect,chomp,Wall clearance (mm),60,-1.1499999999999915,1.4506314884618957e-09
+return,return_lift_rot,RRTConnect,chomp,Truss clearance (mm),0,,1.0
+return,return_lift_rot,RRTConnect,chomp,Repeat spread (mm),60,-0.04961762387240404,1.6295557943119345e-11
+return,return_lift_rot,BiTRRT,RRTstar@1,success,300,0.0,1.0
+return,return_lift_rot,BiTRRT,RRTstar@1,Planning time (s),60,0.958,1.624193628791442e-11
+return,return_lift_rot,BiTRRT,RRTstar@1,Execution time (s),60,0.0,0.19364643126922065
+return,return_lift_rot,BiTRRT,RRTstar@1,Joint path ratio,60,0.0,1.0
+return,return_lift_rot,BiTRRT,RRTstar@1,TCP path ratio,60,0.0,0.10247043485974937
+return,return_lift_rot,BiTRRT,RRTstar@1,TCP deviation (mm),60,0.0,0.31731050786291415
+return,return_lift_rot,BiTRRT,RRTstar@1,TCP turning (rad),60,0.0,0.01674764760318694
+return,return_lift_rot,BiTRRT,RRTstar@1,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift_rot,BiTRRT,RRTstar@1,RMS jerk (rad/s$^3$),60,0.0,0.014549050753510479
+return,return_lift_rot,BiTRRT,RRTstar@1,Wall clearance (mm),60,0.0,0.5586248175094619
+return,return_lift_rot,BiTRRT,RRTstar@1,Truss clearance (mm),0,,1.0
+return,return_lift_rot,BiTRRT,RRTstar@1,Repeat spread (mm),60,-0.0015538302101183836,0.06901585766408228
+return,return_lift_rot,BiTRRT,RRTstar@5,success,300,0.0,1.0
+return,return_lift_rot,BiTRRT,RRTstar@5,Planning time (s),60,4.959,1.625724027101805e-11
+return,return_lift_rot,BiTRRT,RRTstar@5,Execution time (s),60,0.0,0.31731050786291415
+return,return_lift_rot,BiTRRT,RRTstar@5,Joint path ratio,60,0.0,1.0
+return,return_lift_rot,BiTRRT,RRTstar@5,TCP path ratio,60,0.0,0.28504940740261275
+return,return_lift_rot,BiTRRT,RRTstar@5,TCP deviation (mm),60,0.0,1.0
+return,return_lift_rot,BiTRRT,RRTstar@5,TCP turning (rad),60,0.0,0.8902300549434974
+return,return_lift_rot,BiTRRT,RRTstar@5,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift_rot,BiTRRT,RRTstar@5,RMS jerk (rad/s$^3$),60,0.0,0.20636562176575024
+return,return_lift_rot,BiTRRT,RRTstar@5,Wall clearance (mm),60,0.0,0.07070114486598297
+return,return_lift_rot,BiTRRT,RRTstar@5,Truss clearance (mm),0,,1.0
+return,return_lift_rot,BiTRRT,RRTstar@5,Repeat spread (mm),60,-0.004014064705832161,0.010861774473090141
+return,return_lift_rot,BiTRRT,chomp,success,300,0.0,1.0
+return,return_lift_rot,BiTRRT,chomp,Planning time (s),60,0.48650000000000004,1.625724027101805e-11
+return,return_lift_rot,BiTRRT,chomp,Execution time (s),60,0.22449999999999992,1.6280220973983747e-11
+return,return_lift_rot,BiTRRT,chomp,Joint path ratio,60,0.0,1.0
+return,return_lift_rot,BiTRRT,chomp,TCP path ratio,60,0.0,0.7854947471183542
+return,return_lift_rot,BiTRRT,chomp,TCP deviation (mm),60,0.0,0.31731050786291415
+return,return_lift_rot,BiTRRT,chomp,TCP turning (rad),60,0.0,0.7854947471183542
+return,return_lift_rot,BiTRRT,chomp,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift_rot,BiTRRT,chomp,RMS jerk (rad/s$^3$),60,20.337000000000003,1.6295557943119345e-11
+return,return_lift_rot,BiTRRT,chomp,Wall clearance (mm),60,-1.1499999999999915,2.262377407101272e-09
+return,return_lift_rot,BiTRRT,chomp,Truss clearance (mm),0,,1.0
+return,return_lift_rot,BiTRRT,chomp,Repeat spread (mm),60,-0.04922839955873736,1.6295557943119345e-11
+return,return_lift_rot,RRTstar@1,RRTstar@5,success,300,0.0,1.0
+return,return_lift_rot,RRTstar@1,RRTstar@5,Planning time (s),60,3.9989999999999997,1.6247036151056764e-11
+return,return_lift_rot,RRTstar@1,RRTstar@5,Execution time (s),60,0.0,0.10247043485974937
+return,return_lift_rot,RRTstar@1,RRTstar@5,Joint path ratio,60,0.0,1.0
+return,return_lift_rot,RRTstar@1,RRTstar@5,TCP path ratio,60,0.0,0.06559969214707187
+return,return_lift_rot,RRTstar@1,RRTstar@5,TCP deviation (mm),60,0.0,0.31731050786291415
+return,return_lift_rot,RRTstar@1,RRTstar@5,TCP turning (rad),60,0.0,0.023140931308743732
+return,return_lift_rot,RRTstar@1,RRTstar@5,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift_rot,RRTstar@1,RRTstar@5,RMS jerk (rad/s$^3$),60,0.0,0.4314014169471778
+return,return_lift_rot,RRTstar@1,RRTstar@5,Wall clearance (mm),60,0.0,0.06401174931006226
+return,return_lift_rot,RRTstar@1,RRTstar@5,Truss clearance (mm),0,,1.0
+return,return_lift_rot,RRTstar@1,RRTstar@5,Repeat spread (mm),60,0.00022594535499188134,0.6693990124745206
+return,return_lift_rot,RRTstar@1,chomp,success,300,0.0,1.0
+return,return_lift_rot,RRTstar@1,chomp,Planning time (s),60,-0.47249999999999986,1.6221551472086038e-11
+return,return_lift_rot,RRTstar@1,chomp,Execution time (s),60,0.22449999999999992,1.6280220973983747e-11
+return,return_lift_rot,RRTstar@1,chomp,Joint path ratio,60,0.0,1.0
+return,return_lift_rot,RRTstar@1,chomp,TCP path ratio,60,0.0,0.17971249487899976
+return,return_lift_rot,RRTstar@1,chomp,TCP deviation (mm),60,0.0,1.0
+return,return_lift_rot,RRTstar@1,chomp,TCP turning (rad),60,0.0,0.010810283451958072
+return,return_lift_rot,RRTstar@1,chomp,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift_rot,RRTstar@1,chomp,RMS jerk (rad/s$^3$),60,20.337000000000003,1.6295557943119345e-11
+return,return_lift_rot,RRTstar@1,chomp,Wall clearance (mm),60,-1.1499999999999915,2.9405565525063756e-09
+return,return_lift_rot,RRTstar@1,chomp,Truss clearance (mm),0,,1.0
+return,return_lift_rot,RRTstar@1,chomp,Repeat spread (mm),60,-0.045959864303688154,1.6295557943119345e-11
+return,return_lift_rot,RRTstar@5,chomp,success,300,0.0,1.0
+return,return_lift_rot,RRTstar@5,chomp,Planning time (s),60,-4.47,1.6236837888825472e-11
+return,return_lift_rot,RRTstar@5,chomp,Execution time (s),60,0.22449999999999992,1.6280220973983747e-11
+return,return_lift_rot,RRTstar@5,chomp,Joint path ratio,60,0.0,1.0
+return,return_lift_rot,RRTstar@5,chomp,TCP path ratio,60,0.0,0.17971249487899976
+return,return_lift_rot,RRTstar@5,chomp,TCP deviation (mm),60,0.0,0.31731050786291415
+return,return_lift_rot,RRTstar@5,chomp,TCP turning (rad),60,0.0,0.9146213878996874
+return,return_lift_rot,RRTstar@5,chomp,Wasted joint motion (rad),60,0.0,1.0
+return,return_lift_rot,RRTstar@5,chomp,RMS jerk (rad/s$^3$),60,20.3375,1.6295557943119345e-11
+return,return_lift_rot,RRTstar@5,chomp,Wall clearance (mm),60,-1.2000000000000028,1.957071765634546e-09
+return,return_lift_rot,RRTstar@5,chomp,Truss clearance (mm),0,,1.0
+return,return_lift_rot,RRTstar@5,chomp,Repeat spread (mm),60,-0.04464756716390721,1.6295557943119345e-11
+return,return_place,RRTConnect,BiTRRT,success,300,0.0,1.0
+return,return_place,RRTConnect,BiTRRT,Planning time (s),60,0.011000000000000001,1.3933761215004578e-10
+return,return_place,RRTConnect,BiTRRT,Execution time (s),60,0.0,0.21904796593314668
+return,return_place,RRTConnect,BiTRRT,Joint path ratio,60,0.0,0.31731050786291415
+return,return_place,RRTConnect,BiTRRT,TCP path ratio,60,0.0,0.31731050786291415
+return,return_place,RRTConnect,BiTRRT,TCP deviation (mm),60,0.0,0.6547208460185769
+return,return_place,RRTConnect,BiTRRT,TCP turning (rad),60,0.0,0.28504940740261275
+return,return_place,RRTConnect,BiTRRT,Wasted joint motion (rad),60,0.0,0.31731050786291415
+return,return_place,RRTConnect,BiTRRT,RMS jerk (rad/s$^3$),60,0.0,0.45128952068465256
+return,return_place,RRTConnect,BiTRRT,Wall clearance (mm),60,0.0,0.33179983649777
+return,return_place,RRTConnect,BiTRRT,Truss clearance (mm),0,,1.0
+return,return_place,RRTConnect,BiTRRT,Repeat spread (mm),60,-0.00028568977929484957,0.674769380127215
+return,return_place,RRTConnect,RRTstar@1,success,300,0.0,1.0
+return,return_place,RRTConnect,RRTstar@1,Planning time (s),60,0.9849999999999999,1.619864652409029e-11
+return,return_place,RRTConnect,RRTstar@1,Execution time (s),60,0.0,0.36030781501341325
+return,return_place,RRTConnect,RRTstar@1,Joint path ratio,60,0.0,0.31731050786291415
+return,return_place,RRTConnect,RRTstar@1,TCP path ratio,60,0.0,0.17971249487899976
+return,return_place,RRTConnect,RRTstar@1,TCP deviation (mm),60,0.0,0.039359508888249725
+return,return_place,RRTConnect,RRTstar@1,TCP turning (rad),60,0.0,0.0157641152996124
+return,return_place,RRTConnect,RRTstar@1,Wasted joint motion (rad),60,0.0,0.31731050786291415
+return,return_place,RRTConnect,RRTstar@1,RMS jerk (rad/s$^3$),60,0.0,0.8819785694941231
+return,return_place,RRTConnect,RRTstar@1,Wall clearance (mm),60,0.0,0.05804005016349001
+return,return_place,RRTConnect,RRTstar@1,Truss clearance (mm),0,,1.0
+return,return_place,RRTConnect,RRTstar@1,Repeat spread (mm),60,0.0009182606280623458,0.9765085574084649
+return,return_place,RRTConnect,RRTstar@5,success,300,0.0,1.0
+return,return_place,RRTConnect,RRTstar@5,Planning time (s),60,4.986,1.619864652409029e-11
+return,return_place,RRTConnect,RRTstar@5,Execution time (s),60,0.0,0.03646983035602654
+return,return_place,RRTConnect,RRTstar@5,Joint path ratio,60,0.0,0.31731050786291415
+return,return_place,RRTConnect,RRTstar@5,TCP path ratio,60,0.0,0.31731050786291415
+return,return_place,RRTConnect,RRTstar@5,TCP deviation (mm),60,0.0,0.023544102412552784
+return,return_place,RRTConnect,RRTstar@5,TCP turning (rad),60,0.0,0.006458954266892987
+return,return_place,RRTConnect,RRTstar@5,Wasted joint motion (rad),60,0.0,0.31731050786291415
+return,return_place,RRTConnect,RRTstar@5,RMS jerk (rad/s$^3$),60,0.0,0.8666955769952125
+return,return_place,RRTConnect,RRTstar@5,Wall clearance (mm),60,0.0,0.033709391069536146
+return,return_place,RRTConnect,RRTstar@5,Truss clearance (mm),0,,1.0
+return,return_place,RRTConnect,RRTstar@5,Repeat spread (mm),60,-0.0020474931575585886,0.5314879489046715
+return,return_place,RRTConnect,chomp,success,300,0.016666666666666666,0.0625
+return,return_place,RRTConnect,chomp,Planning time (s),59,0.49800000000000005,2.370385968199865e-11
+return,return_place,RRTConnect,chomp,Execution time (s),59,0.36499999999999977,2.3842829969111383e-11
+return,return_place,RRTConnect,chomp,Joint path ratio,59,0.0,1.0
+return,return_place,RRTConnect,chomp,TCP path ratio,59,0.0,1.0
+return,return_place,RRTConnect,chomp,TCP deviation (mm),59,0.0,0.31731050786291415
+return,return_place,RRTConnect,chomp,TCP turning (rad),59,0.0009999999999998899,9.207213207798859e-11
+return,return_place,RRTConnect,chomp,Wasted joint motion (rad),59,0.0,1.0
+return,return_place,RRTConnect,chomp,RMS jerk (rad/s$^3$),59,16.988,2.3893196242310706e-11
+return,return_place,RRTConnect,chomp,Wall clearance (mm),59,-0.09999999999999432,6.413799874355335e-08
+return,return_place,RRTConnect,chomp,Truss clearance (mm),0,,1.0
+return,return_place,RRTConnect,chomp,Repeat spread (mm),59,-0.04665079659879403,2.3900953516978203e-11
+return,return_place,BiTRRT,RRTstar@1,success,300,0.0,1.0
+return,return_place,BiTRRT,RRTstar@1,Planning time (s),60,0.974,1.6104792154611794e-11
+return,return_place,BiTRRT,RRTstar@1,Execution time (s),60,0.0,0.735467303447575
+return,return_place,BiTRRT,RRTstar@1,Joint path ratio,60,0.0,0.31731050786291415
+return,return_place,BiTRRT,RRTstar@1,TCP path ratio,60,0.0,0.6547208460185769
+return,return_place,BiTRRT,RRTstar@1,TCP deviation (mm),60,0.0,0.023544102412552784
+return,return_place,BiTRRT,RRTstar@1,TCP turning (rad),60,0.0,0.22994905679421362
+return,return_place,BiTRRT,RRTstar@1,Wasted joint motion (rad),60,0.0,0.31731050786291415
+return,return_place,BiTRRT,RRTstar@1,RMS jerk (rad/s$^3$),60,0.0,0.8774934786023274
+return,return_place,BiTRRT,RRTstar@1,Wall clearance (mm),60,0.0,0.5580088344574561
+return,return_place,BiTRRT,RRTstar@1,Truss clearance (mm),0,,1.0
+return,return_place,BiTRRT,RRTstar@1,Repeat spread (mm),60,0.001495164561751824,0.3348604607292418
+return,return_place,BiTRRT,RRTstar@5,success,300,0.0,1.0
+return,return_place,BiTRRT,RRTstar@5,Planning time (s),60,4.974500000000001,1.6170691757080703e-11
+return,return_place,BiTRRT,RRTstar@5,Execution time (s),60,0.0,0.626533778184085
+return,return_place,BiTRRT,RRTstar@5,Joint path ratio,60,0.0,0.31731050786291415
+return,return_place,BiTRRT,RRTstar@5,TCP path ratio,60,0.0,0.31731050786291415
+return,return_place,BiTRRT,RRTstar@5,TCP deviation (mm),60,0.0,0.014058605323737277
+return,return_place,BiTRRT,RRTstar@5,TCP turning (rad),60,0.0,0.10349069663839121
+return,return_place,BiTRRT,RRTstar@5,Wasted joint motion (rad),60,0.0,0.31731050786291415
+return,return_place,BiTRRT,RRTstar@5,RMS jerk (rad/s$^3$),60,0.0,0.6255852315243253
+return,return_place,BiTRRT,RRTstar@5,Wall clearance (mm),60,0.0,0.4795001221869535
+return,return_place,BiTRRT,RRTstar@5,Truss clearance (mm),0,,1.0
+return,return_place,BiTRRT,RRTstar@5,Repeat spread (mm),60,0.002019583478507902,0.3574680582888258
+return,return_place,BiTRRT,chomp,success,300,0.016666666666666666,0.0625
+return,return_place,BiTRRT,chomp,Planning time (s),59,0.48500000000000004,2.3696160842015557e-11
+return,return_place,BiTRRT,chomp,Execution time (s),59,0.3639999999999999,2.3808017823916948e-11
+return,return_place,BiTRRT,chomp,Joint path ratio,59,0.0,1.0
+return,return_place,BiTRRT,chomp,TCP path ratio,59,0.0,1.0
+return,return_place,BiTRRT,chomp,TCP deviation (mm),59,0.0,0.17971249487899976
+return,return_place,BiTRRT,chomp,TCP turning (rad),59,0.0009999999999998899,9.150632369937683e-11
+return,return_place,BiTRRT,chomp,Wasted joint motion (rad),59,0.0,1.0
+return,return_place,BiTRRT,chomp,RMS jerk (rad/s$^3$),59,16.988,2.3897074592223747e-11
+return,return_place,BiTRRT,chomp,Wall clearance (mm),59,-0.09999999999999432,4.7469206535844444e-08
+return,return_place,BiTRRT,chomp,Truss clearance (mm),0,,1.0
+return,return_place,BiTRRT,chomp,Repeat spread (mm),59,-0.04496987578592779,2.3900953516978203e-11
+return,return_place,RRTstar@1,RRTstar@5,success,300,0.0,1.0
+return,return_place,RRTstar@1,RRTstar@5,Planning time (s),60,4.0,1.6157999636104884e-11
+return,return_place,RRTstar@1,RRTstar@5,Execution time (s),60,0.0,0.4694100060918788
+return,return_place,RRTstar@1,RRTstar@5,Joint path ratio,60,0.0,0.31731050786291415
+return,return_place,RRTstar@1,RRTstar@5,TCP path ratio,60,0.0,0.6547208460185769
+return,return_place,RRTstar@1,RRTstar@5,TCP deviation (mm),60,0.0,0.7054569861112734
+return,return_place,RRTstar@1,RRTstar@5,TCP turning (rad),60,0.0,0.13079706180685857
+return,return_place,RRTstar@1,RRTstar@5,Wasted joint motion (rad),60,0.0,0.31731050786291415
+return,return_place,RRTstar@1,RRTstar@5,RMS jerk (rad/s$^3$),60,0.0,0.537933008196035
+return,return_place,RRTstar@1,RRTstar@5,Wall clearance (mm),60,0.0,0.5580088344574561
+return,return_place,RRTstar@1,RRTstar@5,Truss clearance (mm),0,,1.0
+return,return_place,RRTstar@1,RRTstar@5,Repeat spread (mm),60,-0.001821635936330595,0.6428046651320614
+return,return_place,RRTstar@1,chomp,success,300,0.016666666666666666,0.0625
+return,return_place,RRTstar@1,chomp,Planning time (s),59,-0.4859999999999999,2.379642409370142e-11
+return,return_place,RRTstar@1,chomp,Execution time (s),59,0.36499999999999977,2.3815749842662968e-11
+return,return_place,RRTstar@1,chomp,Joint path ratio,59,0.0,1.0
+return,return_place,RRTstar@1,chomp,TCP path ratio,59,0.0,0.31731050786291415
+return,return_place,RRTstar@1,chomp,TCP deviation (mm),59,0.0,0.0832645166635504
+return,return_place,RRTstar@1,chomp,TCP turning (rad),59,0.0009999999999998899,5.147296606547408e-11
+return,return_place,RRTstar@1,chomp,Wasted joint motion (rad),59,0.0,1.0
+return,return_place,RRTstar@1,chomp,RMS jerk (rad/s$^3$),59,16.989,2.3897074592223747e-11
+return,return_place,RRTstar@1,chomp,Wall clearance (mm),59,-0.09999999999999432,3.1519285102940074e-08
+return,return_place,RRTstar@1,chomp,Truss clearance (mm),0,,1.0
+return,return_place,RRTstar@1,chomp,Repeat spread (mm),59,-0.04624467363173168,2.3900953516978203e-11
+return,return_place,RRTstar@5,chomp,success,300,0.016666666666666666,0.0625
+return,return_place,RRTstar@5,chomp,Planning time (s),59,-4.487,2.3592449747126636e-11
+return,return_place,RRTstar@5,chomp,Execution time (s),59,0.36499999999999977,2.3823484154338415e-11
+return,return_place,RRTstar@5,chomp,Joint path ratio,59,0.0,1.0
+return,return_place,RRTstar@5,chomp,TCP path ratio,59,0.0,1.0
+return,return_place,RRTstar@5,chomp,TCP deviation (mm),59,0.0,0.04550026389635839
+return,return_place,RRTstar@5,chomp,TCP turning (rad),59,0.001000000000000112,5.483836302854078e-11
+return,return_place,RRTstar@5,chomp,Wasted joint motion (rad),59,0.0,1.0
+return,return_place,RRTstar@5,chomp,RMS jerk (rad/s$^3$),59,16.988,2.3900953516978203e-11
+return,return_place,RRTstar@5,chomp,Wall clearance (mm),59,-0.09999999999999432,6.477302172882586e-08
+return,return_place,RRTstar@5,chomp,Truss clearance (mm),0,,1.0
+return,return_place,RRTstar@5,chomp,Repeat spread (mm),59,-0.04667981130470132,2.3900953516978203e-11
+return,return_place_rot,RRTConnect,BiTRRT,success,175,0.0,1.0
+return,return_place_rot,RRTConnect,BiTRRT,Planning time (s),35,0.041,5.820766091346741e-11
+return,return_place_rot,RRTConnect,BiTRRT,Execution time (s),35,0.0,0.8539232992870668
+return,return_place_rot,RRTConnect,BiTRRT,Joint path ratio,35,0.0,0.17971249487899976
+return,return_place_rot,RRTConnect,BiTRRT,TCP path ratio,35,0.0,0.17971249487899976
+return,return_place_rot,RRTConnect,BiTRRT,TCP deviation (mm),35,0.0,0.10880943004054568
+return,return_place_rot,RRTConnect,BiTRRT,TCP turning (rad),35,0.0,0.10880943004054568
+return,return_place_rot,RRTConnect,BiTRRT,Wasted joint motion (rad),35,0.0,0.17971249487899976
+return,return_place_rot,RRTConnect,BiTRRT,RMS jerk (rad/s$^3$),35,0.0,0.15573963895882859
+return,return_place_rot,RRTConnect,BiTRRT,Wall clearance (mm),35,0.0,0.28504940740261275
+return,return_place_rot,RRTConnect,BiTRRT,Truss clearance (mm),0,,1.0
+return,return_place_rot,RRTConnect,BiTRRT,Repeat spread (mm),35,0.0037064351327608935,0.8145777874160558
+return,return_place_rot,RRTConnect,RRTstar@1,success,175,0.0,1.0
+return,return_place_rot,RRTConnect,RRTstar@1,Planning time (s),35,0.986,5.820766091346741e-11
+return,return_place_rot,RRTConnect,RRTstar@1,Execution time (s),35,0.0,0.34523107177184
+return,return_place_rot,RRTConnect,RRTstar@1,Joint path ratio,35,0.0,0.17971249487899976
+return,return_place_rot,RRTConnect,RRTstar@1,TCP path ratio,35,0.0,0.17971249487899976
+return,return_place_rot,RRTConnect,RRTstar@1,TCP deviation (mm),35,0.0,0.5929800980174267
+return,return_place_rot,RRTConnect,RRTstar@1,TCP turning (rad),35,0.0,0.10880943004054568
+return,return_place_rot,RRTConnect,RRTstar@1,Wasted joint motion (rad),35,0.0,0.17971249487899976
+return,return_place_rot,RRTConnect,RRTstar@1,RMS jerk (rad/s$^3$),35,0.0,0.05366539182616073
+return,return_place_rot,RRTConnect,RRTstar@1,Wall clearance (mm),35,0.0,0.4652088184521418
+return,return_place_rot,RRTConnect,RRTstar@1,Truss clearance (mm),0,,1.0
+return,return_place_rot,RRTConnect,RRTstar@1,Repeat spread (mm),35,-0.002951439207185491,0.9935490260832012
+return,return_place_rot,RRTConnect,RRTstar@5,success,175,0.0,1.0
+return,return_place_rot,RRTConnect,RRTstar@5,Planning time (s),35,4.982,5.820766091346741e-11
+return,return_place_rot,RRTConnect,RRTstar@5,Execution time (s),35,0.0,1.0
+return,return_place_rot,RRTConnect,RRTstar@5,Joint path ratio,35,0.0,0.17971249487899976
+return,return_place_rot,RRTConnect,RRTstar@5,TCP path ratio,35,0.0,0.17971249487899976
+return,return_place_rot,RRTConnect,RRTstar@5,TCP deviation (mm),35,0.0,0.17971249487899976
+return,return_place_rot,RRTConnect,RRTstar@5,TCP turning (rad),35,0.0,0.04216819709715596
+return,return_place_rot,RRTConnect,RRTstar@5,Wasted joint motion (rad),35,0.0,0.17971249487899976
+return,return_place_rot,RRTConnect,RRTstar@5,RMS jerk (rad/s$^3$),35,0.0,0.06559969214707187
+return,return_place_rot,RRTConnect,RRTstar@5,Wall clearance (mm),35,0.0,0.4652088184521418
+return,return_place_rot,RRTConnect,RRTstar@5,Truss clearance (mm),0,,1.0
+return,return_place_rot,RRTConnect,RRTstar@5,Repeat spread (mm),35,-0.0009658659787124754,0.5764270159997977
+return,return_place_rot,RRTConnect,chomp,success,175,0.05714285714285714,0.001953125
+return,return_place_rot,RRTConnect,chomp,Planning time (s),33,0.49500000000000005,2.3283064365386963e-10
+return,return_place_rot,RRTConnect,chomp,Execution time (s),33,0.2190000000000003,2.3283064365386963e-10
+return,return_place_rot,RRTConnect,chomp,Joint path ratio,33,0.0,1.0
+return,return_place_rot,RRTConnect,chomp,TCP path ratio,33,0.0,0.31731050786291415
+return,return_place_rot,RRTConnect,chomp,TCP deviation (mm),33,0.0,0.31731050786291415
+return,return_place_rot,RRTConnect,chomp,TCP turning (rad),33,0.0,0.0022819372533154484
+return,return_place_rot,RRTConnect,chomp,Wasted joint motion (rad),33,0.0,1.0
+return,return_place_rot,RRTConnect,chomp,RMS jerk (rad/s$^3$),33,13.661,2.3283064365386963e-10
+return,return_place_rot,RRTConnect,chomp,Wall clearance (mm),33,0.0,0.08948639727657323
+return,return_place_rot,RRTConnect,chomp,Truss clearance (mm),0,,1.0
+return,return_place_rot,RRTConnect,chomp,Repeat spread (mm),33,-0.04459224381416221,2.3283064365386963e-10
+return,return_place_rot,BiTRRT,RRTstar@1,success,175,0.0,1.0
+return,return_place_rot,BiTRRT,RRTstar@1,Planning time (s),35,0.947,5.820766091346741e-11
+return,return_place_rot,BiTRRT,RRTstar@1,Execution time (s),35,0.0,0.34523107177184
+return,return_place_rot,BiTRRT,RRTstar@1,Joint path ratio,35,0.0,0.17971249487899976
+return,return_place_rot,BiTRRT,RRTstar@1,TCP path ratio,35,0.0,0.17971249487899976
+return,return_place_rot,BiTRRT,RRTstar@1,TCP deviation (mm),35,0.0,0.17971249487899976
+return,return_place_rot,BiTRRT,RRTstar@1,TCP turning (rad),35,0.0,0.7150006546880893
+return,return_place_rot,BiTRRT,RRTstar@1,Wasted joint motion (rad),35,0.0,0.17971249487899976
+return,return_place_rot,BiTRRT,RRTstar@1,RMS jerk (rad/s$^3$),35,0.0,0.1755543027732298
+return,return_place_rot,BiTRRT,RRTstar@1,Wall clearance (mm),35,0.0,0.5929800980174267
+return,return_place_rot,BiTRRT,RRTstar@1,Truss clearance (mm),0,,1.0
+return,return_place_rot,BiTRRT,RRTstar@1,Repeat spread (mm),35,0.0017642512078828165,0.3944658192922361
+return,return_place_rot,BiTRRT,RRTstar@5,success,175,0.0,1.0
+return,return_place_rot,BiTRRT,RRTstar@5,Planning time (s),35,4.936,5.820766091346741e-11
+return,return_place_rot,BiTRRT,RRTstar@5,Execution time (s),35,0.0,1.0
+return,return_place_rot,BiTRRT,RRTstar@5,Joint path ratio,35,0.0,0.6547208460185769
+return,return_place_rot,BiTRRT,RRTstar@5,TCP path ratio,35,0.0,0.17971249487899976
+return,return_place_rot,BiTRRT,RRTstar@5,TCP deviation (mm),35,0.0,0.5929800980174267
+return,return_place_rot,BiTRRT,RRTstar@5,TCP turning (rad),35,0.0,0.057779571123597245
+return,return_place_rot,BiTRRT,RRTstar@5,Wasted joint motion (rad),35,0.0,0.17971249487899976
+return,return_place_rot,BiTRRT,RRTstar@5,RMS jerk (rad/s$^3$),35,0.0,0.24625169969252703
+return,return_place_rot,BiTRRT,RRTstar@5,Wall clearance (mm),35,0.0,0.892738400944348
+return,return_place_rot,BiTRRT,RRTstar@5,Truss clearance (mm),0,,1.0
+return,return_place_rot,BiTRRT,RRTstar@5,Repeat spread (mm),35,-0.003708818822872044,0.49106516473693773
+return,return_place_rot,BiTRRT,chomp,success,175,0.05714285714285714,0.001953125
+return,return_place_rot,BiTRRT,chomp,Planning time (s),33,0.456,2.3283064365386963e-10
+return,return_place_rot,BiTRRT,chomp,Execution time (s),33,0.2190000000000003,2.3283064365386963e-10
+return,return_place_rot,BiTRRT,chomp,Joint path ratio,33,0.0,1.0
+return,return_place_rot,BiTRRT,chomp,TCP path ratio,33,0.0,0.31731050786291415
+return,return_place_rot,BiTRRT,chomp,TCP deviation (mm),33,0.0,1.0
+return,return_place_rot,BiTRRT,chomp,TCP turning (rad),33,0.0,0.0013406411172294783
+return,return_place_rot,BiTRRT,chomp,Wasted joint motion (rad),33,0.0,1.0
+return,return_place_rot,BiTRRT,chomp,RMS jerk (rad/s$^3$),33,13.661,2.3283064365386963e-10
+return,return_place_rot,BiTRRT,chomp,Wall clearance (mm),33,0.0,0.08948639727657323
+return,return_place_rot,BiTRRT,chomp,Truss clearance (mm),0,,1.0
+return,return_place_rot,BiTRRT,chomp,Repeat spread (mm),33,-0.04507249812331878,2.3283064365386963e-10
+return,return_place_rot,RRTstar@1,RRTstar@5,success,175,0.0,1.0
+return,return_place_rot,RRTstar@1,RRTstar@5,Planning time (s),35,3.997,5.820766091346741e-11
+return,return_place_rot,RRTstar@1,RRTstar@5,Execution time (s),35,0.0,0.892250486903652
+return,return_place_rot,RRTstar@1,RRTstar@5,Joint path ratio,35,0.0,0.17971249487899976
+return,return_place_rot,RRTstar@1,RRTstar@5,TCP path ratio,35,0.0,0.6547208460185769
+return,return_place_rot,RRTstar@1,RRTstar@5,TCP deviation (mm),35,0.0,1.0
+return,return_place_rot,RRTstar@1,RRTstar@5,TCP turning (rad),35,0.0,0.06788915486182899
+return,return_place_rot,RRTstar@1,RRTstar@5,Wasted joint motion (rad),35,0.0,0.17971249487899976
+return,return_place_rot,RRTstar@1,RRTstar@5,RMS jerk (rad/s$^3$),35,0.0,0.8907458009320663
+return,return_place_rot,RRTstar@1,RRTstar@5,Wall clearance (mm),35,0.0,0.7150006546880893
+return,return_place_rot,RRTstar@1,RRTstar@5,Truss clearance (mm),0,,1.0
+return,return_place_rot,RRTstar@1,RRTstar@5,Repeat spread (mm),35,-0.002952375686014877,0.29471105203265324
+return,return_place_rot,RRTstar@1,chomp,success,175,0.05714285714285714,0.001953125
+return,return_place_rot,RRTstar@1,chomp,Planning time (s),33,-0.493,2.3283064365386963e-10
+return,return_place_rot,RRTstar@1,chomp,Execution time (s),33,0.2190000000000003,2.3283064365386963e-10
+return,return_place_rot,RRTstar@1,chomp,Joint path ratio,33,0.0,1.0
+return,return_place_rot,RRTstar@1,chomp,TCP path ratio,33,0.0,0.31731050786291415
+return,return_place_rot,RRTstar@1,chomp,TCP deviation (mm),33,0.0,1.0
+return,return_place_rot,RRTstar@1,chomp,TCP turning (rad),33,0.0,0.0017768989945419805
+return,return_place_rot,RRTstar@1,chomp,Wasted joint motion (rad),33,0.0,1.0
+return,return_place_rot,RRTstar@1,chomp,RMS jerk (rad/s$^3$),33,13.661,2.3283064365386963e-10
+return,return_place_rot,RRTstar@1,chomp,Wall clearance (mm),33,0.0,0.10466606159746294
+return,return_place_rot,RRTstar@1,chomp,Truss clearance (mm),0,,1.0
+return,return_place_rot,RRTstar@1,chomp,Repeat spread (mm),33,-0.04785945416373604,2.3283064365386963e-10
+return,return_place_rot,RRTstar@5,chomp,success,175,0.05714285714285714,0.001953125
+return,return_place_rot,RRTstar@5,chomp,Planning time (s),33,-4.484,2.3283064365386963e-10
+return,return_place_rot,RRTstar@5,chomp,Execution time (s),33,0.2190000000000003,2.3283064365386963e-10
+return,return_place_rot,RRTstar@5,chomp,Joint path ratio,33,0.0,1.0
+return,return_place_rot,RRTstar@5,chomp,TCP path ratio,33,0.0,0.31731050786291415
+return,return_place_rot,RRTstar@5,chomp,TCP deviation (mm),33,0.0,0.31731050786291415
+return,return_place_rot,RRTstar@5,chomp,TCP turning (rad),33,0.0,0.0007956475328688032
+return,return_place_rot,RRTstar@5,chomp,Wasted joint motion (rad),33,0.0,1.0
+return,return_place_rot,RRTstar@5,chomp,RMS jerk (rad/s$^3$),33,13.661,2.3283064365386963e-10
+return,return_place_rot,RRTstar@5,chomp,Wall clearance (mm),33,0.0,0.11205441213431663
+return,return_place_rot,RRTstar@5,chomp,Truss clearance (mm),0,,1.0
+return,return_place_rot,RRTstar@5,chomp,Repeat spread (mm),33,-0.04292239953394081,2.3283064365386963e-10
+typical,pre_grasp,RRTConnect,BiTRRT,success,500,0.0,1.0
+typical,pre_grasp,RRTConnect,BiTRRT,Planning time (s),100,0.011000000000000003,2.5075790030352822e-12
+typical,pre_grasp,RRTConnect,BiTRRT,Execution time (s),100,0.0,0.8471930100187405
+typical,pre_grasp,RRTConnect,BiTRRT,Joint path ratio,100,0.0,0.31731050786291415
+typical,pre_grasp,RRTConnect,BiTRRT,TCP path ratio,100,0.0,0.31731050786291415
+typical,pre_grasp,RRTConnect,BiTRRT,TCP deviation (mm),100,0.0,0.4614509878333607
+typical,pre_grasp,RRTConnect,BiTRRT,TCP turning (rad),100,0.0,0.6088737822635693
+typical,pre_grasp,RRTConnect,BiTRRT,Wasted joint motion (rad),100,0.0,0.31731050786291415
+typical,pre_grasp,RRTConnect,BiTRRT,RMS jerk (rad/s$^3$),100,0.0,0.9322264553743056
+typical,pre_grasp,RRTConnect,BiTRRT,Wall clearance (mm),100,0.0,0.8120973460429387
+typical,pre_grasp,RRTConnect,BiTRRT,Truss clearance (mm),100,0.0,0.13578806849830302
+typical,pre_grasp,RRTConnect,BiTRRT,Repeat spread (mm),100,-0.00144832707706493,0.08811814815717452
+typical,pre_grasp,RRTConnect,RRTstar@1,success,500,0.0,1.0
+typical,pre_grasp,RRTConnect,RRTstar@1,Planning time (s),100,0.9794999999999999,3.869829917400556e-18
+typical,pre_grasp,RRTConnect,RRTstar@1,Execution time (s),100,0.0,0.9641679073662297
+typical,pre_grasp,RRTConnect,RRTstar@1,Joint path ratio,100,0.0,0.31731050786291415
+typical,pre_grasp,RRTConnect,RRTstar@1,TCP path ratio,100,0.0,0.31731050786291415
+typical,pre_grasp,RRTConnect,RRTstar@1,TCP deviation (mm),100,0.0,0.28504940740261275
+typical,pre_grasp,RRTConnect,RRTstar@1,TCP turning (rad),100,0.0,0.11082811686279109
+typical,pre_grasp,RRTConnect,RRTstar@1,Wasted joint motion (rad),100,0.0,0.31731050786291415
+typical,pre_grasp,RRTConnect,RRTstar@1,RMS jerk (rad/s$^3$),100,0.0,0.14789117786739145
+typical,pre_grasp,RRTConnect,RRTstar@1,Wall clearance (mm),100,0.0,0.11596918250356497
+typical,pre_grasp,RRTConnect,RRTstar@1,Truss clearance (mm),100,0.0,0.5501754566979977
+typical,pre_grasp,RRTConnect,RRTstar@1,Repeat spread (mm),100,-0.002391383156423798,0.011956843143060303
+typical,pre_grasp,RRTConnect,RRTstar@5,success,500,0.0,1.0
+typical,pre_grasp,RRTConnect,RRTstar@5,Planning time (s),100,4.9815,3.862847617862432e-18
+typical,pre_grasp,RRTConnect,RRTstar@5,Execution time (s),100,0.0,0.4491162087003485
+typical,pre_grasp,RRTConnect,RRTstar@5,Joint path ratio,100,0.0,0.31731050786291415
+typical,pre_grasp,RRTConnect,RRTstar@5,TCP path ratio,100,0.0,0.31731050786291415
+typical,pre_grasp,RRTConnect,RRTstar@5,TCP deviation (mm),100,0.0,0.4614509878333607
+typical,pre_grasp,RRTConnect,RRTstar@5,TCP turning (rad),100,0.0,0.7172451837847029
+typical,pre_grasp,RRTConnect,RRTstar@5,Wasted joint motion (rad),100,0.0,0.31731050786291415
+typical,pre_grasp,RRTConnect,RRTstar@5,RMS jerk (rad/s$^3$),100,0.0,0.3687946534484009
+typical,pre_grasp,RRTConnect,RRTstar@5,Wall clearance (mm),100,0.0,0.4694927737046096
+typical,pre_grasp,RRTConnect,RRTstar@5,Truss clearance (mm),100,0.0,0.04532791290614295
+typical,pre_grasp,RRTConnect,RRTstar@5,Repeat spread (mm),100,-0.004375995975156782,0.011275411911637126
+typical,pre_grasp,RRTConnect,chomp,success,500,0.01,0.0625
+typical,pre_grasp,RRTConnect,chomp,Planning time (s),99,0.49500000000000005,5.6332897580088825e-18
+typical,pre_grasp,RRTConnect,chomp,Execution time (s),99,0.39500000000000046,5.6952537135486264e-18
+typical,pre_grasp,RRTConnect,chomp,Joint path ratio,99,0.0,1.0
+typical,pre_grasp,RRTConnect,chomp,TCP path ratio,99,0.0,0.31731050786291415
+typical,pre_grasp,RRTConnect,chomp,TCP deviation (mm),99,0.0,0.04550026389635839
+typical,pre_grasp,RRTConnect,chomp,TCP turning (rad),99,0.0,2.855719911526296e-05
+typical,pre_grasp,RRTConnect,chomp,Wasted joint motion (rad),99,0.0,1.0
+typical,pre_grasp,RRTConnect,chomp,RMS jerk (rad/s$^3$),99,20.522,5.697220948724935e-18
+typical,pre_grasp,RRTConnect,chomp,Wall clearance (mm),99,-0.10000000000000853,3.159736688612124e-11
+typical,pre_grasp,RRTConnect,chomp,Truss clearance (mm),99,0.0,0.1656510262457146
+typical,pre_grasp,RRTConnect,chomp,Repeat spread (mm),99,-0.04885715838428835,5.697220948724935e-18
+typical,pre_grasp,BiTRRT,RRTstar@1,success,500,0.0,1.0
+typical,pre_grasp,BiTRRT,RRTstar@1,Planning time (s),100,0.9669999999999999,3.878793474014127e-18
+typical,pre_grasp,BiTRRT,RRTstar@1,Execution time (s),100,0.0,0.8919765299709559
+typical,pre_grasp,BiTRRT,RRTstar@1,Joint path ratio,100,0.0,0.31731050786291415
+typical,pre_grasp,BiTRRT,RRTstar@1,TCP path ratio,100,0.0,0.31731050786291415
+typical,pre_grasp,BiTRRT,RRTstar@1,TCP deviation (mm),100,0.0,0.27332167829229814
+typical,pre_grasp,BiTRRT,RRTstar@1,TCP turning (rad),100,0.0,0.057779571123597245
+typical,pre_grasp,BiTRRT,RRTstar@1,Wasted joint motion (rad),100,0.0,0.31731050786291415
+typical,pre_grasp,BiTRRT,RRTstar@1,RMS jerk (rad/s$^3$),100,0.0,0.05092195573755486
+typical,pre_grasp,BiTRRT,RRTstar@1,Wall clearance (mm),100,0.0,0.54295104704405
+typical,pre_grasp,BiTRRT,RRTstar@1,Truss clearance (mm),100,0.0,0.12577411945455388
+typical,pre_grasp,BiTRRT,RRTstar@1,Repeat spread (mm),100,-0.0014400528660579136,0.20330910373763922
+typical,pre_grasp,BiTRRT,RRTstar@5,success,500,0.0,1.0
+typical,pre_grasp,BiTRRT,RRTstar@5,Planning time (s),100,4.9695,3.872888434035378e-18
+typical,pre_grasp,BiTRRT,RRTstar@5,Execution time (s),100,0.0,0.9161284083092117
+typical,pre_grasp,BiTRRT,RRTstar@5,Joint path ratio,100,0.0,0.31731050786291415
+typical,pre_grasp,BiTRRT,RRTstar@5,TCP path ratio,100,0.0,0.31731050786291415
+typical,pre_grasp,BiTRRT,RRTstar@5,TCP deviation (mm),100,0.0,0.5929800980174267
+typical,pre_grasp,BiTRRT,RRTstar@5,TCP turning (rad),100,0.0,0.7301661743379914
+typical,pre_grasp,BiTRRT,RRTstar@5,Wasted joint motion (rad),100,0.0,0.31731050786291415
+typical,pre_grasp,BiTRRT,RRTstar@5,RMS jerk (rad/s$^3$),100,0.0,0.3436285495650967
+typical,pre_grasp,BiTRRT,RRTstar@5,Wall clearance (mm),100,0.0,0.5821260527324617
+typical,pre_grasp,BiTRRT,RRTstar@5,Truss clearance (mm),100,0.0,0.00561323699545991
+typical,pre_grasp,BiTRRT,RRTstar@5,Repeat spread (mm),100,-0.0006941161761743926,0.5893232417473824
+typical,pre_grasp,BiTRRT,chomp,success,500,0.01,0.0625
+typical,pre_grasp,BiTRRT,chomp,Planning time (s),99,0.48500000000000004,5.6508352872732365e-18
+typical,pre_grasp,BiTRRT,chomp,Execution time (s),99,0.39500000000000046,5.6952537135486264e-18
+typical,pre_grasp,BiTRRT,chomp,Joint path ratio,99,0.0,1.0
+typical,pre_grasp,BiTRRT,chomp,TCP path ratio,99,0.0,0.31731050786291415
+typical,pre_grasp,BiTRRT,chomp,TCP deviation (mm),99,0.0,0.10247043485974937
+typical,pre_grasp,BiTRRT,chomp,TCP turning (rad),99,0.0,2.219638818000702e-05
+typical,pre_grasp,BiTRRT,chomp,Wasted joint motion (rad),99,0.0,1.0
+typical,pre_grasp,BiTRRT,chomp,RMS jerk (rad/s$^3$),99,20.522,5.6968930314943314e-18
+typical,pre_grasp,BiTRRT,chomp,Wall clearance (mm),99,-0.10000000000000142,4.007193948731816e-11
+typical,pre_grasp,BiTRRT,chomp,Truss clearance (mm),99,0.0,0.11395020181786612
+typical,pre_grasp,BiTRRT,chomp,Repeat spread (mm),99,-0.04779245886131501,5.697220948724935e-18
+typical,pre_grasp,RRTstar@1,RRTstar@5,success,500,0.0,1.0
+typical,pre_grasp,RRTstar@1,RRTstar@5,Planning time (s),100,4.003,3.85544201063685e-18
+typical,pre_grasp,RRTstar@1,RRTstar@5,Execution time (s),100,0.0,0.9278614893440519
+typical,pre_grasp,RRTstar@1,RRTstar@5,Joint path ratio,100,0.0,0.31731050786291415
+typical,pre_grasp,RRTstar@1,RRTstar@5,TCP path ratio,100,0.0,0.31731050786291415
+typical,pre_grasp,RRTstar@1,RRTstar@5,TCP deviation (mm),100,0.0,0.17971249487899976
+typical,pre_grasp,RRTstar@1,RRTstar@5,TCP turning (rad),100,0.0,0.13608645140057538
+typical,pre_grasp,RRTstar@1,RRTstar@5,Wasted joint motion (rad),100,0.0,0.31731050786291415
+typical,pre_grasp,RRTstar@1,RRTstar@5,RMS jerk (rad/s$^3$),100,0.0,0.7080417536791246
+typical,pre_grasp,RRTstar@1,RRTstar@5,Wall clearance (mm),100,0.0,0.7253123236278725
+typical,pre_grasp,RRTstar@1,RRTstar@5,Truss clearance (mm),100,0.0,0.09208465662505148
+typical,pre_grasp,RRTstar@1,RRTstar@5,Repeat spread (mm),100,0.0006271271417078901,0.615670737630266
+typical,pre_grasp,RRTstar@1,chomp,success,500,0.01,0.0625
+typical,pre_grasp,RRTstar@1,chomp,Planning time (s),99,-0.4839999999999999,5.6658223041109345e-18
+typical,pre_grasp,RRTstar@1,chomp,Execution time (s),99,0.39500000000000046,5.695581541379785e-18
+typical,pre_grasp,RRTstar@1,chomp,Joint path ratio,99,0.0,1.0
+typical,pre_grasp,RRTstar@1,chomp,TCP path ratio,99,0.0,0.31731050786291415
+typical,pre_grasp,RRTstar@1,chomp,TCP deviation (mm),99,0.0,0.05878172135535886
+typical,pre_grasp,RRTstar@1,chomp,TCP turning (rad),99,0.0,7.897245521335617e-05
+typical,pre_grasp,RRTstar@1,chomp,Wasted joint motion (rad),99,0.0,1.0
+typical,pre_grasp,RRTstar@1,chomp,RMS jerk (rad/s$^3$),99,20.522,5.697220948724935e-18
+typical,pre_grasp,RRTstar@1,chomp,Wall clearance (mm),99,-0.10000000000000853,6.487697293178239e-11
+typical,pre_grasp,RRTstar@1,chomp,Truss clearance (mm),99,0.0,0.17441619044981904
+typical,pre_grasp,RRTstar@1,chomp,Repeat spread (mm),99,-0.044902610534989264,5.697220948724935e-18
+typical,pre_grasp,RRTstar@5,chomp,success,500,0.01,0.0625
+typical,pre_grasp,RRTstar@5,chomp,Planning time (s),99,-4.486999999999999,5.633938670970882e-18
+typical,pre_grasp,RRTstar@5,chomp,Execution time (s),99,0.39500000000000046,5.695581541379785e-18
+typical,pre_grasp,RRTstar@5,chomp,Joint path ratio,99,0.0,1.0
+typical,pre_grasp,RRTstar@5,chomp,TCP path ratio,99,0.0,0.31731050786291415
+typical,pre_grasp,RRTstar@5,chomp,TCP deviation (mm),99,0.0,0.10247043485974937
+typical,pre_grasp,RRTstar@5,chomp,TCP turning (rad),99,0.0,3.833012152637274e-05
+typical,pre_grasp,RRTstar@5,chomp,Wasted joint motion (rad),99,0.0,1.0
+typical,pre_grasp,RRTstar@5,chomp,RMS jerk (rad/s$^3$),99,20.522,5.697220948724935e-18
+typical,pre_grasp,RRTstar@5,chomp,Wall clearance (mm),99,-0.10000000000000142,7.588323355036589e-11
+typical,pre_grasp,RRTstar@5,chomp,Truss clearance (mm),99,0.0,0.20704900187924224
+typical,pre_grasp,RRTstar@5,chomp,Repeat spread (mm),99,-0.04696454856120532,5.697220948724935e-18
+typical,transport,RRTConnect,BiTRRT,success,500,0.0,1.0
+typical,transport,RRTConnect,BiTRRT,Planning time (s),100,0.008,4.7107938401349704e-07
+typical,transport,RRTConnect,BiTRRT,Execution time (s),100,0.0,0.10631042801012226
+typical,transport,RRTConnect,BiTRRT,Joint path ratio,100,0.0,1.0
+typical,transport,RRTConnect,BiTRRT,TCP path ratio,100,0.0,1.0
+typical,transport,RRTConnect,BiTRRT,TCP deviation (mm),100,0.0,0.06715577795341199
+typical,transport,RRTConnect,BiTRRT,TCP turning (rad),100,0.0,0.17971249487899976
+typical,transport,RRTConnect,BiTRRT,Wasted joint motion (rad),100,0.0,1.0
+typical,transport,RRTConnect,BiTRRT,RMS jerk (rad/s$^3$),100,0.0,0.015031048317750366
+typical,transport,RRTConnect,BiTRRT,Wall clearance (mm),100,0.0,0.31731050786291415
+typical,transport,RRTConnect,BiTRRT,Truss clearance (mm),0,,1.0
+typical,transport,RRTConnect,BiTRRT,Repeat spread (mm),100,-0.0010041685309818658,0.5157933846475856
+typical,transport,RRTConnect,RRTstar@1,success,500,0.0,1.0
+typical,transport,RRTConnect,RRTstar@1,Planning time (s),100,0.9834999999999999,3.8748558331796575e-18
+typical,transport,RRTConnect,RRTstar@1,Execution time (s),100,0.0,0.07051342305808123
+typical,transport,RRTConnect,RRTstar@1,Joint path ratio,100,0.0,1.0
+typical,transport,RRTConnect,RRTstar@1,TCP path ratio,100,0.0,0.6547208460185769
+typical,transport,RRTConnect,RRTstar@1,TCP deviation (mm),100,0.0,0.005887981359559556
+typical,transport,RRTConnect,RRTstar@1,TCP turning (rad),100,0.0,0.02578187777747253
+typical,transport,RRTConnect,RRTstar@1,Wasted joint motion (rad),100,0.0,1.0
+typical,transport,RRTConnect,RRTstar@1,RMS jerk (rad/s$^3$),100,0.0,0.00294922250838872
+typical,transport,RRTConnect,RRTstar@1,Wall clearance (mm),100,0.0,1.0
+typical,transport,RRTConnect,RRTstar@1,Truss clearance (mm),0,,1.0
+typical,transport,RRTConnect,RRTstar@1,Repeat spread (mm),100,-0.006143273594390795,6.994988008527533e-07
+typical,transport,RRTConnect,RRTstar@5,success,500,0.0,1.0
+typical,transport,RRTConnect,RRTstar@5,Planning time (s),100,4.9845,3.8656827355135645e-18
+typical,transport,RRTConnect,RRTstar@5,Execution time (s),100,0.0,0.15626014219652026
+typical,transport,RRTConnect,RRTstar@5,Joint path ratio,100,0.0,1.0
+typical,transport,RRTConnect,RRTstar@5,TCP path ratio,100,0.0,1.0
+typical,transport,RRTConnect,RRTstar@5,TCP deviation (mm),100,0.0,0.008676713119865608
+typical,transport,RRTConnect,RRTstar@5,TCP turning (rad),100,0.0,0.03843393023678171
+typical,transport,RRTConnect,RRTstar@5,Wasted joint motion (rad),100,0.0,1.0
+typical,transport,RRTConnect,RRTstar@5,RMS jerk (rad/s$^3$),100,0.0,4.343434086795113e-05
+typical,transport,RRTConnect,RRTstar@5,Wall clearance (mm),100,0.0,0.6547208460185769
+typical,transport,RRTConnect,RRTstar@5,Truss clearance (mm),0,,1.0
+typical,transport,RRTConnect,RRTstar@5,Repeat spread (mm),100,-0.00929441436361705,3.4764319317444347e-07
+typical,transport,RRTConnect,chomp,success,500,0.0,1.0
+typical,transport,RRTConnect,chomp,Planning time (s),100,0.509,3.848049863321707e-18
+typical,transport,RRTConnect,chomp,Execution time (s),100,0.3114999999999999,3.8945820011567e-18
+typical,transport,RRTConnect,chomp,Joint path ratio,100,0.0,1.0
+typical,transport,RRTConnect,chomp,TCP path ratio,100,0.0,0.31731050786291415
+typical,transport,RRTConnect,chomp,TCP deviation (mm),100,0.0,1.0
+typical,transport,RRTConnect,chomp,TCP turning (rad),100,0.0009999999999998899,1.1528583240196057e-10
+typical,transport,RRTConnect,chomp,Wasted joint motion (rad),100,0.0,1.0
+typical,transport,RRTConnect,chomp,RMS jerk (rad/s$^3$),100,25.179,3.896559845095909e-18
+typical,transport,RRTConnect,chomp,Wall clearance (mm),100,0.0,0.19510490147006132
+typical,transport,RRTConnect,chomp,Truss clearance (mm),0,,1.0
+typical,transport,RRTConnect,chomp,Repeat spread (mm),100,-0.057094437416229424,3.896559845095909e-18
+typical,transport,BiTRRT,RRTstar@1,success,500,0.0,1.0
+typical,transport,BiTRRT,RRTstar@1,Planning time (s),100,0.9749999999999999,3.887557371640185e-18
+typical,transport,BiTRRT,RRTstar@1,Execution time (s),100,0.0,0.7791707483631414
+typical,transport,BiTRRT,RRTstar@1,Joint path ratio,100,0.0,1.0
+typical,transport,BiTRRT,RRTstar@1,TCP path ratio,100,0.0,0.6547208460185769
+typical,transport,BiTRRT,RRTstar@1,TCP deviation (mm),100,0.0,0.2578990352923395
+typical,transport,BiTRRT,RRTstar@1,TCP turning (rad),100,0.0,0.19587557068600614
+typical,transport,BiTRRT,RRTstar@1,Wasted joint motion (rad),100,0.0,1.0
+typical,transport,BiTRRT,RRTstar@1,RMS jerk (rad/s$^3$),100,0.0,0.5250007934207729
+typical,transport,BiTRRT,RRTstar@1,Wall clearance (mm),100,0.0,0.31731050786291415
+typical,transport,BiTRRT,RRTstar@1,Truss clearance (mm),0,,1.0
+typical,transport,BiTRRT,RRTstar@1,Repeat spread (mm),100,-0.0053081889911134605,3.129786912845514e-05
+typical,transport,BiTRRT,RRTstar@5,success,500,0.0,1.0
+typical,transport,BiTRRT,RRTstar@5,Planning time (s),100,4.9765,3.868519825594076e-18
+typical,transport,BiTRRT,RRTstar@5,Execution time (s),100,0.0,0.6725273104341224
+typical,transport,BiTRRT,RRTstar@5,Joint path ratio,100,0.0,1.0
+typical,transport,BiTRRT,RRTstar@5,TCP path ratio,100,0.0,1.0
+typical,transport,BiTRRT,RRTstar@5,TCP deviation (mm),100,0.0,0.13113050286965086
+typical,transport,BiTRRT,RRTstar@5,TCP turning (rad),100,0.0,0.33399825582199794
+typical,transport,BiTRRT,RRTstar@5,Wasted joint motion (rad),100,0.0,1.0
+typical,transport,BiTRRT,RRTstar@5,RMS jerk (rad/s$^3$),100,0.0,0.16899852521532555
+typical,transport,BiTRRT,RRTstar@5,Wall clearance (mm),100,0.0,0.31731050786291415
+typical,transport,BiTRRT,RRTstar@5,Truss clearance (mm),0,,1.0
+typical,transport,BiTRRT,RRTstar@5,Repeat spread (mm),100,-0.005374073601168011,2.3102787070902136e-05
+typical,transport,BiTRRT,chomp,success,500,0.0,1.0
+typical,transport,BiTRRT,chomp,Planning time (s),100,0.5035000000000001,3.854136536654429e-18
+typical,transport,BiTRRT,chomp,Execution time (s),100,0.3114999999999999,3.894801714589673e-18
+typical,transport,BiTRRT,chomp,Joint path ratio,100,0.0,1.0
+typical,transport,BiTRRT,chomp,TCP path ratio,100,0.0,0.31731050786291415
+typical,transport,BiTRRT,chomp,TCP deviation (mm),100,0.0,0.08604039578456761
+typical,transport,BiTRRT,chomp,TCP turning (rad),100,0.0009999999999998899,1.0793838025234862e-10
+typical,transport,BiTRRT,chomp,Wasted joint motion (rad),100,0.0,1.0
+typical,transport,BiTRRT,chomp,RMS jerk (rad/s$^3$),100,25.18,3.896559845095909e-18
+typical,transport,BiTRRT,chomp,Wall clearance (mm),100,0.0,0.15537297158162433
+typical,transport,BiTRRT,chomp,Truss clearance (mm),0,,1.0
+typical,transport,BiTRRT,chomp,Repeat spread (mm),100,-0.05481381307381436,3.896559845095909e-18
+typical,transport,RRTstar@1,RRTstar@5,success,500,0.0,1.0
+typical,transport,RRTstar@1,RRTstar@5,Planning time (s),100,4.002,3.8613218325792016e-18
+typical,transport,RRTstar@1,RRTstar@5,Execution time (s),100,0.0,0.34302782731118187
+typical,transport,RRTstar@1,RRTstar@5,Joint path ratio,100,0.0,1.0
+typical,transport,RRTstar@1,RRTstar@5,TCP path ratio,100,0.0,0.6547208460185769
+typical,transport,RRTstar@1,RRTstar@5,TCP deviation (mm),100,0.0,0.580912420333197
+typical,transport,RRTstar@1,RRTstar@5,TCP turning (rad),100,0.0,0.6547208460185769
+typical,transport,RRTstar@1,RRTstar@5,Wasted joint motion (rad),100,0.0,1.0
+typical,transport,RRTstar@1,RRTstar@5,RMS jerk (rad/s$^3$),100,0.0,0.6084240288286578
+typical,transport,RRTstar@1,RRTstar@5,Wall clearance (mm),100,0.0,0.6547208460185769
+typical,transport,RRTstar@1,RRTstar@5,Truss clearance (mm),0,,1.0
+typical,transport,RRTstar@1,RRTstar@5,Repeat spread (mm),100,-0.0011347197368011472,0.5224792307772006
+typical,transport,RRTstar@1,chomp,success,500,0.0,1.0
+typical,transport,RRTstar@1,chomp,Planning time (s),100,-0.47499999999999987,3.8724513628376265e-18
+typical,transport,RRTstar@1,chomp,Execution time (s),100,0.3114999999999999,3.894801714589673e-18
+typical,transport,RRTstar@1,chomp,Joint path ratio,100,0.0,1.0
+typical,transport,RRTstar@1,chomp,TCP path ratio,100,0.0,0.31731050786291415
+typical,transport,RRTstar@1,chomp,TCP deviation (mm),100,0.0,0.008386320961798262
+typical,transport,RRTstar@1,chomp,TCP turning (rad),100,0.0009999999999999454,4.685847875999708e-11
+typical,transport,RRTstar@1,chomp,Wasted joint motion (rad),100,0.0,1.0
+typical,transport,RRTstar@1,chomp,RMS jerk (rad/s$^3$),100,25.180999999999997,3.896559845095909e-18
+typical,transport,RRTstar@1,chomp,Wall clearance (mm),100,0.0,0.19510490147006132
+typical,transport,RRTstar@1,chomp,Truss clearance (mm),0,,1.0
+typical,transport,RRTstar@1,chomp,Repeat spread (mm),100,-0.049504802677787674,3.896559845095909e-18
+typical,transport,RRTstar@5,chomp,success,500,0.0,1.0
+typical,transport,RRTstar@5,chomp,Planning time (s),100,-4.476,3.852396556495446e-18
+typical,transport,RRTstar@5,chomp,Execution time (s),100,0.3114999999999999,3.894801714589673e-18
+typical,transport,RRTstar@5,chomp,Joint path ratio,100,0.0,1.0
+typical,transport,RRTstar@5,chomp,TCP path ratio,100,0.0,0.31731050786291415
+typical,transport,RRTstar@5,chomp,TCP deviation (mm),100,0.0,0.003938309172820513
+typical,transport,RRTstar@5,chomp,TCP turning (rad),100,0.0009999999999998899,4.894471292510191e-11
+typical,transport,RRTstar@5,chomp,Wasted joint motion (rad),100,0.0,1.0
+typical,transport,RRTstar@5,chomp,RMS jerk (rad/s$^3$),100,25.1785,3.896559845095909e-18
+typical,transport,RRTstar@5,chomp,Wall clearance (mm),100,0.0,0.24610587366489145
+typical,transport,RRTstar@5,chomp,Truss clearance (mm),0,,1.0
+typical,transport,RRTstar@5,chomp,Repeat spread (mm),100,-0.048799858754310615,3.896559845095909e-18

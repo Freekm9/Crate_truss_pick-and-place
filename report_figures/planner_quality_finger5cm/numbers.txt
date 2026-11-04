@@ -1,0 +1,281 @@
+unique plans per set/variant/move: {('edge', 'raw', 'pre_grasp'): 1050, ('edge', 'raw', 'transport'): 1050, ('edge', 'simplified', 'pre_grasp'): 4200, ('edge', 'simplified', 'transport'): 4200, ('edge', 'sweep', 'pre_grasp'): 1200, ('return', 'pose_goal', 'return_lift'): 1500, ('return', 'pose_goal', 'return_lift_rot'): 1500, ('return', 'pose_goal', 'return_place'): 1500, ('return', 'pose_goal', 'return_place_rot'): 875, ('return', 'simplified', 'return_lift'): 2400, ('return', 'simplified', 'return_lift_rot'): 2400, ('return', 'simplified', 'return_place'): 2400, ('return', 'simplified', 'return_place_rot'): 1400, ('typical', 'pose_goal', 'pre_grasp'): 2500, ('typical', 'pose_goal', 'transport'): 2500, ('typical', 'raw', 'pre_grasp'): 1000, ('typical', 'raw', 'transport'): 1000, ('typical', 'simplified', 'pre_grasp'): 4000, ('typical', 'simplified', 'transport'): 4000, ('typical', 'sweep', 'pre_grasp'): 300, ('typical', 'sweep', 'transport'): 300}
+unique start/goal pairs: {('edge', 'pre_grasp'): 105, ('edge', 'transport'): 105, ('return', 'return_lift'): 60, ('return', 'return_lift_rot'): 60, ('return', 'return_place'): 60, ('return', 'return_place_rot'): 35, ('typical', 'pre_grasp'): 100, ('typical', 'transport'): 100}
+hand -> TCP 0.1534 m (finger extension 0.050 m)
+goal type typical pre_grasp RRTConnect: nearest-IK: success 100.0%, joint path median 1.49 / p95 2.74 rad, > 3 rad 4.0%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.49 / p95 2.95 rad, > 3 rad 4.2%, end off nearest IK > 0.1 rad 2.6%
+goal type typical pre_grasp BiTRRT: nearest-IK: success 100.0%, joint path median 1.49 / p95 2.74 rad, > 3 rad 4.0%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.49 / p95 2.73 rad, > 3 rad 3.8%, end off nearest IK > 0.1 rad 2.6%
+goal type typical pre_grasp RRTstar@1: nearest-IK: success 100.0%, joint path median 1.49 / p95 2.74 rad, > 3 rad 4.0%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.49 / p95 2.95 rad, > 3 rad 4.2%, end off nearest IK > 0.1 rad 2.6%
+goal type typical pre_grasp pilz_ptp: nearest-IK: success 99.0%, joint path median 1.48 / p95 2.68 rad, > 3 rad 3.0%, end off nearest IK > 0.1 rad 0.0% | pose: success 99.0%, joint path median 1.48 / p95 2.68 rad, > 3 rad 3.0%, end off nearest IK > 0.1 rad 0.0%
+goal type typical pre_grasp pilz_lin: nearest-IK: success 96.0%, joint path median 1.49 / p95 2.49 rad, > 3 rad 0.0%, end off nearest IK > 0.1 rad 44.8% | pose: success 96.0%, joint path median 1.49 / p95 2.49 rad, > 3 rad 0.0%, end off nearest IK > 0.1 rad 44.8%
+goal type typical transport RRTConnect: nearest-IK: success 100.0%, joint path median 1.27 / p95 2.43 rad, > 3 rad 2.0%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.29 / p95 2.51 rad, > 3 rad 3.0%, end off nearest IK > 0.1 rad 2.6%
+goal type typical transport BiTRRT: nearest-IK: success 100.0%, joint path median 1.27 / p95 2.43 rad, > 3 rad 2.0%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.28 / p95 2.48 rad, > 3 rad 2.4%, end off nearest IK > 0.1 rad 1.4%
+goal type typical transport RRTstar@1: nearest-IK: success 100.0%, joint path median 1.27 / p95 2.43 rad, > 3 rad 2.0%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.28 / p95 2.50 rad, > 3 rad 2.8%, end off nearest IK > 0.1 rad 1.6%
+goal type typical transport pilz_ptp: nearest-IK: success 100.0%, joint path median 1.27 / p95 2.43 rad, > 3 rad 2.0%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.27 / p95 2.43 rad, > 3 rad 2.0%, end off nearest IK > 0.1 rad 0.0%
+goal type typical transport pilz_lin: nearest-IK: success 97.0%, joint path median 1.44 / p95 2.29 rad, > 3 rad 0.0%, end off nearest IK > 0.1 rad 64.9% | pose: success 97.0%, joint path median 1.44 / p95 2.29 rad, > 3 rad 0.0%, end off nearest IK > 0.1 rad 64.9%
+goal type return return_lift RRTConnect: nearest-IK: success 100.0%, joint path median 1.45 / p95 2.15 rad, > 3 rad 3.3%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.37 / p95 2.10 rad, > 3 rad 3.3%, end off nearest IK > 0.1 rad 67.0%
+goal type return return_lift BiTRRT: nearest-IK: success 100.0%, joint path median 1.45 / p95 2.15 rad, > 3 rad 3.3%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.37 / p95 2.28 rad, > 3 rad 3.3%, end off nearest IK > 0.1 rad 66.7%
+goal type return return_lift RRTstar@1: nearest-IK: success 100.0%, joint path median 1.45 / p95 2.15 rad, > 3 rad 3.3%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.36 / p95 2.10 rad, > 3 rad 3.3%, end off nearest IK > 0.1 rad 66.7%
+goal type return return_lift pilz_ptp: nearest-IK: success 100.0%, joint path median 1.45 / p95 2.15 rad, > 3 rad 3.3%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.36 / p95 2.10 rad, > 3 rad 3.3%, end off nearest IK > 0.1 rad 66.7%
+goal type return return_lift pilz_lin: nearest-IK: success 96.7%, joint path median 1.35 / p95 1.95 rad, > 3 rad 0.0%, end off nearest IK > 0.1 rad 84.5% | pose: success 96.7%, joint path median 1.35 / p95 1.95 rad, > 3 rad 0.0%, end off nearest IK > 0.1 rad 84.5%
+goal type return return_lift_rot RRTConnect: nearest-IK: success 100.0%, joint path median 2.45 / p95 3.69 rad, > 3 rad 36.7%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.99 / p95 4.58 rad, > 3 rad 19.3%, end off nearest IK > 0.1 rad 67.3%
+goal type return return_lift_rot BiTRRT: nearest-IK: success 100.0%, joint path median 2.45 / p95 3.69 rad, > 3 rad 36.7%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.99 / p95 4.43 rad, > 3 rad 19.0%, end off nearest IK > 0.1 rad 67.0%
+goal type return return_lift_rot RRTstar@1: nearest-IK: success 100.0%, joint path median 2.45 / p95 3.69 rad, > 3 rad 36.7%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.99 / p95 4.87 rad, > 3 rad 20.3%, end off nearest IK > 0.1 rad 66.7%
+goal type return return_lift_rot pilz_ptp: nearest-IK: success 100.0%, joint path median 2.45 / p95 3.69 rad, > 3 rad 36.7%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.97 / p95 3.55 rad, > 3 rad 13.3%, end off nearest IK > 0.1 rad 66.7%
+goal type return return_lift_rot pilz_lin: nearest-IK: success 90.0%, joint path median 1.92 / p95 2.97 rad, > 3 rad 1.9%, end off nearest IK > 0.1 rad 83.3% | pose: success 90.0%, joint path median 1.92 / p95 2.97 rad, > 3 rad 1.9%, end off nearest IK > 0.1 rad 83.3%
+goal type return return_place RRTConnect: nearest-IK: success 100.0%, joint path median 1.40 / p95 1.75 rad, > 3 rad 3.3%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.42 / p95 1.79 rad, > 3 rad 0.0%, end off nearest IK > 0.1 rad 91.7%
+goal type return return_place BiTRRT: nearest-IK: success 100.0%, joint path median 1.40 / p95 1.75 rad, > 3 rad 3.3%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.42 / p95 1.79 rad, > 3 rad 0.0%, end off nearest IK > 0.1 rad 91.7%
+goal type return return_place RRTstar@1: nearest-IK: success 100.0%, joint path median 1.39 / p95 1.75 rad, > 3 rad 3.3%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.42 / p95 1.78 rad, > 3 rad 0.3%, end off nearest IK > 0.1 rad 91.7%
+goal type return return_place pilz_ptp: nearest-IK: success 98.3%, joint path median 1.39 / p95 1.69 rad, > 3 rad 1.7%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 1.42 / p95 1.79 rad, > 3 rad 0.0%, end off nearest IK > 0.1 rad 91.3%
+goal type return return_place pilz_lin: nearest-IK: success 98.3%, joint path median 1.55 / p95 1.72 rad, > 3 rad 0.0%, end off nearest IK > 0.1 rad 55.9% | pose: success 98.3%, joint path median 1.55 / p95 1.72 rad, > 3 rad 0.0%, end off nearest IK > 0.1 rad 55.9%
+goal type return return_place_rot RRTConnect: nearest-IK: success 100.0%, joint path median 4.31 / p95 4.49 rad, > 3 rad 100.0%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 4.00 / p95 6.84 rad, > 3 rad 93.1%, end off nearest IK > 0.1 rad 98.9%
+goal type return return_place_rot BiTRRT: nearest-IK: success 100.0%, joint path median 4.31 / p95 4.41 rad, > 3 rad 100.0%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 4.04 / p95 6.20 rad, > 3 rad 93.1%, end off nearest IK > 0.1 rad 98.9%
+goal type return return_place_rot RRTstar@1: nearest-IK: success 100.0%, joint path median 4.31 / p95 4.50 rad, > 3 rad 100.0%, end off nearest IK > 0.1 rad 0.0% | pose: success 100.0%, joint path median 4.04 / p95 6.82 rad, > 3 rad 93.7%, end off nearest IK > 0.1 rad 99.4%
+goal type return return_place_rot pilz_ptp: nearest-IK: success 91.4%, joint path median 4.31 / p95 4.41 rad, > 3 rad 100.0%, end off nearest IK > 0.1 rad 0.0% | pose: success 91.4%, joint path median 3.99 / p95 4.86 rad, > 3 rad 90.6%, end off nearest IK > 0.1 rad 96.9%
+goal type return return_place_rot pilz_lin: nearest-IK: success 34.3%, joint path median 4.56 / p95 4.73 rad, > 3 rad 100.0%, end off nearest IK > 0.1 rad 100.0% | pose: success 34.3%, joint path median 4.56 / p95 4.73 rad, > 3 rad 100.0%, end off nearest IK > 0.1 rad 100.0%
+grasp finding typical topdown: 98/100 reachable; unreachable {'no_orientation': 2}
+grasp finding typical tilted: 100/100 reachable; unreachable {}
+grasp finding edge topdown: 36/40 reachable; unreachable {'no_orientation': 4}
+grasp finding edge tilted: 39/40 reachable; unreachable {'no_orientation': 1}
+grasp finding edge fixed: 66/160 reachable; unreachable {'no_orientation': 94}
+grasp finding return topdown: 56/60 reachable; unreachable {'no_orientation': 4}
+grasp finding return tilted: 60/60 reachable; unreachable {}
+no query edge transport tilt+0/+30: 18/40 {'no_orientation': 18}
+no query edge transport tilt+0/-30: 28/40 {'no_orientation': 28}
+no query edge transport tilt+30/+0: 23/40 {'no_orientation': 23}
+no query edge transport tilt-30/+0: 25/40 {'no_orientation': 25}
+no query edge transport tilted: 1/40 {'no_orientation': 1}
+no query edge transport topdown: 4/40 {'no_orientation': 4}
+no query return transport topdown: 4/60 {'no_orientation': 4}
+no query typical transport topdown: 2/100 {'no_orientation': 2}
+no query return return_lift topdown: 4/60 {'no_orientation': 4}
+no query return return_lift_rot topdown: 4/60 {'no_orientation': 4}
+no query return return_place topdown: 4/60 {'no_orientation': 4}
+no query return return_place_rot topdown: 4/60 {'no_orientation': 4}
+pipeline success typical topdown (n=100 grasp points, no grasp 2.0%): planned/plan failed % RRTConnect 98.0/0.0, BiTRRT 98.0/0.0, RRTstar@1 98.0/0.0, RRTstar@5 98.0/0.0, chomp 97.0/1.0, pilz_ptp 97.0/1.0, pilz_lin 94.0/4.0
+pipeline success typical tilted (n=100 grasp points, no grasp 0.0%): planned/plan failed % RRTConnect 100.0/0.0, BiTRRT 100.0/0.0, RRTstar@1 100.0/0.0, RRTstar@5 100.0/0.0, chomp 99.0/1.0, pilz_ptp 99.0/1.0, pilz_lin 96.0/4.0
+pipeline success edge topdown (n=40 grasp points, no grasp 10.0%): planned/plan failed % RRTConnect 90.0/0.0, BiTRRT 90.0/0.0, RRTstar@1 90.0/0.0, RRTstar@5 90.0/0.0, chomp 90.0/0.0, pilz_ptp 90.0/0.0, pilz_lin 85.0/5.0
+pipeline success edge tilted (n=40 grasp points, no grasp 2.5%): planned/plan failed % RRTConnect 97.5/0.0, BiTRRT 97.5/0.0, RRTstar@1 97.5/0.0, RRTstar@5 97.5/0.0, chomp 97.5/0.0, pilz_ptp 97.5/0.0, pilz_lin 90.0/7.5
+typical pre_grasp Success (\%): RRTConnect 100 [--], BiTRRT 100 [--], RRTstar@1 100 [--], RRTstar@5 100 [--], chomp 99.0 [--], pilz_ptp 99.0 [--], pilz_lin 96.0 [--]
+typical pre_grasp Planning time (s): RRTConnect 0.04 [0.06], BiTRRT 0.06 [0.10], RRTstar@1 1.02 [1.04], RRTstar@5 5.03 [5.05], chomp 0.54 [0.56], pilz_ptp 0.02 [0.03], pilz_lin 0.03 [0.04]
+typical pre_grasp Execution time (s): RRTConnect 2.33 [3.65], BiTRRT 2.33 [3.65], RRTstar@1 2.33 [3.65], RRTstar@5 2.33 [3.65], chomp 2.73 [3.83], pilz_ptp 2.53 [3.71], pilz_lin 2.48 [3.49]
+typical pre_grasp Joint path ratio: RRTConnect 1.00 [1.00], BiTRRT 1.00 [1.00], RRTstar@1 1.00 [1.00], RRTstar@5 1.00 [1.00], chomp 1.00 [1.00], pilz_ptp 1.00 [1.00], pilz_lin 1.01 [1.05]
+typical pre_grasp TCP path ratio: RRTConnect 1.02 [1.09], BiTRRT 1.02 [1.09], RRTstar@1 1.02 [1.09], RRTstar@5 1.02 [1.09], chomp 1.02 [1.09], pilz_ptp 1.02 [1.09], pilz_lin 1.00 [1.00]
+typical pre_grasp TCP deviation (mm): RRTConnect 20.0 [45.9], BiTRRT 20.0 [45.9], RRTstar@1 20.0 [45.7], RRTstar@5 20.0 [45.9], chomp 19.9 [40.8], pilz_ptp 19.9 [40.8], pilz_lin 0.00 [0.30]
+typical pre_grasp TCP turning (rad): RRTConnect 0.71 [1.34], BiTRRT 0.71 [1.34], RRTstar@1 0.71 [1.34], RRTstar@5 0.71 [1.34], chomp 0.71 [1.31], pilz_ptp 0.71 [1.31], pilz_lin 0.03 [0.28]
+typical pre_grasp Wasted joint motion (rad): RRTConnect 0.00 [0.00], BiTRRT 0.00 [0.00], RRTstar@1 0.00 [0.00], RRTstar@5 0.00 [0.00], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.05 [0.22]
+typical pre_grasp RMS jerk (rad/s$^3$): RRTConnect 3.71 [6.30], BiTRRT 3.68 [5.99], RRTstar@1 3.71 [6.30], RRTstar@5 3.65 [6.30], chomp 23.9 [50.3], pilz_ptp 5.82 [9.38], pilz_lin 7.02 [11.0]
+typical pre_grasp Wall clearance (mm): RRTConnect 43.8 [22.0], BiTRRT 43.8 [21.9], RRTstar@1 43.8 [22.0], RRTstar@5 43.8 [22.0], chomp 42.5 [21.5], pilz_ptp 43.5 [21.6], pilz_lin 41.5 [21.2]
+typical pre_grasp Truss clearance (mm): RRTConnect 71.1 [42.0], BiTRRT 71.2 [42.1], RRTstar@1 71.2 [42.0], RRTstar@5 71.1 [41.9], chomp 71.1 [43.9], pilz_ptp 71.1 [43.9], pilz_lin 67.0 [43.7]
+typical pre_grasp Repeat spread (mm): RRTConnect 0.05 [0.07], BiTRRT 0.05 [0.06], RRTstar@1 0.05 [0.07], RRTstar@5 0.05 [0.07], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.00 [0.00]
+typical transport Success (\%): RRTConnect 100 [--], BiTRRT 100 [--], RRTstar@1 100 [--], RRTstar@5 100 [--], chomp 100 [--], pilz_ptp 100 [--], pilz_lin 97.0 [--]
+typical transport Planning time (s): RRTConnect 0.04 [0.06], BiTRRT 0.05 [0.09], RRTstar@1 1.02 [1.04], RRTstar@5 5.03 [5.04], chomp 0.55 [0.58], pilz_ptp 0.02 [0.03], pilz_lin 0.02 [0.04]
+typical transport Execution time (s): RRTConnect 2.14 [3.23], BiTRRT 2.14 [3.23], RRTstar@1 2.14 [3.23], RRTstar@5 2.14 [3.23], chomp 2.50 [3.63], pilz_ptp 2.27 [3.44], pilz_lin 2.87 [3.33]
+typical transport Joint path ratio: RRTConnect 1.00 [1.00], BiTRRT 1.00 [1.00], RRTstar@1 1.00 [1.00], RRTstar@5 1.00 [1.00], chomp 1.00 [1.00], pilz_ptp 1.00 [1.00], pilz_lin 1.08 [1.35]
+typical transport TCP path ratio: RRTConnect 1.05 [1.08], BiTRRT 1.05 [1.08], RRTstar@1 1.05 [1.08], RRTstar@5 1.05 [1.08], chomp 1.05 [1.08], pilz_ptp 1.05 [1.08], pilz_lin 1.00 [1.00]
+typical transport TCP deviation (mm): RRTConnect 68.8 [101], BiTRRT 68.8 [101], RRTstar@1 68.8 [101], RRTstar@5 68.8 [101], chomp 68.8 [101], pilz_ptp 68.8 [101], pilz_lin 0.10 [0.30]
+typical transport TCP turning (rad): RRTConnect 1.05 [1.34], BiTRRT 1.05 [1.34], RRTstar@1 1.05 [1.34], RRTstar@5 1.05 [1.34], chomp 1.05 [1.34], pilz_ptp 1.05 [1.34], pilz_lin 0.32 [1.00]
+typical transport Wasted joint motion (rad): RRTConnect 0.00 [0.00], BiTRRT 0.00 [0.00], RRTstar@1 0.00 [0.00], RRTstar@5 0.00 [0.00], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.33 [1.25]
+typical transport RMS jerk (rad/s$^3$): RRTConnect 3.95 [6.42], BiTRRT 3.93 [6.42], RRTstar@1 3.93 [6.42], RRTstar@5 3.93 [6.42], chomp 29.5 [56.7], pilz_ptp 6.40 [8.87], pilz_lin 7.31 [20.2]
+typical transport Wall clearance (mm): RRTConnect 239 [209], BiTRRT 239 [209], RRTstar@1 239 [209], RRTstar@5 239 [209], chomp 239 [209], pilz_ptp 239 [209], pilz_lin 235 [207]
+typical transport Truss clearance (mm): RRTConnect -- [--], BiTRRT -- [--], RRTstar@1 -- [--], RRTstar@5 -- [--], chomp -- [--], pilz_ptp -- [--], pilz_lin -- [--]
+typical transport Repeat spread (mm): RRTConnect 0.06 [0.07], BiTRRT 0.05 [0.07], RRTstar@1 0.05 [0.06], RRTstar@5 0.05 [0.06], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.00 [0.00]
+edge pre_grasp Success (\%): RRTConnect 100 [--], BiTRRT 100 [--], RRTstar@1 100 [--], RRTstar@5 100 [--], chomp 100 [--], pilz_ptp 99.0 [--], pilz_lin 95.2 [--]
+edge pre_grasp Planning time (s): RRTConnect 0.05 [0.06], BiTRRT 0.06 [0.10], RRTstar@1 1.02 [1.04], RRTstar@5 5.03 [5.05], chomp 0.54 [0.57], pilz_ptp 0.02 [0.03], pilz_lin 0.03 [0.04]
+edge pre_grasp Execution time (s): RRTConnect 2.62 [3.86], BiTRRT 2.62 [3.86], RRTstar@1 2.62 [3.86], RRTstar@5 2.62 [3.86], chomp 3.08 [4.08], pilz_ptp 2.82 [3.68], pilz_lin 2.82 [3.76]
+edge pre_grasp Joint path ratio: RRTConnect 1.00 [1.00], BiTRRT 1.00 [1.00], RRTstar@1 1.00 [1.00], RRTstar@5 1.00 [1.00], chomp 1.00 [1.00], pilz_ptp 1.00 [1.00], pilz_lin 1.01 [1.12]
+edge pre_grasp TCP path ratio: RRTConnect 1.03 [1.30], BiTRRT 1.03 [1.30], RRTstar@1 1.03 [1.30], RRTstar@5 1.03 [1.30], chomp 1.03 [1.30], pilz_ptp 1.03 [1.24], pilz_lin 1.00 [1.00]
+edge pre_grasp TCP deviation (mm): RRTConnect 25.0 [87.8], BiTRRT 25.0 [87.0], RRTstar@1 25.0 [84.0], RRTstar@5 25.0 [87.8], chomp 25.0 [87.8], pilz_ptp 24.9 [84.0], pilz_lin 0.00 [0.30]
+edge pre_grasp TCP turning (rad): RRTConnect 0.84 [2.31], BiTRRT 0.84 [2.31], RRTstar@1 0.84 [2.31], RRTstar@5 0.84 [2.31], chomp 0.84 [2.31], pilz_ptp 0.83 [2.25], pilz_lin 0.03 [0.34]
+edge pre_grasp Wasted joint motion (rad): RRTConnect 0.00 [0.00], BiTRRT 0.00 [0.00], RRTstar@1 0.00 [0.00], RRTstar@5 0.00 [0.00], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.10 [0.74]
+edge pre_grasp RMS jerk (rad/s$^3$): RRTConnect 3.26 [6.63], BiTRRT 3.26 [6.63], RRTstar@1 3.26 [6.63], RRTstar@5 3.26 [6.56], chomp 21.4 [51.9], pilz_ptp 4.90 [8.79], pilz_lin 6.42 [12.1]
+edge pre_grasp Wall clearance (mm): RRTConnect 29.1 [12.6], BiTRRT 29.0 [12.2], RRTstar@1 29.0 [12.2], RRTstar@5 29.0 [12.6], chomp 27.4 [12.0], pilz_ptp 28.9 [13.2], pilz_lin 29.4 [12.7]
+edge pre_grasp Truss clearance (mm): RRTConnect 69.2 [36.4], BiTRRT 69.2 [36.4], RRTstar@1 69.2 [36.4], RRTstar@5 69.2 [36.5], chomp 68.4 [36.5], pilz_ptp 69.4 [37.6], pilz_lin 64.8 [36.0]
+edge pre_grasp Repeat spread (mm): RRTConnect 0.05 [0.07], BiTRRT 0.05 [0.07], RRTstar@1 0.05 [0.07], RRTstar@5 0.05 [0.06], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.00 [0.00]
+edge transport Success (\%): RRTConnect 100 [--], BiTRRT 100 [--], RRTstar@1 100 [--], RRTstar@5 100 [--], chomp 100 [--], pilz_ptp 100 [--], pilz_lin 99.0 [--]
+edge transport Planning time (s): RRTConnect 0.04 [0.06], BiTRRT 0.05 [0.09], RRTstar@1 1.02 [1.04], RRTstar@5 5.03 [5.04], chomp 0.56 [0.58], pilz_ptp 0.02 [0.03], pilz_lin 0.02 [0.04]
+edge transport Execution time (s): RRTConnect 2.31 [3.58], BiTRRT 2.31 [3.58], RRTstar@1 2.31 [3.58], RRTstar@5 2.31 [3.58], chomp 2.72 [3.88], pilz_ptp 2.48 [3.73], pilz_lin 2.98 [3.79]
+edge transport Joint path ratio: RRTConnect 1.00 [1.00], BiTRRT 1.00 [1.00], RRTstar@1 1.00 [1.00], RRTstar@5 1.00 [1.00], chomp 1.00 [1.00], pilz_ptp 1.00 [1.00], pilz_lin 1.04 [1.34]
+edge transport TCP path ratio: RRTConnect 1.05 [1.09], BiTRRT 1.05 [1.09], RRTstar@1 1.05 [1.09], RRTstar@5 1.05 [1.09], chomp 1.05 [1.09], pilz_ptp 1.05 [1.09], pilz_lin 1.00 [1.00]
+edge transport TCP deviation (mm): RRTConnect 63.3 [106], BiTRRT 63.3 [106], RRTstar@1 63.3 [106], RRTstar@5 63.3 [106], chomp 63.3 [106], pilz_ptp 63.3 [106], pilz_lin 0.10 [0.30]
+edge transport TCP turning (rad): RRTConnect 1.02 [1.41], BiTRRT 1.02 [1.41], RRTstar@1 1.02 [1.41], RRTstar@5 1.02 [1.41], chomp 1.02 [1.41], pilz_ptp 1.02 [1.41], pilz_lin 0.24 [0.98]
+edge transport Wasted joint motion (rad): RRTConnect 0.00 [-0.00], BiTRRT 0.00 [0.00], RRTstar@1 0.00 [0.00], RRTstar@5 0.00 [0.00], chomp 0.00 [-0.00], pilz_ptp 0.00 [-0.00], pilz_lin 0.39 [1.35]
+edge transport RMS jerk (rad/s$^3$): RRTConnect 4.02 [7.78], BiTRRT 4.02 [7.79], RRTstar@1 4.02 [7.78], RRTstar@5 4.02 [7.78], chomp 29.5 [57.2], pilz_ptp 6.48 [9.65], pilz_lin 7.99 [22.1]
+edge transport Wall clearance (mm): RRTConnect 238 [204], BiTRRT 238 [204], RRTstar@1 238 [204], RRTstar@5 238 [204], chomp 238 [204], pilz_ptp 238 [204], pilz_lin 237 [200]
+edge transport Truss clearance (mm): RRTConnect -- [--], BiTRRT -- [--], RRTstar@1 -- [--], RRTstar@5 -- [--], chomp -- [--], pilz_ptp -- [--], pilz_lin -- [--]
+edge transport Repeat spread (mm): RRTConnect 0.06 [0.07], BiTRRT 0.05 [0.07], RRTstar@1 0.05 [0.07], RRTstar@5 0.05 [0.07], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.00 [0.00]
+return return_lift Success (\%): RRTConnect 100 [--], BiTRRT 100 [--], RRTstar@1 100 [--], RRTstar@5 100 [--], chomp 100 [--], pilz_ptp 100 [--], pilz_lin 96.7 [--]
+return return_lift Planning time (s): RRTConnect 0.04 [0.06], BiTRRT 0.05 [0.08], RRTstar@1 1.02 [1.04], RRTstar@5 5.03 [5.05], chomp 0.56 [0.58], pilz_ptp 0.02 [0.03], pilz_lin 0.02 [0.04]
+return return_lift Execution time (s): RRTConnect 2.04 [2.88], BiTRRT 2.04 [2.88], RRTstar@1 2.04 [2.88], RRTstar@5 2.04 [2.88], chomp 2.33 [3.11], pilz_ptp 2.14 [2.98], pilz_lin 2.10 [2.90]
+return return_lift Joint path ratio: RRTConnect 1.00 [1.00], BiTRRT 1.00 [1.00], RRTstar@1 1.00 [1.00], RRTstar@5 1.00 [1.00], chomp 1.00 [1.00], pilz_ptp 1.00 [1.00], pilz_lin 0.98 [1.01]
+return return_lift TCP path ratio: RRTConnect 1.02 [1.16], BiTRRT 1.02 [1.16], RRTstar@1 1.02 [1.16], RRTstar@5 1.02 [1.16], chomp 1.02 [1.16], pilz_ptp 1.02 [1.16], pilz_lin 1.00 [1.00]
+return return_lift TCP deviation (mm): RRTConnect 13.0 [34.0], BiTRRT 13.0 [34.0], RRTstar@1 13.0 [34.0], RRTstar@5 13.0 [34.0], chomp 13.0 [34.0], pilz_ptp 13.0 [34.0], pilz_lin 0.00 [0.10]
+return return_lift TCP turning (rad): RRTConnect 0.60 [1.72], BiTRRT 0.60 [1.72], RRTstar@1 0.60 [1.72], RRTstar@5 0.60 [1.72], chomp 0.60 [1.72], pilz_ptp 0.60 [1.72], pilz_lin 0.01 [0.09]
+return return_lift Wasted joint motion (rad): RRTConnect 0.00 [0.00], BiTRRT 0.00 [0.00], RRTstar@1 0.00 [0.00], RRTstar@5 0.00 [0.00], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.00 [0.07]
+return return_lift RMS jerk (rad/s$^3$): RRTConnect 4.78 [7.23], BiTRRT 4.78 [7.23], RRTstar@1 4.78 [7.24], RRTstar@5 4.78 [7.24], chomp 37.8 [62.4], pilz_ptp 7.21 [9.95], pilz_lin 8.66 [14.0]
+return return_lift Wall clearance (mm): RRTConnect 156 [156], BiTRRT 156 [156], RRTstar@1 156 [156], RRTstar@5 156 [156], chomp 156 [156], pilz_ptp 157 [156], pilz_lin 157 [156]
+return return_lift Truss clearance (mm): RRTConnect -- [--], BiTRRT -- [--], RRTstar@1 -- [--], RRTstar@5 -- [--], chomp -- [--], pilz_ptp -- [--], pilz_lin -- [--]
+return return_lift Repeat spread (mm): RRTConnect 0.05 [0.06], BiTRRT 0.05 [0.06], RRTstar@1 0.04 [0.06], RRTstar@5 0.04 [0.06], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.00 [0.00]
+return return_lift_rot Success (\%): RRTConnect 100 [--], BiTRRT 100 [--], RRTstar@1 100 [--], RRTstar@5 100 [--], chomp 100 [--], pilz_ptp 100 [--], pilz_lin 90.0 [--]
+return return_lift_rot Planning time (s): RRTConnect 0.04 [0.06], BiTRRT 0.07 [0.11], RRTstar@1 1.03 [1.04], RRTstar@5 5.03 [5.05], chomp 0.56 [0.58], pilz_ptp 0.02 [0.04], pilz_lin 0.03 [0.04]
+return return_lift_rot Execution time (s): RRTConnect 3.25 [4.86], BiTRRT 3.25 [4.86], RRTstar@1 3.25 [4.86], RRTstar@5 3.25 [4.86], chomp 3.46 [5.13], pilz_ptp 3.37 [4.97], pilz_lin 2.83 [4.10]
+return return_lift_rot Joint path ratio: RRTConnect 1.00 [1.00], BiTRRT 1.00 [1.00], RRTstar@1 1.00 [1.00], RRTstar@5 1.00 [1.00], chomp 1.00 [1.00], pilz_ptp 1.00 [1.00], pilz_lin 0.92 [1.00]
+return return_lift_rot TCP path ratio: RRTConnect 1.02 [2.06], BiTRRT 1.02 [2.06], RRTstar@1 1.02 [2.06], RRTstar@5 1.02 [2.06], chomp 1.02 [2.06], pilz_ptp 1.02 [2.06], pilz_lin 1.00 [1.00]
+return return_lift_rot TCP deviation (mm): RRTConnect 17.7 [105], BiTRRT 17.6 [105], RRTstar@1 17.6 [105], RRTstar@5 17.7 [105], chomp 17.6 [105], pilz_ptp 17.6 [105], pilz_lin 0.00 [0.00]
+return return_lift_rot TCP turning (rad): RRTConnect 0.66 [3.12], BiTRRT 0.66 [3.12], RRTstar@1 0.66 [3.12], RRTstar@5 0.66 [3.12], chomp 0.66 [3.12], pilz_ptp 0.66 [3.12], pilz_lin 0.00 [0.02]
+return return_lift_rot Wasted joint motion (rad): RRTConnect 0.00 [0.00], BiTRRT 0.00 [0.00], RRTstar@1 0.00 [0.00], RRTstar@5 0.00 [0.00], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.01 [0.46]
+return return_lift_rot RMS jerk (rad/s$^3$): RRTConnect 3.78 [4.63], BiTRRT 3.78 [4.63], RRTstar@1 3.78 [4.63], RRTstar@5 3.78 [4.63], chomp 24.1 [36.7], pilz_ptp 6.40 [8.48], pilz_lin 7.92 [10.0]
+return return_lift_rot Wall clearance (mm): RRTConnect 158 [156], BiTRRT 158 [156], RRTstar@1 158 [156], RRTstar@5 158 [156], chomp 156 [156], pilz_ptp 157 [156], pilz_lin 157 [156]
+return return_lift_rot Truss clearance (mm): RRTConnect -- [--], BiTRRT -- [--], RRTstar@1 -- [--], RRTstar@5 -- [--], chomp -- [--], pilz_ptp -- [--], pilz_lin -- [--]
+return return_lift_rot Repeat spread (mm): RRTConnect 0.05 [0.07], BiTRRT 0.05 [0.06], RRTstar@1 0.05 [0.06], RRTstar@5 0.04 [0.06], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.00 [0.00]
+return return_place Success (\%): RRTConnect 100 [--], BiTRRT 100 [--], RRTstar@1 100 [--], RRTstar@5 100 [--], chomp 98.3 [--], pilz_ptp 98.3 [--], pilz_lin 98.3 [--]
+return return_place Planning time (s): RRTConnect 0.04 [0.06], BiTRRT 0.05 [0.08], RRTstar@1 1.02 [1.04], RRTstar@5 5.02 [5.05], chomp 0.54 [0.56], pilz_ptp 0.01 [0.03], pilz_lin 0.02 [0.03]
+return return_place Execution time (s): RRTConnect 2.33 [2.73], BiTRRT 2.33 [2.73], RRTstar@1 2.33 [2.73], RRTstar@5 2.33 [2.73], chomp 2.72 [3.06], pilz_ptp 2.52 [2.77], pilz_lin 2.89 [3.11]
+return return_place Joint path ratio: RRTConnect 1.00 [1.00], BiTRRT 1.00 [1.00], RRTstar@1 1.00 [1.00], RRTstar@5 1.00 [1.00], chomp 1.00 [1.00], pilz_ptp 1.00 [1.00], pilz_lin 1.11 [1.11]
+return return_place TCP path ratio: RRTConnect 1.07 [1.08], BiTRRT 1.07 [1.08], RRTstar@1 1.07 [1.08], RRTstar@5 1.07 [1.08], chomp 1.07 [1.08], pilz_ptp 1.07 [1.08], pilz_lin 1.00 [1.00]
+return return_place TCP deviation (mm): RRTConnect 84.0 [87.1], BiTRRT 84.0 [87.1], RRTstar@1 83.9 [87.1], RRTstar@5 84.0 [87.1], chomp 83.9 [86.5], pilz_ptp 83.9 [86.5], pilz_lin 0.30 [0.30]
+return return_place TCP turning (rad): RRTConnect 1.26 [1.46], BiTRRT 1.26 [1.46], RRTstar@1 1.26 [1.46], RRTstar@5 1.26 [1.46], chomp 1.26 [1.37], pilz_ptp 1.26 [1.37], pilz_lin 0.90 [0.91]
+return return_place Wasted joint motion (rad): RRTConnect 0.00 [0.00], BiTRRT 0.00 [0.00], RRTstar@1 0.00 [0.00], RRTstar@5 0.00 [0.00], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.15 [0.26]
+return return_place RMS jerk (rad/s$^3$): RRTConnect 3.42 [4.28], BiTRRT 3.43 [4.28], RRTstar@1 3.43 [4.19], RRTstar@5 3.43 [4.28], chomp 20.2 [24.5], pilz_ptp 5.19 [5.60], pilz_lin 7.91 [10.0]
+return return_place Wall clearance (mm): RRTConnect 131 [112], BiTRRT 131 [112], RRTstar@1 131 [114], RRTstar@5 131 [112], chomp 131 [116], pilz_ptp 131 [117], pilz_lin 110 [109]
+return return_place Truss clearance (mm): RRTConnect -- [--], BiTRRT -- [--], RRTstar@1 -- [--], RRTstar@5 -- [--], chomp -- [--], pilz_ptp -- [--], pilz_lin -- [--]
+return return_place Repeat spread (mm): RRTConnect 0.05 [0.06], BiTRRT 0.05 [0.06], RRTstar@1 0.05 [0.06], RRTstar@5 0.05 [0.06], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.00 [0.00]
+return return_place_rot Success (\%): RRTConnect 100 [--], BiTRRT 100 [--], RRTstar@1 100 [--], RRTstar@5 100 [--], chomp 94.3 [--], pilz_ptp 91.4 [--], pilz_lin 34.3 [--]
+return return_place_rot Planning time (s): RRTConnect 0.05 [0.06], BiTRRT 0.09 [0.13], RRTstar@1 1.03 [1.05], RRTstar@5 5.03 [5.05], chomp 0.54 [0.57], pilz_ptp 0.02 [0.04], pilz_lin 0.04 [0.05]
+return return_place_rot Execution time (s): RRTConnect 4.94 [5.73], BiTRRT 4.94 [5.49], RRTstar@1 4.94 [5.86], RRTstar@5 4.94 [5.45], chomp 5.05 [5.32], pilz_ptp 5.06 [5.24], pilz_lin 6.02 [6.37]
+return return_place_rot Joint path ratio: RRTConnect 1.00 [1.07], BiTRRT 1.00 [1.03], RRTstar@1 1.00 [1.03], RRTstar@5 1.00 [1.03], chomp 1.00 [1.00], pilz_ptp 1.00 [1.00], pilz_lin 1.05 [1.09]
+return return_place_rot TCP path ratio: RRTConnect 1.09 [1.39], BiTRRT 1.09 [1.24], RRTstar@1 1.09 [1.21], RRTstar@5 1.09 [1.25], chomp 1.07 [1.17], pilz_ptp 1.07 [1.16], pilz_lin 1.00 [1.00]
+return return_place_rot TCP deviation (mm): RRTConnect 97.5 [140], BiTRRT 97.5 [132], RRTstar@1 97.5 [136], RRTstar@5 97.5 [132], chomp 84.5 [126], pilz_ptp 84.4 [115], pilz_lin 0.10 [0.20]
+return return_place_rot TCP turning (rad): RRTConnect 1.41 [4.76], BiTRRT 1.41 [4.15], RRTstar@1 1.41 [4.05], RRTstar@5 1.41 [3.75], chomp 1.28 [2.58], pilz_ptp 1.28 [2.51], pilz_lin 0.09 [0.10]
+return return_place_rot Wasted joint motion (rad): RRTConnect 0.00 [0.02], BiTRRT 0.00 [0.00], RRTstar@1 0.00 [0.00], RRTstar@5 0.00 [0.00], chomp 0.00 [-0.00], pilz_ptp 0.00 [0.00], pilz_lin 1.24 [1.41]
+return return_place_rot RMS jerk (rad/s$^3$): RRTConnect 2.89 [4.10], BiTRRT 2.89 [4.10], RRTstar@1 2.88 [4.10], RRTstar@5 2.88 [4.10], chomp 16.5 [19.7], pilz_ptp 4.79 [6.44], pilz_lin 6.82 [7.30]
+return return_place_rot Wall clearance (mm): RRTConnect 34.4 [5.40], BiTRRT 34.4 [5.40], RRTstar@1 34.4 [5.40], RRTstar@5 34.4 [5.40], chomp 34.4 [5.40], pilz_ptp 37.6 [15.8], pilz_lin 110 [110]
+return return_place_rot Truss clearance (mm): RRTConnect -- [--], BiTRRT -- [--], RRTstar@1 -- [--], RRTstar@5 -- [--], chomp -- [--], pilz_ptp -- [--], pilz_lin -- [--]
+return return_place_rot Repeat spread (mm): RRTConnect 0.04 [175], BiTRRT 0.05 [91.5], RRTstar@1 0.05 [156], RRTstar@5 0.04 [89.5], chomp 0.00 [0.00], pilz_ptp 0.00 [0.00], pilz_lin 0.00 [0.00]
+pairwise tests (b - a, per-query medians): 284 of 960 with p < 0.05; see stats_pairwise.csv
+erratic paths (TCP ratio > 1.5 or deviation > 10 cm) / successful plans:
+                                                  flagged  plans
+set     variant    move             planner                     
+edge    raw        pre_grasp        BiTRRT            521    525
+                                    RRTConnect        524    525
+                   transport        BiTRRT            503    525
+                                    RRTConnect        523    525
+        simplified pre_grasp        BiTRRT             16    525
+                                    RRTConnect         20    525
+                                    RRTstar@1          16    525
+                                    RRTstar@5          19    525
+                                    chomp              15    525
+                                    pilz_ptp           15    520
+                                    pink              440    475
+                   transport        BiTRRT             40    525
+                                    RRTConnect         40    525
+                                    RRTstar@1          40    525
+                                    RRTstar@5          40    525
+                                    chomp              40    525
+                                    pilz_ptp           40    525
+                                    pink              360    515
+        sweep      pre_grasp        RRTstar@0.1        14    298
+                                    RRTstar@0.25       15    300
+                                    RRTstar@0.5        15    300
+                                    RRTstar@2          15    300
+return  pose_goal  return_lift      BiTRRT              1    300
+                                    RRTConnect          1    300
+                   return_lift_rot  BiTRRT             24    300
+                                    RRTConnect         28    300
+                                    RRTstar@1          31    300
+                                    pilz_ptp            5    300
+                   return_place_rot BiTRRT             23    175
+                                    RRTConnect         24    175
+                                    RRTstar@1          24    175
+                                    pilz_ptp            6    160
+        simplified return_lift      pink              255    290
+                   return_lift_rot  BiTRRT             55    300
+                                    RRTConnect         55    300
+                                    RRTstar@1          55    300
+                                    RRTstar@5          55    300
+                                    chomp              55    300
+                                    pilz_ptp           55    300
+                                    pink              265    270
+                   return_place     BiTRRT              5    300
+                                    RRTConnect          5    300
+                                    RRTstar@1           4    300
+                                    RRTstar@5           3    300
+                                    pink              300    300
+                   return_place_rot BiTRRT             84    175
+                                    RRTConnect         85    175
+                                    RRTstar@1          85    175
+                                    RRTstar@5          84    175
+                                    chomp              75    165
+                                    pilz_ptp           70    160
+                                    pink               95     95
+typical pose_goal  pre_grasp        BiTRRT              7    500
+                                    RRTConnect         11    500
+                                    RRTstar@1          12    500
+                                    pilz_ptp            5    495
+                   transport        BiTRRT             32    500
+                                    RRTConnect         36    500
+                                    RRTstar@1          32    500
+                                    pilz_ptp           30    500
+        raw        pre_grasp        BiTRRT            490    500
+                                    RRTConnect        500    500
+                   transport        BiTRRT            462    500
+                                    RRTConnect        498    500
+        simplified pre_grasp        BiTRRT              7    500
+                                    RRTConnect          9    500
+                                    RRTstar@1           8    500
+                                    RRTstar@5           8    500
+                                    chomp               5    495
+                                    pilz_ptp            5    495
+                                    pink              425    480
+                   transport        BiTRRT             30    500
+                                    RRTConnect         30    500
+                                    RRTstar@1          30    500
+                                    RRTstar@5          30    500
+                                    chomp              30    500
+                                    pilz_ptp           30    500
+                                    pink              230    485
+        sweep      transport        RRTstar@0.1         5     75
+                                    RRTstar@0.25        5     75
+                                    RRTstar@0.5         5     75
+                                    RRTstar@2           5     75
+edge    simplified pre_grasp        pilz_lin            0    500
+                   transport        pilz_lin            0    520
+return  pose_goal  return_lift      RRTstar@1           0    300
+                                    pilz_lin            0    290
+                                    pilz_ptp            0    300
+                   return_lift_rot  pilz_lin            0    270
+                   return_place     BiTRRT              0    300
+                                    RRTConnect          0    300
+                                    RRTstar@1           0    300
+                                    pilz_lin            0    295
+                                    pilz_ptp            0    300
+                   return_place_rot pilz_lin            0     60
+        simplified return_lift      BiTRRT              0    300
+                                    RRTConnect          0    300
+                                    RRTstar@1           0    300
+                                    RRTstar@5           0    300
+                                    chomp               0    300
+                                    pilz_lin            0    290
+                                    pilz_ptp            0    300
+                   return_lift_rot  pilz_lin            0    270
+                   return_place     chomp               0    295
+                                    pilz_lin            0    295
+                                    pilz_ptp            0    295
+                   return_place_rot pilz_lin            0     60
+typical pose_goal  pre_grasp        pilz_lin            0    480
+                   transport        pilz_lin            0    485
+        simplified pre_grasp        pilz_lin            0    480
+                   transport        pilz_lin            0    485
+        sweep      pre_grasp        RRTstar@0.1         0     74
+                                    RRTstar@0.25        0     75
+                                    RRTstar@0.5         0     74
+                                    RRTstar@2           0     75
+raw (no simplification, 1 attempt) median path / ee ratio:
+                              path_ratio  ee_ratio
+set     move      planner                         
+edge    pre_grasp BiTRRT           2.839     7.801
+                  RRTConnect       3.404     8.227
+        transport BiTRRT           2.448     3.146
+                  RRTConnect       3.678     4.045
+typical pre_grasp BiTRRT           2.698     6.466
+                  RRTConnect       3.938     9.448
+        transport BiTRRT           2.289     2.493
+                  RRTConnect       4.246     3.910

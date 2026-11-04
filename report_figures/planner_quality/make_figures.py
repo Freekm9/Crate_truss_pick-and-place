@@ -10,18 +10,25 @@ Writes, to --out (default: next to this script):
   paths_examples.pdf/.png      TCP paths of every planner and repeat for example queries,
                                top and side view with the crate
   all_paths_<set>_<move>       every TCP path per planner (and raw OMPL output), transparent
+  gripper_paths_<name>         one example query per panel pair and planner, with the gripper
+                               drawn every few cm along the path (orientation: yaw, tilt, roll)
   metrics_<set>.pdf/.png       per-planner distributions of the path-quality metrics
   raw_vs_simplified.pdf/.png   OMPL planners with and without MoveIt's post-processing
   rrtstar_budget.pdf/.png      RRT* path quality against its time budget (one line per goal set)
   goal_type.pdf/.png           pose goal (MoveIt samples the IK) vs. the nearest-IK joint goal
   time_split.pdf/.png          planning time and execution time per planner, side by side
+  grasp_finding.pdf/.png       grasp points without a grasp, per generator and reason
+                               (queries.json next to each results CSV)
+  pipeline_success.pdf/.png    per planner: grasp found and planned / found but not planned /
+                               no grasp found, as a share of the grasp points
   table_quality.tex/.csv       median (95th percentile) per criterion and planner
   stats_pairwise.csv           paired tests between the candidates (Wilcoxon, McNemar)
   flagged_paths.csv            erratic paths to inspect (TCP ratio > 1.5 or deviation > 10 cm)
   numbers.txt                  every number quoted in the text
 
 Everything is over unique plans (plan_key x planner x repeat); Pink is a controller and
-is left out of the main figures (--with-pink adds it).
+is left out of the main figures (--with-pink adds it). The all_paths pre-grasp panels also
+mark the grasp points without a grasp (x) and those the planner failed to reach (o).
 """
 import argparse
 import gzip
@@ -63,6 +70,100 @@ INK, MUTED, GRID = '#2b2b2b', '#6b6b6b', '#e4e4e0'
 # Crate interior (samla_crate.scene) for the path plots: x, y range and rim height
 CRATE = dict(x=(0.335, 0.585), y=(-0.08, 0.28), z=(0.005, 0.14))
 
+# Panda kinematics (modified DH, as franka_description) to recover the gripper orientation
+# from the saved joint waypoints; the saved paths hold only the TCP position
+PANDA_DH = [(0, 0, 0.333), (0, -np.pi / 2, 0), (0, np.pi / 2, 0.316), (0.0825, np.pi / 2, 0),
+            (-0.0825, -np.pi / 2, 0.384), (0, np.pi / 2, 0), (0.088, np.pi / 2, 0)]
+FLANGE_Z, HAND_YAW = 0.107, -np.pi / 4
+TCP_Z = 0.2034  # hand -> TCP (10 cm finger extension); load() sets it from the queries' hand_tcp_offset_m
+# Gripper glyph, half scale: fingertips at the TCP, opening along hand y, fingers along -hand z
+GLYPH_HALF_WIDTH, GLYPH_FINGER, GLYPH_STEM = 0.02, 0.05, 0.02
+
+
+def _dh(a, alpha, d, theta):
+    ca, sa, ct, st = np.cos(alpha), np.sin(alpha), np.cos(theta), np.sin(theta)
+    return np.array([[ct, -st, 0, a], [st * ca, ct * ca, -sa, -d * sa], [st * sa, ct * sa, ca, d * ca],
+                     [0, 0, 0, 1]])
+
+
+def tcp_pose(q):
+    """Base -> hand_tcp transform (4x4) for joint vector q."""
+    T = np.eye(4)
+    for (a, alpha, d), th in zip(PANDA_DH, q):
+        T = T @ _dh(a, alpha, d, th)
+    return T @ _dh(0, 0, FLANGE_Z, HAND_YAW) @ _dh(0, 0, TCP_Z, 0)
+
+
+# Grasp angle: a path whose goal has the gripper pitched or rolled away from vertical
+# (a tilted grasp) is drawn whole in TILTED_COLOR instead of the planner's colour
+TILT_THRESHOLD_DEG = 5.0
+TILTED_COLOR = '#c0143c'
+
+
+def goal_tilt_deg(rec):
+    """Tilt of the approach axis from straight down at the end of a saved path (deg)."""
+    T = tcp_pose(rec['waypoints'][-1])
+    return float(np.degrees(np.arccos(np.clip(-T[2, 2], -1.0, 1.0))))
+
+
+def path_color(rec, color):
+    return TILTED_COLOR if goal_tilt_deg(rec) > TILT_THRESHOLD_DEG else color
+
+
+def tilt_legend(fig, y, markers=False):
+    """Legend for the grasp-angle colouring (and the goal markers of fig_all_paths),
+    centred at figure height y."""
+    handles = [plt.Line2D([], [], color=MUTED, lw=2, label='vertical grasp at the goal (planner colour)'),
+               plt.Line2D([], [], color=TILTED_COLOR, lw=2,
+                          label=f'tilted grasp at the goal (pitch/roll > {TILT_THRESHOLD_DEG:.0f}°)')]
+    if markers:
+        handles += [plt.Line2D([], [], ls='', marker='x', color=NO_GRASP_COLOR, ms=4,
+                               label='no grasp found (tilted generator)'),
+                    plt.Line2D([], [], ls='', marker='o', mfc='none', mec=NO_GRASP_COLOR, ms=4,
+                               label='grasp found, planner failed (any repeat)')]
+    fig.legend(handles=handles, loc='center', bbox_to_anchor=(0.5, y), ncol=2, frameon=False, fontsize=7)
+
+
+def gripper_poses(waypoints, every_m):
+    """TCP poses along the (densified) joint path, one every `every_m` of TCP travel,
+    always including the start and the goal."""
+    poses = [tcp_pose(q) for q in pq.densify(waypoints, 0.01)]
+    out, travelled = [poses[0]], 0.0
+    for prev, T in zip(poses[:-1], poses[1:]):
+        travelled += np.linalg.norm(T[:3, 3] - prev[:3, 3])
+        if travelled >= every_m:
+            out.append(T)
+            travelled = 0.0
+    if out[-1] is not poses[-1]:
+        out.append(poses[-1])
+    return out
+
+
+def draw_gripper(ax, T, i, j, color, alpha=1.0, lw=0.8):
+    """Gripper outline projected on axes (i, j): the two fingers and the palm, plus a
+    stem towards the hand, so the view shows yaw (top view), tilt (side view) and the
+    180 deg roll (the stem flips side)."""
+    p, y, z = T[:3, 3], T[:3, 1], T[:3, 2]
+    tips = [p + y * GLYPH_HALF_WIDTH, p - y * GLYPH_HALF_WIDTH]
+    bases = [t - z * GLYPH_FINGER for t in tips]
+    palm = p - z * GLYPH_FINGER
+    outline = np.array([tips[0], bases[0], bases[1], tips[1]])
+    ax.plot(outline[:, i], outline[:, j], color=color, lw=lw, alpha=alpha, solid_capstyle='round')
+    stem = np.array([palm, palm - z * GLYPH_STEM])
+    ax.plot(stem[:, i], stem[:, j], color=color, lw=lw, alpha=alpha)
+    # Mark one finger so a 180 deg roll about the approach axis is visible in every view
+    ax.plot(*tips[0][[i, j]], 'o', color=color, ms=1.8, alpha=alpha, mec='none')
+
+# Grasp finding (queries.json unreachable_reason): label, colour
+REASONS = {
+    '': ('grasp found', '#cfcfca'),
+    'no_orientation': ('no feasible grasp orientation', TILTED_COLOR),
+    'goal_in_crate_contents': ('pre-grasp only in collision with the trusses', '#e88aa0'),
+    'no_goal_ik': ('no collision-free pre-grasp IK', MUTED),
+}
+GENERATORS = {'topdown': 'Top-down (4-DOF)', 'tilted': 'Tilted (ours)', 'fixed': 'Fixed 30° tilts'}
+NO_GRASP_COLOR = '#3d3d3a'
+
 # Criteria of the quality table: column, label, scale, lower is better
 CRITERIA = [
     ('success', 'Success (\\%)', 100, False),
@@ -102,6 +203,26 @@ def load(manifest):
                 pass
     d = pd.concat(frames, ignore_index=True)
     d['success'] = d['success'].astype(str).str.lower() == 'true'
+    d.loc[d['planner'] == 'RRTstar', 'planner'] = 'RRTstar@5'
+    # Every query of each set, also the unreachable ones (no grasp found: never planned)
+    rows, tcp = [], set()
+    for set_name, results in m.drop_duplicates('set')[['set', 'results']].values:
+        qpath = os.path.join(os.path.dirname(results), 'queries.json')
+        if not os.path.exists(qpath):
+            continue
+        with open(qpath) as f:
+            qj = json.load(f)
+        tcp.add(round(qj['meta']['hand_tcp_offset_m'], 4))
+        rows += [dict(set=set_name, query_id=qq['id'], move=qq['move'], method=qq['method'],
+                      point_id=qq['point_id'], x=qq['x'], y=qq['y'], z=qq['z'], yaw_deg=qq['yaw_deg'],
+                      wall_dist_m=qq['wall_dist_m'], reachable=qq['reachable'],
+                      reason=qq['unreachable_reason'] or '') for qq in qj['queries']]
+    if len(tcp) > 1:
+        raise SystemExit(f"The sets were built with different TCP offsets {sorted(tcp)}: one manifest per finger length")
+    if tcp:
+        global TCP_Z
+        TCP_Z = tcp.pop()
+    q = pd.DataFrame(rows)
     # Unique plans: a start/goal pair shared by several goal sets is planned once
     u = d.drop_duplicates(['set', 'variant', 'plan_key', 'planner', 'repeat']).copy()
     # The pipeline's RRT* is RRTstar at 5 s; a plain 'RRTstar' run counts as RRTstar@5
@@ -118,7 +239,7 @@ def load(manifest):
             spread[key] = pq.path_spread([r['tcp'] for r in rs]) * 1000
     u['spread_mm'] = [spread.get((s, v, k, p), np.nan) for s, v, k, p in
                       zip(u['set'], u['variant'], u['plan_key'], u['planner'])]
-    return u, by_query
+    return u, by_query, d, q
 
 
 def save(fig, out, name):
@@ -177,11 +298,19 @@ def fig_paths(u, by_query, out, planners, n_lines):
     plt.close(fig)
 
 
-def fig_all_paths(by_query, out, set_name, move, planners, alpha=0.06):
+def fig_all_paths(by_query, out, set_name, move, planners, d, q, alpha=0.06):
     """Every TCP path of every planner for one goal set and move, as thin transparent
     lines: one panel pair (top view x-y, side view x-z) per planner, same axes for all,
     so common routes show dark and single outliers light. The OMPL planners' raw output
-    (no post-processing) gets its own panels when it was run."""
+    (no post-processing) gets its own panels when it was run. Paths ending in a tilted
+    grasp are drawn in TILTED_COLOR. For the pre-grasp move the grasp points are marked
+    where the tilted generator found no grasp (x, all panels) and where this planner
+    failed to plan at least one repeat (o)."""
+    marks = move == 'pre_grasp' and not q.empty
+    if marks:
+        qs = q[(q['set'] == set_name) & (q['move'] == move)]
+        no_grasp = qs[(qs['method'] == 'tilted') & ~qs['reachable']].drop_duplicates('point_id')[['x', 'y', 'z']].values
+        fails = d[(d['set'] == set_name) & (d['move'] == move) & ~d['success']]
     panels = []
     for p in planners:
         for variant in ('simplified', 'raw'):
@@ -208,10 +337,24 @@ def fig_all_paths(by_query, out, set_name, move, planners, alpha=0.06):
         r, c0 = divmod(idx, per_row)
         for k, (i, j) in enumerate(((0, 1), (0, 2))):
             ax = axes[r, 2 * c0 + k]
-            segs = [np.array(rec['tcp'])[:, [i, j]] for rec in recs]
-            ax.add_collection(LineCollection(segs, colors=STYLE[p]['color'], linewidths=0.6, alpha=alpha))
+            # Tilted-goal paths on top, so a few of them stay visible among many vertical ones
+            for tilted in (False, True):
+                sel = [rec for rec in recs if (path_color(rec, '') == TILTED_COLOR) == tilted]
+                if sel:
+                    ax.add_collection(LineCollection([np.array(rec['tcp'])[:, [i, j]] for rec in sel],
+                                                     colors=TILTED_COLOR if tilted else STYLE[p]['color'],
+                                                     linewidths=0.6, alpha=alpha))
             (x0, x1), (y0, y1) = CRATE['x'], CRATE['y' if j == 1 else 'z']
             ax.add_patch(plt.Rectangle((x0, y0), x1 - x0, y1 - y0, fill=False, ec=INK, lw=0.8))
+            if marks:
+                failed = fails[(fails['planner'] == p) & (fails['variant'] == variant)].drop_duplicates(
+                    'plan_key')[['x', 'y', 'z']].values
+                if len(failed):
+                    ax.scatter(failed[:, i], failed[:, j], s=10, facecolors='none', edgecolors=NO_GRASP_COLOR,
+                               lw=0.6, zorder=4)
+                if len(no_grasp):
+                    ax.scatter(no_grasp[:, i], no_grasp[:, j], s=10, marker='x', color=NO_GRASP_COLOR, lw=0.7,
+                               zorder=4)
             lim = lims[variant]
             ax.set_xlim(lim[0])
             ax.set_ylim(lim[j])
@@ -221,12 +364,115 @@ def fig_all_paths(by_query, out, set_name, move, planners, alpha=0.06):
             ax.set_ylabel('y (m)' if j == 1 else 'z (m)', fontsize=7)
             if k == 0:
                 name = STYLE[p]['label'] + (' raw, wider axes' if variant == 'raw' else '')
-                ax.set_title(f"{name}: {len(recs)} paths, top / side", fontsize=7.5, color=INK, loc='left')
+                n_fail = ''
+                if marks:
+                    f = fails[(fails['planner'] == p) & (fails['variant'] == variant)]
+                    n_fail = f", {f[['plan_key', 'repeat']].drop_duplicates().shape[0]} failed" if len(f) else ''
+                ax.set_title(f"{name}: {len(recs)} paths{n_fail}, top / side", fontsize=7.5, color=INK, loc='left')
     for idx in range(len(panels), rows * per_row):
         r, c0 = divmod(idx, per_row)
         axes[r, 2 * c0].axis('off')
         axes[r, 2 * c0 + 1].axis('off')
-    save(fig, out, f'all_paths_{set_name}_{move}')
+    h = 2.0 * rows + (0.55 if marks else 0.3)
+    fig.set_figheight(h)
+    fig.tight_layout(rect=(0, (0.55 if marks else 0.35) / h, 1, 1))
+    tilt_legend(fig, (0.25 if marks else 0.15) / h, markers=marks)
+    for ext in ('pdf', 'png'):
+        fig.savefig(os.path.join(out, f'all_paths_{set_name}_{move}.{ext}'), dpi=200)
+    plt.close(fig)
+
+
+def gripper_examples(u):
+    """Example queries for the gripper-orientation figures: (file suffix, set, plan_key, title).
+    Typical pre-grasp with the median RRT-Connect spread, the most tilted edge goal, the
+    median transport, and the rolled place -> capture query with the largest RRT-Connect
+    spread among those at least half the planners solved (the move where the planners differ)."""
+    s = u[(u['variant'] == 'simplified') & u['success']]
+    picks = []
+    rc = s[(s['planner'] == 'RRTConnect')]
+    g = rc[(rc['set'] == 'typical') & (rc['move'] == 'pre_grasp')].groupby('plan_key')['spread_mm'].first().dropna()
+    if len(g):
+        picks.append(('typical_pre_grasp', 'typical', (g - g.median()).abs().idxmin(),
+                      'Capture pose to pre-grasp, typical goal'))
+    e = rc[(rc['set'] == 'edge') & (rc['move'] == 'pre_grasp')].copy()
+    if len(e) and 'tilt_x_deg' in e:
+        e['tilt'] = np.hypot(e['tilt_x_deg'].fillna(0), e['tilt_y_deg'].fillna(0))
+        key = e.groupby('plan_key')['tilt'].first().idxmax()
+        picks.append(('edge_tilted', 'edge', key,
+                      f"Capture pose to pre-grasp, most tilted wall goal ({e['tilt'].max():.0f}°)"))
+    t = rc[(rc['set'] == 'typical') & (rc['move'] == 'transport')]
+    if len(t):
+        m = t.groupby('plan_key')['ee_ratio'].median().sort_values()
+        picks.append(('typical_transport', 'typical', m.index[len(m) // 2], 'Lift to place, median query'))
+    r = s[(s['set'] == 'return') & (s['move'] == 'return_place_rot')]
+    if len(r):
+        n_ok = r.groupby('plan_key')['planner'].nunique()
+        best = n_ok[n_ok >= n_ok.max() / 2].index
+        sp = r[(r['planner'] == 'RRTConnect') & r['plan_key'].isin(best)].groupby('plan_key')['spread_mm'].first()
+        key = sp.idxmax() if sp.notna().any() else best[0]
+        picks.append(('return_place_rot', 'return', key, 'Place (rolled 180°) to capture pose'))
+    return picks
+
+
+def fig_gripper_paths(u, by_query, out, planners, every_m=0.04):
+    """Per example query: one panel pair (top view x-y, side view x-z) per planner with
+    all repeats as thin lines, the first repeat thicker with the gripper drawn every
+    `every_m` of TCP travel (half scale); tilted-goal paths in TILTED_COLOR."""
+    for suffix, set_name, key, title in gripper_examples(u):
+        panels = [(p, by_query[(set_name, 'simplified', key, p)]) for p in planners
+                  if by_query.get((set_name, 'simplified', key, p))]
+        if not panels:
+            continue
+        glyphs = {p: gripper_poses(recs[0]['waypoints'], every_m) for p, recs in panels}
+        pts = [np.array(r['tcp']) for _, recs in panels for r in recs]
+        pts += [np.array([T[:3, 3] - T[:3, 2] * (GLYPH_FINGER + GLYPH_STEM) for T in g]) for g in glyphs.values()]
+        allxyz = np.concatenate(pts)
+        pad = 0.03
+        lim = [(min(allxyz[:, i].min(), CRATE[c][0]) - pad, max(allxyz[:, i].max(), CRATE[c][1]) + pad)
+               for i, c in enumerate('xyz')]
+        per_row = 2
+        rows = int(np.ceil(len(panels) / per_row))
+        fig, axes = plt.subplots(rows, 2 * per_row, figsize=(7.6, 2.1 * rows + 0.5), squeeze=False)
+        for idx, (p, recs) in enumerate(panels):
+            r, c0 = divmod(idx, per_row)
+            color = STYLE[p]['color']
+            for k, (i, j) in enumerate(((0, 1), (0, 2))):
+                ax = axes[r, 2 * c0 + k]
+                (x0, x1), (y0, y1) = CRATE['x'], CRATE['y' if j == 1 else 'z']
+                ax.add_patch(plt.Rectangle((x0, y0), x1 - x0, y1 - y0, fill=False, ec=MUTED, lw=0.8))
+                for rec in recs[1:]:
+                    tcp = np.array(rec['tcp'])
+                    ax.plot(tcp[:, i], tcp[:, j], color=path_color(rec, color), lw=0.6, alpha=0.35)
+                tcp = np.array(recs[0]['tcp'])
+                ax.plot(tcp[:, i], tcp[:, j], color=path_color(recs[0], color), ls=STYLE[p]['ls'], lw=1.4)
+                g = glyphs[p]
+                for T in g:
+                    draw_gripper(ax, T, i, j, INK, alpha=0.55, lw=0.7)
+                ax.plot(*tcp[0, [i, j]], 's', color=INK, ms=3.5)
+                ax.set_xlim(lim[0])
+                ax.set_ylim(lim[j])
+                ax.set_aspect('equal')
+                ax.tick_params(labelsize=6.5)
+                ax.set_xlabel('x (m)', fontsize=7)
+                ax.set_ylabel('y (m)' if j == 1 else 'z (m)', fontsize=7)
+                if k == 0:
+                    ax.set_title(f"{STYLE[p]['label']}: {len(recs)} repeats, top / side", fontsize=7.5,
+                                 color=INK, loc='left')
+        for idx in range(len(panels), rows * per_row):
+            r, c0 = divmod(idx, per_row)
+            axes[r, 2 * c0].axis('off')
+            axes[r, 2 * c0 + 1].axis('off')
+        missing = [STYLE[p]['label'] for p in planners if p not in dict(panels)]
+        fig.suptitle(title + (f" (no plan: {', '.join(missing)})" if missing else ''), fontsize=8.5, color=INK)
+        h = 2.1 * rows + 0.5
+        fig.text(0.5, 0.75 / h, 'Gripper (half scale) every 4 cm along the first repeat; dot = one fingertip, '
+                 'stem = towards the hand. Square = start.',
+                 ha='center', va='bottom', fontsize=6.5, color=MUTED)
+        fig.tight_layout(rect=(0, 0.75 / h, 1, 0.97))
+        tilt_legend(fig, 0.3 / h)
+        for ext in ('pdf', 'png'):
+            fig.savefig(os.path.join(out, f'gripper_paths_{suffix}.{ext}'), dpi=200)
+        plt.close(fig)
 
 
 def strip_box(ax, data, planners, col, scale, rng):
@@ -385,6 +631,117 @@ def fig_goal_type(u, out, planners, numbers):
     save(fig, out, 'goal_type')
 
 
+def generator(method):
+    return 'fixed' if method.startswith('tilt') and method != 'tilted' else method
+
+
+def fig_grasp_finding(q, out, numbers):
+    """Grasp points without a grasp (pre-grasp queries): per goal set and generator a
+    stacked bar of the share of grasp points (point x yaw) by unreachable_reason. The
+    fixed 30-degree tilts (edge set) are infeasible by design at many points: they are
+    goals for the planners, not a grasp generator, and are shown apart."""
+    if q.empty:
+        return
+    g = q[q['move'] == 'pre_grasp'].copy()
+    g['generator'] = g['method'].map(generator)
+    bars = [(s, gen) for s in SETS for gen in GENERATORS if ((g['set'] == s) & (g['generator'] == gen)).any()]
+    fig, ax = plt.subplots(figsize=(7.6, 0.32 * len(bars) + 1.1))
+    for i, (s, gen) in enumerate(bars):
+        gg = g[(g['set'] == s) & (g['generator'] == gen)]
+        left = 0.0
+        for reason, (label, color) in REASONS.items():
+            share = (gg['reason'] == reason).mean() * 100
+            if share:
+                ax.barh(i, share, left=left, color=color, height=0.65, label=label if i == 0 or not left else None)
+                if share >= 4 and reason:
+                    ax.text(left + share / 2, i, f'{share:.0f}', ha='center', va='center', fontsize=6.5, color='white')
+                left += share
+        other = 100 - left
+        if other > 1e-9:
+            ax.barh(i, other, left=left, color=GRID, height=0.65)
+        ax.text(101, i, f"{gg['reachable'].mean() * 100:.0f}% of {len(gg)}", va='center', fontsize=7, color=INK)
+        reasons = gg.loc[~gg['reachable'], 'reason'].value_counts().to_dict()
+        numbers.append(f"grasp finding {s} {gen}: {int(gg['reachable'].sum())}/{len(gg)} reachable; "
+                       f"unreachable {reasons}")
+    for move in [m for m in MOVES if m != 'pre_grasp']:
+        for (s, method), gg in q[q['move'] == move].groupby(['set', 'method']):
+            if (~gg['reachable']).any():
+                numbers.append(f"no query {s} {move} {method}: {int((~gg['reachable']).sum())}/{len(gg)} "
+                               f"{gg.loc[~gg['reachable'], 'reason'].value_counts().to_dict()}")
+    ax.set_yticks(range(len(bars)))
+    ax.set_yticklabels([f"{SETS[s].capitalize()}: {GENERATORS[gen]}" for s, gen in bars], fontsize=7.5)
+    ax.invert_yaxis()
+    ax.set_xlim(0, 115)
+    ax.set_xticks(range(0, 101, 20))
+    ax.set_xlabel('Grasp points (%)')
+    ax.grid(axis='x', color=GRID, lw=0.6)
+    handles = [plt.Rectangle((0, 0), 1, 1, color=c, label=lab) for lab, c in REASONS.values()]
+    fig.legend(handles=handles, loc='lower center', ncol=2, frameon=False, fontsize=7)
+    fig.tight_layout(rect=(0, 0.55 / (0.32 * len(bars) + 1.1), 1, 1))
+    for ext in ('pdf', 'png'):
+        fig.savefig(os.path.join(out, f'grasp_finding.{ext}'), dpi=200)
+    plt.close(fig)
+
+
+def fig_pipeline_success(d, q, out, planners, numbers):
+    """Grasp finding and planning together, for the capture -> pre-grasp move: per goal set
+    (row), generator (column) and planner a stacked bar of the grasp points: grasp found
+    and planned (mean over the repeats), grasp found but planning failed, no grasp found
+    (the same for every planner of a generator)."""
+    if q.empty:
+        return
+    s = d[(d['variant'] == 'simplified') & (d['move'] == 'pre_grasp')]
+    per_query = s.groupby(['set', 'query_id', 'planner'])['success'].mean()
+    sets = [x for x in SETS if (s['set'] == x).any()]
+    gens = ['topdown', 'tilted']
+    if not sets:
+        return
+    fig, axes = plt.subplots(len(sets), len(gens), figsize=(7.6, 2.3 * len(sets) + 0.5), squeeze=False,
+                             sharey=True)
+    for r, set_name in enumerate(sets):
+        for c, gen in enumerate(gens):
+            ax = axes[r, c]
+            qs = q[(q['set'] == set_name) & (q['move'] == 'pre_grasp') & (q['method'] == gen)]
+            n = len(qs)
+            if not n:
+                ax.axis('off')
+                continue
+            no_grasp = (~qs['reachable']).sum() / n * 100
+            line = []
+            for i, p in enumerate(planners):
+                v = [per_query.get((set_name, qid, p), np.nan) for qid in qs.loc[qs['reachable'], 'query_id']]
+                if not v or np.all(np.isnan(v)):
+                    continue
+                planned = np.nansum(v) / n * 100
+                failed = 100 - no_grasp - planned
+                ax.bar(i, planned, color=STYLE[p]['color'], width=0.7)
+                ax.bar(i, failed, bottom=planned, color=STYLE[p]['color'], alpha=0.3, width=0.7, hatch='////',
+                       edgecolor='white', lw=0)
+                ax.bar(i, no_grasp, bottom=planned + failed, color=NO_GRASP_COLOR, width=0.7)
+                ax.text(i, planned / 2, f'{planned:.0f}', ha='center', va='center', fontsize=6.5, color='white',
+                        rotation=90)
+                line.append(f"{p} {planned:.1f}/{failed:.1f}")
+            numbers.append(f"pipeline success {set_name} {gen} (n={n} grasp points, no grasp {no_grasp:.1f}%): "
+                           f"planned/plan failed % " + ', '.join(line))
+            ax.set_xticks(range(len(planners)))
+            ax.set_xticklabels([STYLE[p]['label'] for p in planners] if r == len(sets) - 1 else [],
+                               rotation=40, ha='right', fontsize=7)
+            ax.set_ylim(0, 100)
+            ax.grid(axis='y', color=GRID, lw=0.6)
+            ax.set_title(f"{SETS[set_name].capitalize()}, {GENERATORS[gen]}: n = {n}", fontsize=8, color=INK)
+        axes[r, 0].set_ylabel('Grasp points (%)')
+    handles = [plt.Rectangle((0, 0), 1, 1, color=MUTED, label='grasp found, planned (planner colour)'),
+               plt.Rectangle((0, 0), 1, 1, facecolor=MUTED, alpha=0.3, hatch='////', edgecolor='white',
+                             label='grasp found, planning failed'),
+               plt.Rectangle((0, 0), 1, 1, color=NO_GRASP_COLOR, label='no grasp found')]
+    h = 2.3 * len(sets) + 0.5
+    fig.legend(handles=handles, loc='lower center', ncol=3, frameon=False, fontsize=7)
+    fig.tight_layout(rect=(0, 0.35 / h, 1, 1))
+    for ext in ('pdf', 'png'):
+        fig.savefig(os.path.join(out, f'pipeline_success.{ext}'), dpi=200)
+    plt.close(fig)
+
+
 def fig_time_split(u, out, planners):
     s = u[(u['variant'] == 'simplified') & u['success']]
     if s.empty:
@@ -521,22 +878,26 @@ def main():
     ap.add_argument('--lines', type=int, default=5, help="Repeats drawn per planner in the path plots")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
-    u, by_query = load(args.manifest)
+    u, by_query, d, q = load(args.manifest)
     planners = [p for p in MAIN + (['pink'] if args.with_pink else []) if p in set(u['planner'])]
     numbers = [f"unique plans per set/variant/move: "
                f"{u.groupby(['set', 'variant', 'move']).size().to_dict()}",
-               f"unique start/goal pairs: {u.groupby(['set', 'move'])['plan_key'].nunique().to_dict()}"]
+               f"unique start/goal pairs: {u.groupby(['set', 'move'])['plan_key'].nunique().to_dict()}",
+               f"hand -> TCP {TCP_Z:.4f} m (finger extension {TCP_Z - 0.1034:.3f} m)"]
     fig_paths(u, by_query, args.out, planners, args.lines)
+    fig_gripper_paths(u, by_query, args.out, planners)
     for set_name in SETS:
         for move in MOVES:
             fig_all_paths(by_query, args.out, set_name, move, planners + (['pink'] if 'pink' not in planners and
-                                                                          args.with_pink else []))
+                                                                          args.with_pink else []), d, q)
     for set_name in SETS:
         fig_metrics(u, args.out, set_name, planners)
     fig_raw(u, args.out)
     fig_budget(u, args.out)
     fig_goal_type(u, args.out, planners, numbers)
     fig_time_split(u, args.out, planners)
+    fig_grasp_finding(q, args.out, numbers)
+    fig_pipeline_success(d, q, args.out, planners, numbers)
     table(u, args.out, planners, numbers)
     stats(u, args.out, planners, numbers)
     flagged(u, args.out, numbers)
